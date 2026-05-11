@@ -1,0 +1,12 @@
+name = "na-portfolio"
+type = "javascript"
+account_id = ""
+workers_dev = true
+main = "server.mjs"
+site = { bucket = "./dist" }
+
+[env.production]
+routes = [
+  { pattern = "example.com", zone_name = "example.com" }
+]
+vars = { ENVIRONMENT = "production" }
