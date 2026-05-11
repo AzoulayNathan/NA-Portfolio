@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --sand: 40 38% 85%;
+    --quartz: 40 30% 95%;
+    --olive: 158 18% 32%;
+    --tropical: 160 32% 18%;
+    --terracotta: 12 52% 47%;
+    --sky: 195 25% 75%;
+    --ink: 60 4% 10%;
+
+    --background: var(--sand);
+    --foreground: var(--ink);
+    --card: var(--quartz);
+    --card-foreground: var(--ink);
+    --popover: var(--quartz);
+    --popover-foreground: var(--ink);
+    --primary: var(--olive);
+    --primary-foreground: 40 30% 95%;
+    --secondary: var(--quartz);
+    --secondary-foreground: var(--ink);
+    --muted: 40 20% 88%;
+    --muted-foreground: 60 4% 40%;
+    --accent: var(--tropical);
+    --accent-foreground: 40 30% 95%;
+    --destructive: var(--terracotta);
+    --destructive-foreground: 40 30% 95%;
+    --border: 40 20% 78%;
+    --input: 40 20% 78%;
+    --ring: var(--olive);
+    --radius: 0.25rem;
+
+    --chart-1: var(--olive);
+    --chart-2: var(--tropical);
+    --chart-3: var(--terracotta);
+    --chart-4: var(--sky);
+    --chart-5: var(--sand);
+
+    --sidebar-background: var(--tropical);
+    --sidebar-foreground: 40 30% 95%;
+    --sidebar-primary: 40 30% 95%;
+    --sidebar-primary-foreground: var(--tropical);
+    --sidebar-accent: var(--olive);
+    --sidebar-accent-foreground: 40 30% 95%;
+    --sidebar-border: var(--olive);
+    --sidebar-ring: 40 30% 95%;
+  }
+
+  .dark {
+    --background: var(--ink);
+    --foreground: var(--quartz);
+    --card: 60 4% 14%;
+    --card-foreground: var(--quartz);
+    --popover: 60 4% 14%;
+    --popover-foreground: var(--quartz);
+    --primary: var(--olive);
+    --primary-foreground: var(--quartz);
+    --secondary: 60 4% 18%;
+    --secondary-foreground: var(--quartz);
+    --muted: 60 4% 18%;
+    --muted-foreground: 60 4% 55%;
+    --accent: var(--tropical);
+    --accent-foreground: var(--quartz);
+    --destructive: var(--terracotta);
+    --destructive-foreground: var(--quartz);
+    --border: 60 4% 20%;
+    --input: 60 4% 20%;
+    --ring: var(--olive);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(63, 90, 79, 0.72) rgba(232, 223, 201, 0.55);
+  }
+
+  /* Global vertical scrollbar styling */
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 0;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: rgba(232, 223, 201, 0.55);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(63, 90, 79, 0.82) 0%, rgba(31, 61, 51, 0.88) 100%);
+    border-radius: 999px;
+    border: 2px solid rgba(232, 223, 201, 0.7);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(63, 90, 79, 0.92) 0%, rgba(31, 61, 51, 0.96) 100%);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .font-serif {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .font-sans {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .text-sand { color: #E8DFC9; }
+  .text-quartz { color: #F6F3ED; }
+  .text-olive { color: #3F5A4F; }
+  .text-tropical { color: #1F3D33; }
+  .text-terracotta { color: #B5523B; }
+  .text-sky { color: #AFC8D1; }
+  .text-ink { color: #1A1A18; }
+
+  .bg-sand { background-color: #E8DFC9; }
+  .bg-quartz { background-color: #F6F3ED; }
+  .bg-olive { background-color: #3F5A4F; }
+  .bg-tropical { background-color: #1F3D33; }
+  .bg-terracotta { background-color: #B5523B; }
+  .bg-sky { background-color: #AFC8D1; }
+  .bg-ink { background-color: #1A1A18; }
+
+  .border-sand { border-color: #E8DFC9; }
+  .border-olive { border-color: #3F5A4F; }
+  .border-tropical { border-color: #1F3D33; }
+  .border-terracotta { border-color: #B5523B; }
+  .border-sky { border-color: #AFC8D1; }
+  .border-ink { border-color: #1A1A18; }
+
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #3F5A4F;
+  }
+
+  .eyebrow-light {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #AFC8D1;
+  }
+}

@@ -1,0 +1,221 @@
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { Mail, Linkedin, Github, ArrowRight, Calendar } from 'lucide-react';
+import PageLayout from '../components/layout/PageLayout';
+import { useI18n } from '@/lib/i18n';
+import ContactButton from '@/components/ui/ContactButton';
+
+export default function Contact() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [sent, setSent] = useState(false);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const leftInView = useInView(leftRef, { once: true, margin: '-40px' });
+  const rightInView = useInView(rightRef, { once: true, margin: '-40px' });
+  const { t } = useI18n();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Portfolio contact - ${form.name}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`,
+    );
+    window.location.href = `mailto:nathanazoulay.pro@gmail.com?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
+
+  const links = [
+    { icon: Mail, label: 'Email', value: 'nathanazoulay.pro@gmail.com', href: 'mailto:nathanazoulay.pro@gmail.com' },
+    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/nathanazoulay', href: 'https://linkedin.com/in/nathanazoulay' },
+    { icon: Github, label: 'GitHub', value: 'github.com/nathanazoulay', href: 'https://github.com/nathanazoulay' },
+    { icon: Calendar, label: 'Calendly', value: t('coming_soon'), href: null },
+  ];
+
+  return (
+    <PageLayout>
+      {/* Intro */}
+      <section className="bg-tropical pt-32 pb-20 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto relative overflow-hidden min-h-[280px]">
+          <motion.div
+            className="absolute inset-y-0 right-[-4%] w-[62%] md:w-[46%] pointer-events-none z-0"
+            animate={{ y: [0, -8, 0], scale: [1, 1.015, 1] }}
+            transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <video
+              className="absolute inset-0 h-full w-full object-cover opacity-[0.62]"
+              style={{
+                filter: 'saturate(0.72) brightness(0.9) contrast(1.06) hue-rotate(6deg)',
+                objectPosition: '56% 14%',
+              }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-hidden
+              poster="/we-visual.png"
+            >
+              <source src="/contact-right-loop.mp4" type="video/mp4" />
+            </video>
+            {/* Wind motion focused on subject silhouette area (person + guitar), not whole frame */}
+            <motion.video
+              className="absolute inset-0 h-full w-full object-cover opacity-[0.1] mix-blend-soft-light"
+              style={{
+                filter: 'grayscale(1) contrast(1.45) brightness(1.04)',
+                objectPosition: '56% 14%',
+                clipPath: 'polygon(7% 5%, 86% 4%, 94% 25%, 90% 97%, 16% 97%, 5% 74%)',
+              }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-hidden
+              animate={{ x: [0, 1.6, 0, -1.1, 0], y: [0, -0.8, 0, 0.7, 0], rotate: [0, 0.22, 0, -0.2, 0] }}
+              transition={{ duration: 7.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <source src="/contact-right-loop.mp4" type="video/mp4" />
+            </motion.video>
+            <div className="absolute inset-0 bg-gradient-to-l from-[#3F5A4F]/48 via-[#3F5A4F]/24 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#3F5A4F]/22 via-transparent to-[#3F5A4F]/24" />
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="eyebrow-light mb-5 relative z-10"
+          >
+            {t('contact_eyebrow')}
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.08 }}
+            className="font-serif text-[52px] md:text-[76px] font-light text-sand leading-tight max-w-2xl mb-5 relative z-10"
+          >
+            {t('contact_heading')}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.18 }}
+            className="font-sans text-[15px] text-sand/55 leading-relaxed max-w-md relative z-10"
+          >
+            {t('contact_body')}
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Contact split */}
+      <section className="bg-sand py-20 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-[45fr_55fr] gap-12 md:gap-20">
+
+          {/* Left — Links */}
+          <motion.div
+            ref={leftRef}
+            initial={{ opacity: 0, x: -24 }}
+            animate={leftInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="eyebrow mb-8">{t('contact_find')}</p>
+            <div className="space-y-6">
+              {links.map((link, i) => {
+                const Icon = link.icon;
+                return (
+                  <motion.div
+                    key={link.label}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={leftInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: i * 0.07 + 0.1 }}
+                  >
+                    {link.href ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-start gap-4 py-3 border-b border-ink/10 hover:border-olive transition-all"
+                      >
+                        <Icon size={16} className="text-olive mt-0.5 flex-shrink-0 group-hover:text-tropical transition-colors" />
+                        <div>
+                          <p className="font-sans text-[11px] tracking-widest uppercase text-ink/40 mb-0.5">{link.label}</p>
+                          <p className="font-sans text-sm text-ink/70 group-hover:text-ink transition-colors break-all">{link.value}</p>
+                        </div>
+                        <ArrowRight size={12} className="ml-auto text-ink/20 group-hover:text-olive group-hover:translate-x-1 transition-all mt-1 flex-shrink-0" />
+                      </a>
+                    ) : (
+                      <div className="flex items-start gap-4 py-3 border-b border-ink/10">
+                        <Icon size={16} className="text-ink/30 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="font-sans text-[11px] tracking-widest uppercase text-ink/30 mb-0.5">{link.label}</p>
+                          <p className="font-sans text-sm text-ink/35">{link.value}</p>
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Right — Form */}
+          <motion.div
+            ref={rightRef}
+            initial={{ opacity: 0, x: 24 }}
+            animate={rightInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            {sent ? (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="h-full flex flex-col justify-center py-12"
+              >
+                <div className="w-8 h-px bg-terracotta mb-6" />
+                <h3 className="font-serif text-[36px] font-light text-ink mb-3">{t('contact_sent_h')}</h3>
+                <p className="font-sans text-sm text-ink/55">{t('contact_sent_p')}</p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <p className="eyebrow mb-6">{t('contact_write')}</p>
+                {[
+                  { id: 'name', label: t('contact_name'), type: 'text', placeholder: t('contact_name_ph') },
+                  { id: 'email', label: t('contact_email'), type: 'email', placeholder: t('contact_email_ph') },
+                ].map((field) => (
+                  <div key={field.id}>
+                    <label htmlFor={field.id} className="font-sans text-[11px] tracking-widest uppercase text-ink/45 block mb-2">
+                      {field.label}
+                    </label>
+                    <input
+                      id={field.id}
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      value={form[field.id]}
+                      onChange={(e) => setForm({ ...form, [field.id]: e.target.value })}
+                      required
+                      className="w-full bg-transparent border-b border-ink/20 focus:border-olive outline-none py-2.5 font-sans text-sm text-ink placeholder-ink/30 transition-colors"
+                    />
+                  </div>
+                ))}
+                <div>
+                  <label htmlFor="message" className="font-sans text-[11px] tracking-widest uppercase text-ink/45 block mb-2">
+                    {t('contact_message')}
+                  </label>
+                  <textarea
+                    id="message"
+                    placeholder={t('contact_message_ph')}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    required
+                    rows={5}
+                    className="w-full bg-transparent border-b border-ink/20 focus:border-olive outline-none py-2.5 font-sans text-sm text-ink placeholder-ink/30 transition-colors resize-none"
+                  />
+                </div>
+                <div className="pt-4 flex justify-center">
+                  <ContactButton label={t('contact_submit')} isSubmit />
+                </div>
+              </form>
+            )}
+          </motion.div>
+        </div>
+      </section>
+    </PageLayout>
+  );
+}

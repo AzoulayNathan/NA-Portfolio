@@ -1,0 +1,124 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ["class"],
+  content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
+  theme: {
+    extend: {
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)'
+      },
+      fontFamily: {
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        sand: '#E8DFC9',
+        quartz: '#F6F3ED',
+        olive: '#3F5A4F',
+        tropical: '#1F3D33',
+        terracotta: '#B5523B',
+        sky: '#AFC8D1',
+        ink: '#1A1A18',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))'
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))'
+        },
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))'
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))'
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))'
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))'
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))'
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        chart: {
+          '1': 'hsl(var(--chart-1))',
+          '2': 'hsl(var(--chart-2))',
+          '3': 'hsl(var(--chart-3))',
+          '4': 'hsl(var(--chart-4))',
+          '5': 'hsl(var(--chart-5))'
+        },
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))'
+        }
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' }
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' }
+        },
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(24px)' },
+          to: { opacity: '1', transform: 'translateY(0)' }
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' }
+        },
+        'door-open-left': {
+          from: { transform: 'scaleX(1)', transformOrigin: 'left' },
+          to: { transform: 'scaleX(0)', transformOrigin: 'left' }
+        },
+        'door-open-right': {
+          from: { transform: 'scaleX(1)', transformOrigin: 'right' },
+          to: { transform: 'scaleX(0)', transformOrigin: 'right' }
+        },
+        'scale-reveal': {
+          from: { opacity: '0', transform: 'scale(1.04)' },
+          to: { opacity: '1', transform: 'scale(1)' }
+        },
+        'seam-glow': {
+          from: { opacity: '0', width: '1px' },
+          to: { opacity: '1', width: '2px' }
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-up': 'fade-up 0.7s ease-out forwards',
+        'fade-in': 'fade-in 0.6s ease-out forwards',
+        'scale-reveal': 'scale-reveal 1.2s ease-out forwards',
+      },
+      safelist: [
+        'bg-sand', 'bg-quartz', 'bg-olive', 'bg-tropical', 'bg-terracotta', 'bg-sky', 'bg-ink',
+        'text-sand', 'text-quartz', 'text-olive', 'text-tropical', 'text-terracotta', 'text-sky', 'text-ink',
+        'border-sand', 'border-olive', 'border-tropical', 'border-terracotta', 'border-sky',
+      ]
+    }
+  },
+  plugins: [require("tailwindcss-animate")],
+}
