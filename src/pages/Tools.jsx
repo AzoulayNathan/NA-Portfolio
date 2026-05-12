@@ -84,13 +84,13 @@ export default function Tools() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
             className="font-serif text-[52px] md:text-[76px] font-light leading-tight max-w-2xl mx-auto mb-5 text-tropical"
           >
             {t('tools_heading')}<br />
             <em className="not-italic text-tropical">{t('tools_heading2')}</em>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 2.0 }} className="font-sans text-[15px] text-ink/55 leading-relaxed max-w-md mx-auto">
+          <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="font-sans text-[15px] text-ink/55 leading-relaxed max-w-md mx-auto">
             {t('tools_body')}
           </motion.p>
         </div>
@@ -100,13 +100,13 @@ export default function Tools() {
       <section ref={gridRef} className="px-6 md:px-10 pb-24 bg-sand">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-3">
           <ToolBlock block={BLOCKS[0]} revealed={gridInView} delay={0} />
-          <ToolBlock block={BLOCKS[1]} revealed={gridInView} delay={1} />
-          <ToolBlock block={BLOCKS[2]} revealed={gridInView} delay={2} />
-          <ToolBlock block={BLOCKS[3]} revealed={gridInView} delay={3} />
+          <ToolBlock block={BLOCKS[1]} revealed={gridInView} delay={0.08} />
+          <ToolBlock block={BLOCKS[2]} revealed={gridInView} delay={0.16} />
+          <ToolBlock block={BLOCKS[3]} revealed={gridInView} delay={0.24} />
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={gridInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 5 }}
+            transition={{ duration: 0.7, delay: 0.32 }}
             className="min-h-[240px] bg-sand border border-ink/10 flex items-center justify-center px-8 md:px-12"
           >
             <p
@@ -116,11 +116,11 @@ export default function Tools() {
               {t('tools_quote')}
             </p>
           </motion.div>
-          <ToolBlock block={BLOCKS[4]} revealed={gridInView} delay={4} />
+          <ToolBlock block={BLOCKS[4]} revealed={gridInView} delay={0.4} />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={gridInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 6 }}
+            transition={{ duration: 0.8, delay: 0.48 }}
             className="md:col-span-3 flex flex-col items-center justify-center gap-6 pt-4 md:pt-6"
           >
             <div
