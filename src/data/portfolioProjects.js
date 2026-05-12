@@ -6,6 +6,7 @@ export const PROJECTS = [
     bullets: ['Combines lead discovery, structured contact data and automated outreach logic', 'Built around a real use case for LC Paper Girona'],
     stack: ['Python', 'Scraping', 'Automation', 'B2B'], categories: ['Professional', 'Automation', 'Web', 'Data'],
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80', year: '2025',
+    proof_type: 'pdf', proof_url: '/projects/reach/reach.pdf', cta_label: 'View PDF',
   },
   {
     title: 'Questline', meta: 'Gamified Discipline System',
