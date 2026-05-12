@@ -1,13 +1,31 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { ArrowRight, Shuffle } from 'lucide-react';
 import PageLayout from '../components/layout/PageLayout';
 import { useI18n } from '@/lib/i18n';
 import ContactButton from '@/components/ui/ContactButton';
 import { PROJECTS } from '@/data/portfolioProjects';
 import { projectSlug } from '@/lib/utils';
+
+const ALLOWED_PROOF_TYPES = ['github', 'pdf', 'image'];
+const DEFAULT_CTA_LABELS = {
+  github: 'View GitHub',
+  pdf: 'View PDF',
+  image: 'View project',
+};
+
+function getProof(project) {
+  const type = project?.proof_type;
+  const url = project?.proof_url;
+  if (!ALLOWED_PROOF_TYPES.includes(type)) return null;
+  if (typeof url !== 'string' || url.trim() === '') return null;
+  return {
+    type,
+    url,
+    label: project.cta_label || DEFAULT_CTA_LABELS[type],
+  };
+}
 
 const TYPE_FILTERS = ['All', 'Personal', 'School', 'Professional'];
 const TOPIC_FILTERS = ['Data', 'AI', 'Automation', 'Web', 'Research', 'Game'];
@@ -24,8 +42,8 @@ function ProjectBlock({ project, index }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const isEven = index % 2 === 0;
-  const { t } = useI18n();
   const float = FLOAT_VARIANTS[index % FLOAT_VARIANTS.length];
+  const proof = getProof(project);
 
   return (
     <motion.article
@@ -81,13 +99,17 @@ function ProjectBlock({ project, index }) {
             </span>
           ))}
         </div>
-        <Link
-          to="#"
-          className="group inline-flex items-center gap-2.5 font-sans text-sm font-medium text-tropical border-b border-tropical pb-0.5 w-fit hover:text-tropical/70 transition-all"
-        >
-          {t('projects_open')}
-          <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-        </Link>
+        {proof && (
+          <a
+            href={proof.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2.5 font-sans text-sm font-medium text-tropical border-b border-tropical pb-0.5 w-fit hover:text-tropical/70 transition-all"
+          >
+            {proof.label}
+            <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+          </a>
+        )}
       </motion.div>
     </motion.article>
   );
