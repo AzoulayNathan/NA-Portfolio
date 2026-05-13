@@ -10,6 +10,7 @@ export const PROJECTS = [
     title: 'Reach',
     stack: ['Python', 'Scraping', 'Automation', 'B2B'], categories: ['Professional', 'Automation', 'Web', 'Data'],
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80', year: '2025',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/Reach_LC_Paper_B2B', cta_label: 'View code',
   },
   {
     title: 'Questline',
