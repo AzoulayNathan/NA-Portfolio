@@ -12,9 +12,13 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
 dist-ssr
 *.local
+
+# Note: dist/ is intentionally NOT ignored. It is committed so Cloudflare Pages
+# serves the built bundle even when the dashboard build settings are missing.
+# Once the dashboard has Build command="npm run build" and Output directory="dist",
+# re-ignore dist/ here and stop committing it.
 
 # Editor directories and files
 .vscode/*
