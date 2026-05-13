@@ -2,6 +2,11 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projectSlug } from '@/lib/utils';
+import { useI18n } from '@/lib/i18n';
+
+function slugKey(title) {
+  return projectSlug(title).replaceAll('-', '_');
+}
 
 const SLOT_INTERVALS = [4000, 5000, 6000];
 const FLORAL_FRAME_SRC = '/carousel-floral-frame.png';
@@ -72,6 +77,7 @@ function SandBurst({ burstKey }) {
 }
 
 export default function ProjectCarousel({ projects, initialDelayMs = 4500, className = '' }) {
+  const { t } = useI18n();
   const pool = useMemo(() => projects.slice(0, Math.min(projects.length, 9)), [projects]);
   const poolSize = pool.length;
   const [slotIndices, setSlotIndices] = useState(() => createInitialSlots(poolSize));
@@ -221,11 +227,11 @@ export default function ProjectCarousel({ projects, initialDelayMs = 4500, class
                       <span className="absolute bottom-3 left-3 eyebrow-light text-[10px]">{project.year}</span>
                     </div>
                     <div className="h-[32%] bg-quartz/95 px-2.5 md:px-3 py-2.5 flex flex-col items-center justify-center text-center">
-                      <p className="eyebrow mb-0.5 text-[9px]">{project.meta}</p>
+                      <p className="eyebrow mb-0.5 text-[9px]">{t(`projects_${slugKey(project.title)}_meta`)}</p>
                       <h3 className="font-serif text-[12px] md:text-[17px] font-light text-ink leading-tight mb-0.5 line-clamp-1">
                         {project.title}
                       </h3>
-                      <p className="font-sans text-[9px] md:text-[10px] text-ink/58 leading-relaxed line-clamp-1">{project.pitch}</p>
+                      <p className="font-sans text-[9px] md:text-[10px] text-ink/58 leading-relaxed line-clamp-1">{t(`projects_${slugKey(project.title)}_pitch`)}</p>
                     </div>
                   </Link>
                 </motion.div>
@@ -262,13 +268,13 @@ export default function ProjectCarousel({ projects, initialDelayMs = 4500, class
                     <span className="absolute bottom-4 left-4 eyebrow-light">{focusedProject.year}</span>
                   </div>
                   <div className="min-h-[46%] bg-quartz px-6 md:px-8 py-4 md:py-5 flex flex-col justify-start">
-                    <p className="eyebrow mb-1">{focusedProject.meta}</p>
+                    <p className="eyebrow mb-1">{t(`projects_${slugKey(focusedProject.title)}_meta`)}</p>
                     <h3 className="font-serif text-[26px] md:text-[36px] font-light text-ink leading-tight mb-2">
                       {focusedProject.title}
                     </h3>
-                    <p className="font-sans text-sm text-ink/62 leading-relaxed mb-3">{focusedProject.pitch}</p>
+                    <p className="font-sans text-sm text-ink/62 leading-relaxed mb-3">{t(`projects_${slugKey(focusedProject.title)}_pitch`)}</p>
                     <ul className="space-y-1.5 mb-3">
-                      {(focusedProject.bullets || []).map((b, i) => (
+                      {[t(`projects_${slugKey(focusedProject.title)}_b1`), t(`projects_${slugKey(focusedProject.title)}_b2`)].map((b, i) => (
                         <li key={`${focusedProject.title}-b-${i}`} className="font-sans text-[13px] text-ink/62 leading-relaxed">
                           - {b}
                         </li>

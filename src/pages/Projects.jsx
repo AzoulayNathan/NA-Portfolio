@@ -44,6 +44,11 @@ function ProjectBlock({ project, index }) {
   const isEven = index % 2 === 0;
   const float = FLOAT_VARIANTS[index % FLOAT_VARIANTS.length];
   const proof = getProof(project);
+  const { t } = useI18n();
+  const slugKey = projectSlug(project.title).replaceAll('-', '_');
+  const meta = t(`projects_${slugKey}_meta`);
+  const pitch = t(`projects_${slugKey}_pitch`);
+  const bullets = [t(`projects_${slugKey}_b1`), t(`projects_${slugKey}_b2`)];
 
   return (
     <motion.article
@@ -80,12 +85,12 @@ function ProjectBlock({ project, index }) {
         animate={{ y: float.y.map(v => v * -0.5) }}
         transition={{ duration: float.duration * 1.1, repeat: Infinity, ease: 'easeInOut', repeatType: 'loop' }}
       >
-        <p className="eyebrow mb-4">{project.meta}</p>
+        <p className="eyebrow mb-4">{meta}</p>
         <h3 className="font-serif text-[42px] font-light text-ink leading-tight mb-3">{project.title}</h3>
         <div className="w-6 h-px bg-terracotta mb-4" />
-        <p className="font-sans text-sm text-ink/60 leading-relaxed mb-5 max-w-sm">{project.pitch}</p>
+        <p className="font-sans text-sm text-ink/60 leading-relaxed mb-5 max-w-sm">{pitch}</p>
         <ul className="space-y-1.5 mb-6">
-          {project.bullets.map((b, i) => (
+          {bullets.map((b, i) => (
             <li key={i} className="flex items-center gap-2.5">
               <span className="w-1 h-1 rounded-full bg-olive" />
               <span className="font-sans text-sm text-ink/55">{b}</span>
