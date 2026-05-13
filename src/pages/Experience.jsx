@@ -1,9 +1,12 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import PageLayout from '../components/layout/PageLayout';
-import { useI18n } from '@/lib/i18n';
+import { useI18n, LANGUAGES } from '@/lib/i18n';
 import ContactButton from '@/components/ui/ContactButton';
+
+const CV_LANG_LABELS = { fr: 'FR', en: 'EN', es: 'ES' };
+const CV_LANG_ORDER = ['fr', 'en', 'es'];
 
 const CARD_COLORS = [
   { bg: '#E8DFC9', border: 'rgba(63,90,79,0.25)' },
@@ -90,8 +93,24 @@ function TimelineItem({ item, index }) {
 export default function Experience() {
   const closingRef = useRef(null);
   const closingInView = useInView(closingRef, { once: true, margin: '-60px' });
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [cvOpen, setCvOpen] = useState(false);
+  const [cvLang, setCvLang] = useState(lang);
+
+  const openCv = () => {
+    const next = LANGUAGES.includes(lang) ? lang : 'en';
+    setCvLang(next);
+    setCvOpen(true);
+  };
+
+  useEffect(() => {
+    if (!cvOpen) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setCvOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [cvOpen]);
 
   const TIMELINE = [
     { id: 'maths-licence', period: '2018 — 2021', title: t('tl_licence'), summary: t('tl_licence_s'), bullets: t('tl_licence_b'), type: 'Education' },
@@ -191,7 +210,7 @@ export default function Experience() {
             />
             <button
               type="button"
-              onClick={() => setCvOpen(true)}
+              onClick={openCv}
               className="group relative z-10 flex h-[200px] w-[200px] max-w-[90vw] flex-col items-center justify-center overflow-hidden border-2 border-olive bg-[#E8DFC9] text-center shadow-[0_8px_28px_rgba(31,61,51,0.12)] transition-shadow duration-300 hover:shadow-[0_12px_36px_rgba(31,61,51,0.18)]"
             >
               <span
@@ -268,23 +287,52 @@ export default function Experience() {
               className="relative w-full max-w-5xl max-h-[92vh] bg-quartz shadow-2xl overflow-hidden rounded-sm flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
+              <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 rounded-full bg-sand/90 border border-ink/10 px-1.5 py-1 shadow-[0_2px_8px_rgba(31,61,51,0.10)]">
+                {CV_LANG_ORDER.map((l) => {
+                  const active = cvLang === l;
+                  return (
+                    <button
+                      key={l}
+                      type="button"
+                      onClick={() => setCvLang(l)}
+                      aria-pressed={active}
+                      className={`font-sans text-[11px] tracking-[0.2em] uppercase px-2.5 py-1 rounded-full transition-colors duration-200 ${
+                        active
+                          ? 'bg-olive text-sand'
+                          : 'text-ink/55 hover:text-ink hover:bg-ink/5'
+                      }`}
+                    >
+                      {CV_LANG_LABELS[l]}
+                    </button>
+                  );
+                })}
+              </div>
               <button
                 type="button"
                 onClick={() => setCvOpen(false)}
-                className="absolute top-3 right-3 z-10 p-2 rounded-full bg-sand/90 text-ink/60 hover:text-ink border border-ink/10 transition-colors"
+                className="absolute top-3 right-3 z-20 p-2 rounded-full bg-sand/90 text-ink/60 hover:text-ink border border-ink/10 transition-colors"
                 aria-label={t('exp_cv_close')}
               >
                 <X size={18} strokeWidth={1.5} />
               </button>
               <div className="flex-1 min-h-[70vh] overflow-auto pt-12">
                 <object
-                  data="/cv.pdf"
+                  key={cvLang}
+                  data={`/cv/NathanAzoulay_${cvLang}.pdf`}
                   type="application/pdf"
                   className="w-full min-h-[68vh]"
-                  title="CV"
+                  title={`CV ${CV_LANG_LABELS[cvLang]}`}
                 >
                   <div className="p-8 text-center font-sans text-sm text-ink/55">
-                    {t('exp_cv_hint')}
+                    <p className="mb-3">{t('exp_cv_hint')}</p>
+                    <a
+                      href={`/cv/NathanAzoulay_${cvLang}.pdf`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block underline text-tropical hover:text-tropical/70"
+                    >
+                      {`NathanAzoulay_${cvLang}.pdf`}
+                    </a>
                   </div>
                 </object>
               </div>
