@@ -9,22 +9,13 @@ import { PROJECTS } from '@/data/portfolioProjects';
 import { projectSlug } from '@/lib/utils';
 
 const ALLOWED_PROOF_TYPES = ['github', 'pdf', 'image'];
-const DEFAULT_CTA_LABELS = {
-  github: 'View GitHub',
-  pdf: 'View PDF',
-  image: 'View project',
-};
 
 function getProof(project) {
   const type = project?.proof_type;
   const url = project?.proof_url;
   if (!ALLOWED_PROOF_TYPES.includes(type)) return null;
   if (typeof url !== 'string' || url.trim() === '') return null;
-  return {
-    type,
-    url,
-    label: project.cta_label || DEFAULT_CTA_LABELS[type],
-  };
+  return { type, url };
 }
 
 const TYPE_FILTERS = ['All', 'Personal', 'School', 'Professional'];
@@ -43,8 +34,13 @@ function ProjectBlock({ project, index }) {
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const isEven = index % 2 === 0;
   const float = FLOAT_VARIANTS[index % FLOAT_VARIANTS.length];
-  const proof = getProof(project);
   const { t } = useI18n();
+  const proof = getProof(project);
+  const proofLabel =
+    proof &&
+    (typeof project?.cta_i18n_key === 'string' && project.cta_i18n_key.trim()
+      ? t(project.cta_i18n_key.trim())
+      : t(`projects_proof_${proof.type}`));
   const slugKey = projectSlug(project.title).replaceAll('-', '_');
   const meta = t(`projects_${slugKey}_meta`);
   const pitch = t(`projects_${slugKey}_pitch`);
@@ -111,7 +107,7 @@ function ProjectBlock({ project, index }) {
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2.5 font-sans text-sm font-medium text-tropical border-b border-tropical pb-0.5 w-fit hover:text-tropical/70 transition-all"
           >
-            {proof.label}
+            {proofLabel}
             <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
           </a>
         )}

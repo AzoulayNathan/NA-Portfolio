@@ -4,18 +4,20 @@
  * sous des cles `projects_<slug_underscored>_*`.
  * Le slug est calcule via `projectSlug(title)` depuis `src/lib/utils.js`,
  * puis les tirets sont remplaces par des underscores pour former la cle i18n.
+ * Les libellés de preuve (GitHub / PDF) utilisent `projects_proof_*` dans i18n.jsx.
  */
 export const PROJECTS = [
   {
     title: 'Reach',
     stack: ['Python', 'Scraping', 'Automation', 'B2B'], categories: ['Professional', 'Automation', 'Web', 'Data'],
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80', year: '2025',
-    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/Reach_LC_Paper_B2B', cta_label: 'View code',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/Reach_LC_Paper_B2B',
   },
   {
     title: 'Questline',
     stack: ['Product Design', 'Web', 'Automation'], categories: ['Personal', 'Web'],
     image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=900&q=80', year: '2025',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/Questline_GamifiedDiscipline',
   },
   {
     title: 'Onepager Studio',
@@ -36,33 +38,37 @@ export const PROJECTS = [
     title: 'Dilemma Royale',
     stack: ['React', 'Web', 'Research'], categories: ['Personal', 'Web', 'Research', 'Game'],
     image: 'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=900&q=80', year: '2025',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/DilemmaRoyale_Mobile',
   },
   {
     title: 'ML for Insurance Reserving',
     stack: ['Python', 'ML', 'Insurance'], categories: ['School', 'AI', 'Data', 'Research'],
     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80', year: '2024',
-    proof_type: 'pdf', proof_url: '/projects/ml-for-insurance-reserving/ml-for-insurance-reserving.pdf', cta_label: 'View PDF',
+    proof_type: 'pdf', proof_url: '/projects/ml-for-insurance-reserving/ml-for-insurance-reserving.pdf',
   },
   {
     title: 'Black–Scholes Lab',
     stack: ['Python', 'R', 'Finance'], categories: ['School', 'Data', 'Research'],
     image: 'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=900&q=80', year: '2023',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/BlackScholesLab_StochasticCalculus',
   },
   {
     title: 'Brent 2023 Econometric Study',
     stack: ['R', 'Econometrics', 'Data'], categories: ['School', 'Data', 'Research'],
     image: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?w=900&q=80', year: '2023',
-    proof_type: 'pdf', proof_url: '/projects/brent-2023-econometric-study/brent-2023-econometric-study.pdf', cta_label: 'View PDF',
+    proof_type: 'pdf', proof_url: '/projects/brent-2023-econometric-study/brent-2023-econometric-study.pdf',
   },
   {
     title: 'DominoCalc',
     stack: ['Python', 'Probability'], categories: ['Personal', 'Data', 'Game'],
     image: 'https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=900&q=80', year: '2023',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/DominoCalc_Probability',
   },
   {
     title: 'Blackpot',
     stack: ['Python', 'Probability'], categories: ['Personal', 'Data', 'Game'],
     image: 'https://images.unsplash.com/photo-1541278107931-e006523892df?w=900&q=80', year: '2023',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/Blackpot_BlackjackProba',
   },
   {
     title: 'Connect4 Edge',
@@ -73,19 +79,52 @@ export const PROJECTS = [
     title: 'YTBX',
     stack: ['Video', 'Automation', 'Editing', 'Export'], categories: ['Personal', 'Automation', 'Web'],
     image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=900&q=80', year: '2025',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/YTBX_VideoExtractPipeline',
   },
   {
     title: 'Peerless',
     stack: ['React', 'Web'], categories: ['Personal', 'Web'],
     image: 'https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=900&q=80', year: '2024',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/Peerless_TierList',
   },
   {
     title: 'Atlas of Echoes',
     stack: ['React', 'Data', 'Web'], categories: ['Personal', 'Data', 'Web'],
     image: 'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=900&q=80', year: '2024',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/AtlasOfEchoes_CultureExplorer',
+  },
+  {
+    title: 'Navier–Stokes 2D Lab',
+    stack: ['Python', 'NumPy', 'Scientific computing'], categories: ['School', 'Data', 'Research'],
+    image: 'https://images.unsplash.com/photo-1635070041078-e363efd0237e?w=900&q=80', year: '2024',
+    proof_type: 'pdf', proof_url: '/projects/navier-stokes-2d-lab/navier-stokes-2d-lab.pdf',
+  },
+  {
+    title: 'Airtable Supabase ETL',
+    stack: ['Python', 'Pandas', 'Automation'], categories: ['School', 'Data', 'Automation'],
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80', year: '2024',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/School_ETL_Airtable_Supabase',
+  },
+  {
+    title: 'Light Speed Cinema Analytics',
+    stack: ['Python', 'Pandas', 'Data'], categories: ['School', 'Data', 'Research'],
+    image: 'https://images.unsplash.com/photo-1489592414965-166922c9b217?w=900&q=80', year: '2024',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/CinemaConcessions_DataViz',
+  },
+  {
+    title: 'Big Data CNN Lab',
+    stack: ['Python', 'PyTorch', 'AI'], categories: ['School', 'AI', 'Data', 'Research'],
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900&q=80', year: '2024',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/BigData_CNN_ImageClassification',
+  },
+  {
+    title: 'MNIST SVM Classifier',
+    stack: ['Python', 'Scikit-learn', 'ML'], categories: ['School', 'AI', 'Data', 'Research'],
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80', year: '2024',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/MNIST_SVM_OneVsAll',
   },
 ];
 
-/** Deux carousels home : 6 + 6 sans chevauchement. */
-export const CAROUSEL_PROJECTS_A = PROJECTS.slice(0, 6);
-export const CAROUSEL_PROJECTS_B = PROJECTS.slice(6, 12);
+const _carouselMid = Math.ceil(PROJECTS.length / 2);
+export const CAROUSEL_PROJECTS_A = PROJECTS.slice(0, _carouselMid);
+export const CAROUSEL_PROJECTS_B = PROJECTS.slice(_carouselMid);
