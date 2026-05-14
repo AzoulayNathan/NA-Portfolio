@@ -72,8 +72,9 @@ export const PROJECTS = [
   },
   {
     title: 'Connect4 Edge',
-    stack: ['Python', 'AI', 'Game Logic'], categories: ['Personal', 'AI', 'Game'],
+    stack: ['React', 'Vite', 'Tailwind', 'Game Logic'], categories: ['Personal', 'AI', 'Game', 'Web'],
     image: 'https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=900&q=80', year: '2023',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/Connect4Edge_FunOracle',
   },
   {
     title: 'YTBX',
