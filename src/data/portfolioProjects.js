@@ -96,7 +96,7 @@ export const PROJECTS = [
   {
     title: 'Navier–Stokes 2D Lab',
     stack: ['Python', 'NumPy', 'Scientific computing'], categories: ['School', 'Data', 'Research'],
-    image: 'https://images.unsplash.com/photo-1635070041078-e363efd0237e?w=900&q=80', year: '2024',
+    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=900&q=80', year: '2024',
     proof_type: 'pdf', proof_url: '/projects/navier-stokes-2d-lab/navier-stokes-2d-lab.pdf',
   },
   {
@@ -108,7 +108,7 @@ export const PROJECTS = [
   {
     title: 'Light Speed Cinema Analytics',
     stack: ['Python', 'Pandas', 'Data'], categories: ['School', 'Data', 'Research'],
-    image: 'https://images.unsplash.com/photo-1489592414965-166922c9b217?w=900&q=80', year: '2024',
+    image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=900&q=80', year: '2024',
     proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/CinemaConcessions_DataViz',
   },
   {
