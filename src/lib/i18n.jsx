@@ -174,7 +174,7 @@ export const translations = {
     tl_private_math: 'Private mathematics tutoring',
     tl_private_math_s: 'Early teaching practice — building clarity, patience and rigour before university.',
     tl_private_math_b: ['Learned to break problems into steps a student can actually follow', 'Strengthened fundamentals through explaining, not just solving', 'Built the habit of precision and structured reasoning early'],
-    tl_bac_es: 'Baccalauréat — Economic & Social',
+    tl_bac_es: 'High School Diploma — Economic & Social',
     tl_bac_es_s: 'High-school track combining economics, social sciences and quantitative method.',
     tl_bac_es_b: ['Developed structured reasoning and written argumentation', 'First exposure to data, graphs and decision-oriented thinking', 'Clear orientation toward mathematics and analytical paths'],
     tl_licence: 'Bachelor in Mathematics',

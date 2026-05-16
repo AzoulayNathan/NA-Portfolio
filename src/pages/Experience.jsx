@@ -14,17 +14,8 @@ const CARD_COLORS = [
   { bg: '#D4C4A8', border: 'rgba(181,82,59,0.30)' },
 ];
 
-const SIDE_OFFSETS = [
-  { side: 'left', xOffset: 0 },
-  { side: 'right', xOffset: 0 },
-  { side: 'left', xOffset: 20 },
-  { side: 'right', xOffset: 20 },
-  { side: 'left', xOffset: -10 },
-  { side: 'right', xOffset: -10 },
-  { side: 'left', xOffset: 15 },
-  { side: 'right', xOffset: -5 },
-  { side: 'left', xOffset: 5 },
-];
+/** Horizontal drift only — side alternation is always index % 2 (left / right). */
+const DRIFT_OFFSETS = [0, 0, 20, 20, -10, -10, 15, -5, 5, 0, 10];
 
 function TimelineItem({ item, index }) {
   const [open, setOpen] = useState(false);
@@ -32,9 +23,8 @@ function TimelineItem({ item, index }) {
   const inView = useInView(ref, { once: true, margin: '-40px' });
 
   const cardColor = CARD_COLORS[index % 3];
-  const placement = SIDE_OFFSETS[index % SIDE_OFFSETS.length];
-  const isRight = placement.side === 'right';
-  const drift = placement.xOffset;
+  const isRight = index % 2 === 1;
+  const drift = DRIFT_OFFSETS[index % DRIFT_OFFSETS.length];
 
   return (
     <motion.div
