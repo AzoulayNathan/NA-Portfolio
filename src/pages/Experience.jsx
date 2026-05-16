@@ -112,16 +112,22 @@ export default function Experience() {
     return () => window.removeEventListener('keydown', onKey);
   }, [cvOpen]);
 
+  const edu = t('tl_type_education');
+  const exp = t('tl_type_experience');
+  const ongoing = t('tl_period_ongoing');
+
   const TIMELINE = [
-    { id: 'maths-licence', period: '2018 — 2021', title: t('tl_licence'), summary: t('tl_licence_s'), bullets: t('tl_licence_b'), type: 'Education' },
-    { id: 'maths-master', period: '2021 — 2023', title: t('tl_master_maths'), summary: t('tl_master_maths_s'), bullets: t('tl_master_maths_b'), type: 'Education' },
-    { id: 'tutorat', period: '2020 — 2022', title: t('tl_tutorat'), summary: t('tl_tutorat_s'), bullets: t('tl_tutorat_b'), type: 'Experience' },
-    { id: 'dgfip', period: '2022', title: t('tl_dgfip'), summary: t('tl_dgfip_s'), bullets: t('tl_dgfip_b'), type: 'Experience' },
-    { id: 'sada', period: '2023', title: t('tl_sada'), summary: t('tl_sada_s'), bullets: t('tl_sada_b'), type: 'Experience' },
-    { id: 'dental', period: '2023', title: t('tl_dental'), summary: t('tl_dental_s'), bullets: t('tl_dental_b'), type: 'Experience' },
-    { id: 'mbfa', period: '2023 — 2024', title: t('tl_mbfa'), summary: t('tl_mbfa_s'), bullets: t('tl_mbfa_b'), type: 'Education' },
-    { id: 'iterato', period: '2024', title: t('tl_iterato'), summary: t('tl_iterato_s'), bullets: t('tl_iterato_b'), type: 'Experience' },
-    { id: 'msc-analytics', period: '2025 — ongoing', title: t('tl_msc'), summary: t('tl_msc_s'), bullets: t('tl_msc_b'), type: 'Education' },
+    { id: 'private-math', period: '2015', title: t('tl_private_math'), summary: t('tl_private_math_s'), bullets: t('tl_private_math_b'), type: edu },
+    { id: 'bac-es', period: '2016', title: t('tl_bac_es'), summary: t('tl_bac_es_s'), bullets: t('tl_bac_es_b'), type: edu },
+    { id: 'tutorat', period: '2017 — 2019', title: t('tl_tutorat'), summary: t('tl_tutorat_s'), bullets: t('tl_tutorat_b'), type: exp },
+    { id: 'maths-licence', period: '2017 — 2020', title: t('tl_licence'), summary: t('tl_licence_s'), bullets: t('tl_licence_b'), type: edu },
+    { id: 'dgfip', period: '2017 — 2020', title: t('tl_dgfip'), summary: t('tl_dgfip_s'), bullets: t('tl_dgfip_b'), type: exp },
+    { id: 'maths-master', period: '2021 — 2023', title: t('tl_master_maths'), summary: t('tl_master_maths_s'), bullets: t('tl_master_maths_b'), type: edu },
+    { id: 'iterato', period: '2022', title: t('tl_iterato'), summary: t('tl_iterato_s'), bullets: t('tl_iterato_b'), type: exp },
+    { id: 'dental', period: '2023', title: t('tl_dental'), summary: t('tl_dental_s'), bullets: t('tl_dental_b'), type: exp },
+    { id: 'mbfa', period: '2023 — 2024', title: t('tl_mbfa'), summary: t('tl_mbfa_s'), bullets: t('tl_mbfa_b'), type: edu },
+    { id: 'sada', period: '2024', title: t('tl_sada'), summary: t('tl_sada_s'), bullets: t('tl_sada_b'), type: exp },
+    { id: 'msc-analytics', period: `2025 — ${ongoing}`, title: t('tl_msc'), summary: t('tl_msc_s'), bullets: t('tl_msc_b'), type: edu },
   ];
 
   return (

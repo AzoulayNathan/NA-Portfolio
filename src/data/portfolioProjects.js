@@ -14,6 +14,12 @@ export const PROJECTS = [
     proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/Reach_LC_Paper_B2B',
   },
   {
+    title: 'Local Lead OS',
+    stack: ['Python', 'Selenium', 'Scraping', 'Automation'], categories: ['Professional', 'Automation', 'Data', 'Web'],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80', year: '2025',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/LocalLeadOS_Scrap',
+  },
+  {
     title: 'Questline',
     stack: ['Product Design', 'Web', 'Automation'], categories: ['Personal', 'Web'],
     image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=900&q=80', year: '2025',
