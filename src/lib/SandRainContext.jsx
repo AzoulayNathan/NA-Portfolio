@@ -3,16 +3,16 @@ import { createContext, useContext, useMemo, useState, useEffect } from 'react';
 const STORAGE_KEY = 'porto-sand-rain';
 
 const SandRainContext = createContext({
-  enabled: true,
+  enabled: false,
   setEnabled: () => {},
 });
 
 export function SandRainProvider({ children }) {
   const [enabled, setEnabled] = useState(() => {
     try {
-      return localStorage.getItem(STORAGE_KEY) !== '0';
+      return localStorage.getItem(STORAGE_KEY) === '1';
     } catch {
-      return true;
+      return false;
     }
   });
 

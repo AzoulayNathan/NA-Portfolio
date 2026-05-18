@@ -203,13 +203,13 @@ export default function ProjectCarousel({ projects, initialDelayMs = 4500, class
                   style={{ transformStyle: 'preserve-3d' }}
                   onMouseEnter={() => setFocus(slotIdx, project)}
                 >
-                  <div className="pointer-events-none absolute inset-0 translate-x-[10px] translate-y-[12px] rounded-[8px] bg-olive/28 blur-[1px]" />
-                  <div className="pointer-events-none absolute inset-0 translate-x-[5px] translate-y-[6px] rounded-[8px] border border-ink/20 bg-ink/8" />
+                  <div className="pointer-events-none absolute inset-0 translate-x-[10px] translate-y-[12px] rounded-none bg-olive/28 blur-[1px]" />
+                  <div className="pointer-events-none absolute inset-0 translate-x-[5px] translate-y-[6px] rounded-none border border-ink/20 bg-ink/8" />
                   <Link
                     to={`/projects#${hash}`}
-                    className="group relative block w-full h-full border border-ink/18 bg-quartz/92 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-tropical/50"
+                    className="group relative block w-full h-full rounded-none border border-ink/18 bg-quartz/92 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-tropical/50"
                     style={{
-                      borderRadius: '8px',
+                      borderRadius: 0,
                       boxShadow: '0 26px 44px rgba(31,61,51,0.2), 0 8px 14px rgba(0,0,0,0.14)',
                     }}
                   >

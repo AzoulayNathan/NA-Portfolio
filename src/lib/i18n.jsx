@@ -5,7 +5,7 @@ export const LANGUAGES = ['en', 'fr', 'es'];
 export const translations = {
   en: {
     // Nav
-    nav_home: 'WHO', nav_projects: 'WHAT', nav_path: 'WHY', nav_tools: 'HOW', nav_contact: 'WE ?',
+    nav_home: 'WHO', nav_projects: 'WHAT', nav_path: 'WHY', nav_tools: 'HOW', nav_websites: 'NA WEBSITES', nav_contact: 'WE ?',
     // Home Hero
     hero_subtitle: 'Between structure, data and well-built digital work.',
     hero_body: 'Maths, AI, web — and projects that try to make sense of it all.',
@@ -225,7 +225,7 @@ export const translations = {
     creation_logic: 'Not a designer by default. But enough to give ideas the visual language they deserve.',
   },
   fr: {
-    nav_home: 'QUI', nav_projects: 'QUOI', nav_path: 'POURQUOI', nav_tools: 'COMMENT', nav_contact: 'ET NOUS ?',
+    nav_home: 'QUI', nav_projects: 'QUOI', nav_path: 'POURQUOI', nav_tools: 'COMMENT', nav_websites: 'NA WEBSITES', nav_contact: 'ET NOUS ?',
     hero_subtitle: 'Entre structure, data et produits digitaux bien construits.',
     hero_body: 'Maths, IA, web — des projets qui essaient de donner du sens à tout ça.',
     hero_cta1: 'Voir les projets', hero_cta2: 'Comment je pense',
@@ -433,7 +433,7 @@ export const translations = {
     creation_logic: 'Pas designer par défaut. Mais assez pour donner aux idées le langage visuel qu\'elles méritent.',
   },
   es: {
-    nav_home: 'QUIEN', nav_projects: 'QUE', nav_path: 'POR QUE', nav_tools: 'COMO', nav_contact: 'Y NOSOTROS ?',
+    nav_home: 'QUIEN', nav_projects: 'QUE', nav_path: 'POR QUE', nav_tools: 'COMO', nav_websites: 'NA WEBSITES', nav_contact: 'Y NOSOTROS ?',
     hero_subtitle: 'Entre estructura, datos y trabajo digital bien construido.',
     hero_body: 'Matemáticas, IA, web — proyectos que intentan dar sentido a todo.',
     hero_cta1: 'Ver proyectos', hero_cta2: 'Cómo pienso',

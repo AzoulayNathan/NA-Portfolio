@@ -41,6 +41,7 @@ export default function SiteNav() {
     { label: t('nav_projects'), path: '/projects' },
     { label: t('nav_path'), path: '/experience' },
     { label: t('nav_tools'), path: '/tools' },
+    { label: t('nav_websites'), href: 'https://na-websites.pages.dev', external: true },
     { label: t('nav_contact'), path: '/contact' },
   ];
   const isContactTop = location.pathname === '/contact' && !scrolled;
@@ -77,6 +78,18 @@ export default function SiteNav() {
     window.scrollTo({ top: 0, behavior: 'instant' });
     navigate(path);
   };
+
+  const handleNavItemClick = (item) => {
+    if (item.external) {
+      window.open(item.href, '_blank', 'noopener,noreferrer');
+      setMenuOpen(false);
+      return;
+    }
+    handleNavClick(item.path);
+    setMenuOpen(false);
+  };
+
+  const navItemKey = (item) => item.path || item.href;
 
   const ensurePlayback = async () => {
     const audio = ambienceRef.current;
@@ -140,14 +153,29 @@ export default function SiteNav() {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
-              const isActive = location.pathname === item.path;
+              const isActive = !item.external && location.pathname === item.path;
+              const linkClass = `font-sans text-xs font-medium tracking-widest uppercase transition-colors duration-200 relative ${
+                isActive ? 'text-tropical' : 'text-ink/60 hover:text-ink'
+              }`;
+              if (item.external) {
+                return (
+                  <a
+                    key={navItemKey(item)}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClass}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
               return (
                 <button
-                  key={item.path}
-                  onClick={() => handleNavClick(item.path)}
-                  className={`font-sans text-xs font-medium tracking-widest uppercase transition-colors duration-200 relative ${
-                    isActive ? 'text-tropical' : 'text-ink/60 hover:text-ink'
-                  }`}
+                  key={navItemKey(item)}
+                  type="button"
+                  onClick={() => handleNavItemClick(item)}
+                  className={linkClass}
                 >
                   {item.label}
                   {isActive && (
@@ -360,24 +388,40 @@ export default function SiteNav() {
             </div>
             <div className="relative z-10 flex flex-col flex-1 justify-center px-10 pb-12">
               <nav className="flex flex-col gap-7">
-                {navItems.map((item, i) => (
-                  <motion.div
-                    key={item.path}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => handleNavClick(item.path)}
-                      className={`font-serif text-4xl sm:text-5xl font-light tracking-tight transition-colors text-left w-full ${
-                        location.pathname === item.path ? 'text-tropical' : 'text-ink/85'
-                      }`}
+                {navItems.map((item, i) => {
+                  const isActive = !item.external && location.pathname === item.path;
+                  const mobileClass = `font-serif text-4xl sm:text-5xl font-light tracking-tight transition-colors text-left w-full ${
+                    isActive ? 'text-tropical' : 'text-ink/85'
+                  }`;
+                  return (
+                    <motion.div
+                      key={navItemKey(item)}
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
                     >
-                      {item.label}
-                    </button>
-                  </motion.div>
-                ))}
+                      {item.external ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={mobileClass}
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => handleNavItemClick(item)}
+                          className={mobileClass}
+                        >
+                          {item.label}
+                        </button>
+                      )}
+                    </motion.div>
+                  );
+                })}
               </nav>
               <p className="eyebrow mt-14 text-ink/45 text-sm tracking-[0.2em]">nathanazoulay.pro@gmail.com</p>
             </div>

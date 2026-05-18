@@ -20,12 +20,25 @@ export default function SiteFooter() {
             { label: t('nav_projects'), path: '/projects' },
             { label: t('nav_path'), path: '/experience' },
             { label: t('nav_tools'), path: '/tools' },
+            { label: t('nav_websites'), href: 'https://na-websites.pages.dev', external: true },
             { label: t('nav_contact'), path: '/contact' },
-          ].map((item) => (
-            <Link key={item.path} to={item.path} className="font-sans text-xs tracking-widest uppercase text-quartz/40 hover:text-quartz/80 transition-colors">
-              {item.label}
-            </Link>
-          ))}
+          ].map((item) =>
+            item.external ? (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-xs tracking-widest uppercase text-quartz/40 hover:text-quartz/80 transition-colors"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link key={item.path} to={item.path} className="font-sans text-xs tracking-widest uppercase text-quartz/40 hover:text-quartz/80 transition-colors">
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
 
         <p className="font-sans text-xs text-quartz/25">© 2026 NA Studio</p>
