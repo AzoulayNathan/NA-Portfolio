@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { I18nProvider } from '@/lib/i18n';
 import { SandRainProvider, useSandRain } from '@/lib/SandRainContext';
+import { PageSandProvider } from '@/lib/PageSandContext';
+import { SandPileBottom } from '@/components/layout/PageSandAccumulation';
 
 import Home from './pages/Home';
 import Projects from './pages/Projects';
