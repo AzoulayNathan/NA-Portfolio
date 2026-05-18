@@ -8,6 +8,18 @@
  */
 export const PROJECTS = [
   {
+    title: 'Side A / Side B',
+    stack: ['React', 'Vite', 'Tailwind', 'Framer Motion'], categories: ['Personal', 'Web', 'Research'],
+    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=900&q=80', year: '2026',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/SideASound_VoiceSetup',
+  },
+  {
+    title: 'Patch Your Path',
+    stack: ['React', 'Vite', 'Tailwind', 'Product'], categories: ['Personal', 'Web'],
+    image: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=900&q=80', year: '2026',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/PatchYourPath_SignalApp',
+  },
+  {
     title: 'Reach',
     stack: ['Python', 'Scraping', 'Automation', 'B2B'], categories: ['Professional', 'Automation', 'Web', 'Data'],
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80', year: '2025',
