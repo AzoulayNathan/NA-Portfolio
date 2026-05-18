@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n, LANGUAGES } from '@/lib/i18n';
 import { useSandRain } from '@/lib/SandRainContext';
-import { SandPileNav } from '@/components/layout/PageSandAccumulation';
 import { Globe, CloudRain, Volume2 } from 'lucide-react';
 
 const DEFAULT_AMBIENCE_VOLUME = 12;
@@ -133,7 +132,6 @@ export default function SiteNav() {
               : 'bg-olive/95 backdrop-blur-sm border-b border-sand/15'
         }`}
       >
-        {!isContactTop && !isHomeTop && <SandPileNav />}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
           {/* Logo with drop animation */}
           <button onClick={() => handleNavClick('/')} className="flex items-center gap-2 group">
@@ -424,9 +422,6 @@ export default function SiteNav() {
                 })}
               </nav>
               <p className="eyebrow mt-14 text-ink/45 text-sm tracking-[0.2em]">nathanazoulay.pro@gmail.com</p>
-            </div>
-            <div className="relative z-10 w-full h-9 mt-auto pointer-events-none shrink-0">
-              <SandPileNav />
             </div>
           </motion.div>
         )}

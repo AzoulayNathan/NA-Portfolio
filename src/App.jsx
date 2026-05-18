@@ -4,15 +4,19 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { I18nProvider } from '@/lib/i18n';
-import { SandRainProvider } from '@/lib/SandRainContext';
-import { PageSandProvider } from '@/lib/PageSandContext';
-import { SandPileBottom } from '@/components/layout/PageSandAccumulation';
+import { SandRainProvider, useSandRain } from '@/lib/SandRainContext';
 
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Experience from './pages/Experience';
 import Tools from './pages/Tools';
 import Contact from './pages/Contact';
+
+function SandPileGate() {
+  const { enabled } = useSandRain();
+  if (!enabled) return null;
+  return <SandPileBottom />;
+}
 
 function App() {
   return (
@@ -30,7 +34,7 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="*" element={<PageNotFound />} />
                 </Routes>
-                <SandPileBottom />
+                <SandPileGate />
               </div>
             </PageSandProvider>
           </Router>

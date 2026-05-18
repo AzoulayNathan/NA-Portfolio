@@ -1,11 +1,22 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projectSlug } from '@/lib/utils';
 import { useI18n } from '@/lib/i18n';
 
 function slugKey(title) {
   return projectSlug(title).replaceAll('-', '_');
+}
+
+/** Fisher–Yates shuffle (mutates and returns same array). */
+function shuffleInPlace(arr) {
+  for (let i = arr.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = arr[i];
+    arr[i] = arr[j];
+    arr[j] = t;
+  }
+  return arr;
 }
 
 const SLOT_INTERVALS = [4000, 5000, 6000];
@@ -78,7 +89,12 @@ function SandBurst({ burstKey }) {
 
 export default function ProjectCarousel({ projects, initialDelayMs = 4500, className = '' }) {
   const { t } = useI18n();
-  const pool = useMemo(() => projects.slice(0, Math.min(projects.length, 9)), [projects]);
+  const { pathname } = useLocation();
+  const pool = useMemo(() => {
+    const copy = [...projects];
+    shuffleInPlace(copy);
+    return copy;
+  }, [projects, pathname]);
   const poolSize = pool.length;
   const [slotIndices, setSlotIndices] = useState(() => createInitialSlots(poolSize));
   const [burstKey, setBurstKey] = useState(0);

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSandRain } from '@/lib/SandRainContext';
 
 /** Le sable monte d'un niveau par minute et atteint le plafond au dernier palier. */
 const MINUTE_MS = 60_000;
@@ -15,16 +16,21 @@ const PageSandContext = createContext({
 
 export function PageSandProvider({ children }) {
   const { pathname } = useLocation();
+  const { enabled: sandRainEnabled } = useSandRain();
   const [elapsedMs, setElapsedMs] = useState(0);
 
   useEffect(() => {
-    setElapsedMs(0);
+    if (!sandRainEnabled) {
+      setElapsedMs(0);
+      return undefined;
+    }
     const t0 = Date.now();
+    setElapsedMs(0);
     const id = window.setInterval(() => {
       setElapsedMs(Date.now() - t0);
     }, 250);
     return () => window.clearInterval(id);
-  }, [pathname]);
+  }, [pathname, sandRainEnabled]);
 
   const value = useMemo(() => {
     const level = Math.min(MAX_LEVEL, Math.floor(elapsedMs / MINUTE_MS));

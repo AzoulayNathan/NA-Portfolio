@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePageSand } from '@/lib/PageSandContext';
 
 const MAX_BOTTOM_PX = 120;
-const MAX_NAV_PX = 34;
 
 function easeSmooth(t) {
   return t * t * (3 - 2 * t);
@@ -132,36 +131,6 @@ export function SandPileBottom() {
             radial-gradient(13px 5px at 95% 0%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 75%)
           `,
           ...maskStyle,
-        }}
-      />
-    </motion.div>
-  );
-}
-
-export function SandPileNav() {
-  const { accum01 } = usePageSand();
-  const h = easeSmooth(accum01) * MAX_NAV_PX;
-
-  return (
-    <motion.div
-      className="absolute bottom-0 left-0 right-0 pointer-events-none overflow-hidden z-0"
-      initial={false}
-      animate={{ height: `${h}px` }}
-      transition={{ type: 'spring', stiffness: 120, damping: 22, mass: 0.8 }}
-    >
-      <div
-        className="absolute inset-0 w-full"
-        style={{
-          background: `linear-gradient(to top, rgba(232,223,201,0.82) 0%, rgba(232,223,201,0.4) 55%, transparent 100%)`,
-        }}
-      />
-      <div
-        className="absolute top-0 left-0 right-0 h-2 opacity-40"
-        style={{
-          background: `
-            repeating-linear-gradient(88deg, transparent, transparent 2px, rgba(63,90,79,0.1) 2px, rgba(63,90,79,0.1) 3px),
-            repeating-radial-gradient(circle at 30% 50%, rgba(232,223,201,0.25) 0 1px, rgba(63,90,79,0.2) 1px 2px, transparent 2px 4px)
-          `,
         }}
       />
     </motion.div>

@@ -53,14 +53,14 @@ function ProjectBlock({ project, index }) {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`grid md:grid-cols-[1fr_1fr] min-h-[420px] border-b border-ink/10 scroll-mt-28 ${isEven ? '' : 'md:[direction:rtl]'}`}
+      className={`grid grid-cols-1 md:grid-cols-2 md:grid-rows-1 md:h-[520px] md:max-h-[520px] min-h-[420px] md:min-h-0 items-stretch overflow-hidden border-b border-ink/10 scroll-mt-28 ${isEven ? '' : 'md:[direction:rtl]'}`}
     >
       {/* Image */}
-      <div className="relative overflow-hidden group" style={{ direction: 'ltr' }}>
+      <div className="relative min-h-[260px] h-[280px] md:h-full md:min-h-0 w-full overflow-hidden group shrink-0 md:shrink" style={{ direction: 'ltr' }}>
         <motion.img
           src={project.image}
           alt={project.title}
-          className="w-full h-full min-h-[280px] object-cover transition-all duration-500 opacity-85 group-hover:opacity-95 group-hover:scale-[1.04]"
+          className="absolute inset-0 w-full h-full object-cover transition-all duration-500 opacity-85 group-hover:opacity-95 group-hover:scale-[1.04]"
           animate={{ y: float.y }}
           transition={{ duration: float.duration, repeat: Infinity, ease: 'easeInOut', repeatType: 'loop' }}
         />
@@ -76,36 +76,38 @@ function ProjectBlock({ project, index }) {
 
       {/* Text */}
       <motion.div
-        className="flex flex-col justify-center p-10 md:p-12 bg-sand"
+        className="flex flex-col min-h-0 md:h-full md:overflow-hidden justify-start p-8 md:p-10 lg:p-12 bg-sand"
         style={{ direction: 'ltr', border: '2px solid rgba(63,90,79,0.18)', borderLeft: '3px solid rgba(63,90,79,0.25)' }}
         animate={{ y: float.y.map(v => v * -0.5) }}
         transition={{ duration: float.duration * 1.1, repeat: Infinity, ease: 'easeInOut', repeatType: 'loop' }}
       >
-        <p className="eyebrow mb-4">{meta}</p>
-        <h3 className="font-serif text-[42px] font-light text-ink leading-tight mb-3">{project.title}</h3>
-        <div className="w-6 h-px bg-terracotta mb-4" />
-        <p className="font-sans text-sm text-ink/60 leading-relaxed mb-5 max-w-sm">{pitch}</p>
-        <ul className="space-y-1.5 mb-6">
-          {bullets.map((b, i) => (
-            <li key={i} className="flex items-center gap-2.5">
-              <span className="w-1 h-1 rounded-full bg-olive" />
-              <span className="font-sans text-sm text-ink/55">{b}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="flex flex-wrap gap-2 mb-7">
-          {project.stack.map((s) => (
-            <span key={s} className="font-sans text-[11px] tracking-widest uppercase text-tropical/80 border border-tropical/30 px-2.5 py-1">
-              {s}
-            </span>
-          ))}
+        <div className="flex-1 min-h-0 overflow-y-auto [scrollbar-width:thin] pr-1 -mr-1">
+          <p className="eyebrow mb-3 shrink-0 line-clamp-2">{meta}</p>
+          <h3 className="font-serif text-[32px] md:text-[38px] lg:text-[42px] font-light text-ink leading-tight mb-2 shrink-0 line-clamp-3">{project.title}</h3>
+          <div className="w-6 h-px bg-terracotta mb-3 shrink-0" />
+          <p className="font-sans text-sm text-ink/60 leading-relaxed mb-4 max-w-sm shrink-0 line-clamp-5">{pitch}</p>
+          <ul className="space-y-1.5 mb-4 shrink-0">
+            {bullets.map((b, i) => (
+              <li key={i} className="flex items-start gap-2.5 min-w-0">
+                <span className="w-1 h-1 rounded-full bg-olive mt-1.5 shrink-0" />
+                <span className="font-sans text-sm text-ink/55 line-clamp-2">{b}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="flex flex-wrap gap-2 mb-1 shrink-0">
+            {project.stack.map((s) => (
+              <span key={s} className="font-sans text-[11px] tracking-widest uppercase text-tropical/80 border border-tropical/30 px-2.5 py-1">
+                {s}
+              </span>
+            ))}
+          </div>
         </div>
         {proof && (
           <a
             href={proof.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 font-sans text-sm font-medium text-tropical border-b border-tropical pb-0.5 w-fit hover:text-tropical/70 transition-all"
+            className="group inline-flex items-center gap-2.5 font-sans text-sm font-medium text-tropical border-b border-tropical pb-0.5 w-fit hover:text-tropical/70 transition-all shrink-0 mt-auto pt-2"
           >
             {proofLabel}
             <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
