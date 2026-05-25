@@ -5,6 +5,7 @@ import HeroSection from '../components/home/HeroSection';
 import SelectedWork from '../components/home/SelectedWork';
 import AboutPreview from '../components/home/AboutPreview';
 import MindsetStrip from '../components/home/MindsetStrip';
+import FocusedRooms from '../components/home/FocusedRooms';
 import ContactClose from '../components/home/ContactClose';
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
         <SelectedWork />
         <AboutPreview />
         <MindsetStrip />
+        <FocusedRooms />
         <ContactClose />
       </PageLayout>
     </>
