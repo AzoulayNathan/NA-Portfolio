@@ -1,13 +1,14 @@
 ﻿import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import NaHoverCircleButton from "@/components/ui/NaHoverCircleButton";
 
 export default function ClassroomCTA({ t }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-28 bg-gradient-to-b from-tropical/10 via-deep-green/95 to-deep-green relative overflow-hidden" ref={ref}>
+    <section className="py-28 bg-deep-green relative overflow-hidden" ref={ref}>
       {/* Seam echoes hero */}
       <motion.div
         initial={{ scaleY: 0 }}
@@ -46,18 +47,7 @@ export default function ClassroomCTA({ t }) {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="flex flex-col gap-6 items-center"
         >
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-            <Link
-              to="/classroom/contact"
-              className="w-40 h-40 rounded-full bg-olive flex items-center justify-center text-center"
-              style={{
-                boxShadow: "0 4px 24px rgba(63,90,79,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              <span className="font-serif text-sm text-quartz leading-snug px-4">{t.cta.button}</span>
-            </Link>
-          </motion.div>
+          <NaHoverCircleButton label={t.cta.button} to="/classroom/contact" size="lg" variant="olive" />
           <a
             href="/"
             className="px-8 py-2.5 font-sans text-sm text-white/55 border border-white/20 hover:bg-sand hover:text-ink hover:border-sand transition-all duration-300"

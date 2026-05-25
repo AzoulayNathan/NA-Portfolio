@@ -1,10 +1,9 @@
-﻿import { useNavigate } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
+﻿import { motion, useReducedMotion } from "framer-motion";
+import NaHoverCircleButton from "@/components/ui/NaHoverCircleButton";
 
 const HERO_IMAGE = "https://media.base44.com/images/public/6a13fc24178d42b5928c0a73/a3f7fae75_generated_image.png";
 
 export default function ClassroomHero({ t }) {
-  const navigate = useNavigate();
   const reduced = useReducedMotion();
   const d = (v) => (reduced ? 0 : v);
   const scroll = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -59,19 +58,7 @@ export default function ClassroomHero({ t }) {
           </p>
 
           <div className="flex flex-wrap gap-6 pt-2 items-center">
-            <motion.button
-              type="button"
-              onClick={() => navigate("/classroom/contact")}
-              className="vibrate w-36 h-36 rounded-full bg-olive flex items-center justify-center text-center cursor-pointer shrink-0"
-              style={{
-                border: "none",
-                boxShadow: "0 4px 20px rgba(63,90,79,0.25), inset 0 1px 0 rgba(255,255,255,0.12)",
-              }}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <span className="font-serif text-sm text-quartz leading-snug px-3">{t.hero.cta1}</span>
-            </motion.button>
+            <NaHoverCircleButton label={t.hero.cta1} to="/classroom/contact" size="md" variant="olive" />
             <motion.button
               type="button"
               onClick={() => scroll("principles")}

@@ -152,7 +152,8 @@
       ],
     },
     lab: {
-      title: "Two lessons, two ways",
+      titlePart1: "Two lessons",
+      titlePart2: "Two ways",
       subtitle: "The same teaching attention, applied to two very different learner problems.",
       quote: {
         left: "Human first.",
@@ -180,7 +181,7 @@
       steps: ["Learner says", "Diagnosis", "Explanation", "Exercise", "Feedback"],
     },
     qa: {
-      title: "Questions a recruiter might ask",
+      title: "Q&A",
       items: [
         {
           q: "What kind of position are you looking for?",
@@ -396,7 +397,8 @@
       ],
     },
     lab: {
-      title: "Deux leçons, deux chemins",
+      titlePart1: "Deux leçons",
+      titlePart2: "Deux chemins",
       subtitle: "La même attention pédagogique, appliquée à deux problèmes d'apprentissage très différents.",
       quote: {
         left: "L'humain d'abord.",
@@ -424,7 +426,7 @@
       steps: ["L'élève dit", "Diagnostic", "Explication", "Exercice", "Feedback"],
     },
     qa: {
-      title: "Questions qu'un recruteur peut se poser",
+      title: "Q&A",
       items: [
         { q: "Quel type de poste recherchez-vous ?", a: "Je suis ouvert à un vrai poste d'enseignant, au tutorat, au soutien scolaire, au FLE, à la formation ou à des rôles liés à l'éducation où la clarté, la structure et l'adaptation comptent." },
         { q: "Est-ce seulement du tutorat ?", a: "Non. Le tutorat fait partie de mon expérience, mais l'objectif est plus large : enseigner, aider les apprenants à progresser et contribuer à des environnements éducatifs où l'explication et la structure comptent." },
@@ -622,7 +624,8 @@
       ],
     },
     lab: {
-      title: "Dos lecciones, dos caminos",
+      titlePart1: "Dos lecciones",
+      titlePart2: "Dos caminos",
       subtitle: "La misma atención pedagógica, aplicada a dos problemas de aprendizaje muy distintos.",
       quote: {
         left: "Lo humano primero.",
@@ -650,7 +653,7 @@
       steps: ["El alumno dice", "Diagnóstico", "Explicación", "Ejercicio", "Feedback"],
     },
     qa: {
-      title: "Preguntas que un reclutador podría hacerse",
+      title: "Q&A",
       items: [
         { q: "¿Qué tipo de puesto buscas?", a: "Estoy abierto a un verdadero puesto de profesor, tutoría, apoyo académico, FLE, formación o roles relacionados con la educación donde la claridad, la estructura y la adaptación importan." },
         { q: "¿Esto es solo tutoría?", a: "No. La tutoría es parte de mi experiencia, pero el objetivo es más amplio: enseñar, ayudar a los alumnos a progresar y contribuir a entornos educativos donde la explicación y la estructura importan." },
