@@ -14,9 +14,10 @@ import Experience from './pages/Experience';
 import Tools from './pages/Tools';
 import Contact from './pages/Contact';
 import Classroom from './pages/Classroom';
+import ClassroomContact from './pages/ClassroomContact';
 import Websites from './pages/Websites';
 
-const ROOM_ROUTES = ['/classroom', '/websites'];
+const ROOM_ROUTES = ['/classroom', '/classroom/contact', '/websites'];
 
 function SandPileGate() {
   const { enabled } = useSandRain();
@@ -40,6 +41,7 @@ function App() {
                   <Route path="/tools" element={<Tools />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/classroom" element={<Classroom />} />
+                  <Route path="/classroom/contact" element={<ClassroomContact />} />
                   <Route path="/websites" element={<Websites />} />
                   <Route path="*" element={<PageNotFound />} />
                 </Routes>

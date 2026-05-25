@@ -6,7 +6,7 @@ export const translations = {
   en: {
     // Nav
     nav_home: 'WHO', nav_projects: 'WHAT', nav_path: 'WHY', nav_tools: 'HOW', nav_rooms: 'NA Rooms', nav_contact: 'WE ?',
-    rooms_websites_title: 'NA Websites', rooms_websites_desc: 'Small business websites',
+    rooms_websites_title: 'NA Websites', rooms_websites_desc: 'Lab website portfolio',
     rooms_classroom_title: 'NA Classroom', rooms_classroom_desc: 'Teaching portfolio',
     rooms_status_building: 'In progress', rooms_status_active: 'Active',
     websites_eyebrow: 'NA Websites', websites_heading: 'Currently in progress',
@@ -243,7 +243,7 @@ export const translations = {
   },
   fr: {
     nav_home: 'QUI', nav_projects: 'QUOI', nav_path: 'POURQUOI', nav_tools: 'COMMENT', nav_rooms: 'NA Rooms', nav_contact: 'ET NOUS ?',
-    rooms_websites_title: 'NA Websites', rooms_websites_desc: 'Sites pour petites entreprises',
+    rooms_websites_title: 'NA Websites', rooms_websites_desc: 'Portfolio de sites lab',
     rooms_classroom_title: 'NA Classroom', rooms_classroom_desc: 'Portfolio pédagogique',
     rooms_status_building: 'En construction', rooms_status_active: 'Actif',
     websites_eyebrow: 'NA Websites', websites_heading: 'Actuellement en construction',
@@ -468,7 +468,7 @@ export const translations = {
   },
   es: {
     nav_home: 'QUIEN', nav_projects: 'QUE', nav_path: 'POR QUE', nav_tools: 'COMO', nav_rooms: 'NA Rooms', nav_contact: 'Y NOSOTROS ?',
-    rooms_websites_title: 'NA Websites', rooms_websites_desc: 'Sitios para pequeñas empresas',
+    rooms_websites_title: 'NA Websites', rooms_websites_desc: 'Portfolio de sitios lab',
     rooms_classroom_title: 'NA Classroom', rooms_classroom_desc: 'Portfolio pedagógico',
     rooms_status_building: 'En construcción', rooms_status_active: 'Activo',
     websites_eyebrow: 'NA Websites', websites_heading: 'Actualmente en construcción',

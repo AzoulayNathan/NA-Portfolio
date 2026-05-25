@@ -7,7 +7,7 @@ export default function ClassroomQA({ t }) {
   const [open, setOpen] = useState(null);
 
   return (
-    <section id="qa" className="py-24 bg-quartz" ref={ref}>
+    <section id="qa" className="py-24 bg-quartz relative" ref={ref}>
       <div className="max-w-3xl mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
@@ -61,6 +61,11 @@ export default function ClassroomQA({ t }) {
           ))}
         </div>
       </div>
+      <div
+        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, #F6F3ED, rgba(31, 61, 51, 0.12))" }}
+        aria-hidden
+      />
     </section>
   );
 }

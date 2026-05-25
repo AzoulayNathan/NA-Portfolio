@@ -117,10 +117,19 @@ export default function ClassroomSplitLab({ t }) {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 3.2 }}
-          className="mt-16 text-center"
+          className="mt-16 max-w-2xl mx-auto"
         >
-          <p className="font-serif italic text-2xl sm:text-3xl text-olive leading-snug">
-            {t.lab.quote}
+          <div className="flex items-center justify-between gap-6">
+            <p className="font-serif italic text-xl sm:text-2xl text-tropical leading-snug">
+              {t.lab.quote.left}
+            </p>
+            <div className="w-px h-12 bg-terracotta/45 shrink-0" aria-hidden />
+            <p className="font-serif italic text-xl sm:text-2xl text-olive leading-snug text-right">
+              {t.lab.quote.right}
+            </p>
+          </div>
+          <p className="font-sans text-sm text-ink/50 text-center mt-6 tracking-wide">
+            {t.lab.quote.below}
           </p>
         </motion.div>
       </div>

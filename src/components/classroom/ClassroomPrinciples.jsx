@@ -7,7 +7,7 @@ export default function ClassroomPrinciples({ t }) {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <section id="principles" className="py-24 bg-quartz overflow-hidden" ref={ref}>
+    <section id="principles" className="py-24 bg-gradient-to-b from-sand via-[#E5D9C8] to-quartz overflow-hidden" ref={ref}>
       <div className="max-w-5xl mx-auto px-6">
         {/* Board title */}
         <motion.h2
@@ -79,7 +79,7 @@ export default function ClassroomPrinciples({ t }) {
                       animate={{ opacity: 1 }}
                       className="absolute -left-1 top-0 font-sans text-xs text-terracotta font-medium"
                     >
-                      ÔÇö
+                      —
                     </motion.span>
                   )}
                 </div>
