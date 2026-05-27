@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n } from '@/lib/i18n';
+import { NA_WEBSITES_URL } from '@/lib/externalLinks';
 
 export default function NaRoomsMenu({ open, onClose }) {
   const { t } = useI18n();
@@ -25,11 +26,12 @@ export default function NaRoomsMenu({ open, onClose }) {
 
   const entries = [
     {
-      to: '/websites',
+      href: NA_WEBSITES_URL,
+      external: true,
       title: t('rooms_websites_title'),
       desc: t('rooms_websites_desc'),
-      status: t('rooms_status_building'),
-      statusClass: 'text-terracotta/80',
+      status: t('rooms_status_active'),
+      statusClass: 'text-olive',
     },
     {
       to: '/classroom',
@@ -52,25 +54,49 @@ export default function NaRoomsMenu({ open, onClose }) {
           className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[min(100vw-2rem,280px)] bg-quartz border border-olive/15 shadow-sm py-2 z-[100]"
           role="menu"
         >
-          {entries.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              onClick={onClose}
-              role="menuitem"
-              className="block px-4 py-3 hover:bg-sand/50 transition-colors group"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <span className="font-serif text-sm text-ink group-hover:text-tropical transition-colors">
-                  {item.title}
-                </span>
-                <span className={`font-sans text-[9px] tracking-widest uppercase shrink-0 ${item.statusClass}`}>
-                  {item.status}
-                </span>
-              </div>
-              <p className="font-sans text-xs text-ink/45 mt-0.5 leading-snug">{item.desc}</p>
-            </Link>
-          ))}
+          {entries.map((item) => {
+            const inner = (
+              <>
+                <div className="flex items-start justify-between gap-2">
+                  <span className="font-serif text-sm text-ink group-hover:text-tropical transition-colors">
+                    {item.title}
+                  </span>
+                  <span className={`font-sans text-[9px] tracking-widest uppercase shrink-0 ${item.statusClass}`}>
+                    {item.status}
+                  </span>
+                </div>
+                <p className="font-sans text-xs text-ink/45 mt-0.5 leading-snug">{item.desc}</p>
+              </>
+            );
+
+            if (item.external) {
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onClose}
+                  role="menuitem"
+                  className="block px-4 py-3 hover:bg-sand/50 transition-colors group"
+                >
+                  {inner}
+                </a>
+              );
+            }
+
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={onClose}
+                role="menuitem"
+                className="block px-4 py-3 hover:bg-sand/50 transition-colors group"
+              >
+                {inner}
+              </Link>
+            );
+          })}
         </motion.div>
       )}
     </AnimatePresence>

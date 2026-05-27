@@ -5,6 +5,7 @@ import { useI18n, LANGUAGES } from '@/lib/i18n';
 import { useSandRain } from '@/lib/SandRainContext';
 import { Globe, CloudRain, Volume2, ChevronDown } from 'lucide-react';
 import NaRoomsMenu from './NaRoomsMenu';
+import { NA_WEBSITES_URL } from '@/lib/externalLinks';
 
 const DEFAULT_AMBIENCE_VOLUME = 12;
 const AMBIENCE_MAX_SCALE = 0.01;
@@ -447,12 +448,16 @@ export default function SiteNav() {
                       >
                         <button
                           type="button"
-                          onClick={() => { handleNavClick('/websites'); setMobileRoomsOpen(false); }}
+                          onClick={() => {
+                            window.open(NA_WEBSITES_URL, '_blank', 'noopener,noreferrer');
+                            setMobileRoomsOpen(false);
+                            setMenuOpen(false);
+                          }}
                           className="text-left"
                         >
                           <span className="font-serif text-2xl text-ink/90 block">{t('rooms_websites_title')}</span>
                           <span className="font-sans text-xs text-ink/45 block mt-0.5">{t('rooms_websites_desc')}</span>
-                          <span className="font-sans text-[10px] tracking-widest uppercase text-terracotta/80 mt-1 block">{t('rooms_status_building')}</span>
+                          <span className="font-sans text-[10px] tracking-widest uppercase text-olive mt-1 block">{t('rooms_status_active')}</span>
                         </button>
                         <button
                           type="button"
