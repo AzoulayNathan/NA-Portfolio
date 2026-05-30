@@ -8,6 +8,12 @@
  */
 export const PROJECTS = [
   {
+    title: 'FLE Compass',
+    stack: ['React', 'Vite', 'Tailwind', 'Supabase'], categories: ['Professional', 'Web', 'Education'],
+    image: 'https://images.unsplash.com/photo-1546410531-bb4caa6e4247?w=900&q=80', year: '2026',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/FLECompass_FLEDiagnostic',
+  },
+  {
     title: 'Side A / Side B',
     stack: ['React', 'Vite', 'Tailwind', 'Framer Motion'], categories: ['Personal', 'Web', 'Research'],
     image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=900&q=80', year: '2026',
