@@ -14,6 +14,12 @@ export const PROJECTS = [
     proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/FLECompass_FLEDiagnostic',
   },
   {
+    title: 'STEM Compass',
+    stack: ['React', 'Vite', 'Tailwind', 'Supabase'], categories: ['Professional', 'Web', 'Education'],
+    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=900&q=80', year: '2026',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/STEMCompass_STEMDiagnostic',
+  },
+  {
     title: 'Side A / Side B',
     stack: ['React', 'Vite', 'Tailwind', 'Framer Motion'], categories: ['Personal', 'Web', 'Research'],
     image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=900&q=80', year: '2026',
