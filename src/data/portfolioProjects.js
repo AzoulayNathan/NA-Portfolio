@@ -8,6 +8,12 @@
  */
 export const PROJECTS = [
   {
+    title: 'ClassmapFLE',
+    stack: ['React', 'Vite', 'Tailwind', 'Supabase'], categories: ['Professional', 'Web', 'Education'],
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80', year: '2026',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/ClassmapFLE',
+  },
+  {
     title: 'FLE Compass',
     stack: ['React', 'Vite', 'Tailwind', 'Supabase'], categories: ['Professional', 'Web', 'Education'],
     image: 'https://images.unsplash.com/photo-1546410531-bb4caa6e4247?w=900&q=80', year: '2026',

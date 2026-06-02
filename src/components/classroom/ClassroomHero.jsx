@@ -1,7 +1,7 @@
 ﻿import { motion, useReducedMotion } from "framer-motion";
 import NaHoverCircleButton from "@/components/ui/NaHoverCircleButton";
 
-const HERO_IMAGE = "https://media.base44.com/images/public/6a13fc24178d42b5928c0a73/a3f7fae75_generated_image.png";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80";
 
 export default function ClassroomHero({ t }) {
   const reduced = useReducedMotion();

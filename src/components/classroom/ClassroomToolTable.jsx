@@ -12,12 +12,12 @@ const GRID_STYLES = [
 ];
 
 const TOOL_IMAGES = {
-  "formula-builder": "https://media.base44.com/images/public/6a13fc24178d42b5928c0a73/cb63ffc03_generated_image.png",
-  "error-diary": "https://media.base44.com/images/public/6a13fc24178d42b5928c0a73/da62bec7d_generated_image.png",
-  "oralsafe": "https://media.base44.com/images/public/6a13fc24178d42b5928c0a73/efaa89ebd_generated_image.png",
-  "microexam": "https://media.base44.com/images/public/6a13fc24178d42b5928c0a73/171c452e2_generated_image.png",
-  "concept-builder": "https://media.base44.com/images/public/6a13fc24178d42b5928c0a73/db9acebb4_generated_image.png",
-  "learning-map": "https://media.base44.com/images/public/6a13fc24178d42b5928c0a73/21f664499_generated_image.png",
+  "formula-builder": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&q=80",
+  "error-diary": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80",
+  "oralsafe": "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&q=80",
+  "microexam": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80",
+  "concept-builder": "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&q=80",
+  "learning-map": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200&q=80",
 };
 
 // CSS-only fallback visuals per tool
