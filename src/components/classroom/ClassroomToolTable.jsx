@@ -6,18 +6,19 @@ const GRID_STYLES = [
   "col-span-2 row-span-2",  // Formula Builder
   "col-span-1",             // Error Diary
   "col-span-1",             // OralSafe
-  "col-span-1",             // MicroExam
+  "col-span-1",
   "col-span-2",             // Concept Builder
-  "col-span-1",             // Learning Map
+  "col-span-1",
 ];
 
 const TOOL_IMAGES = {
   "formula-builder": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&q=80",
   "error-diary": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80",
   "oralsafe": "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&q=80",
-  "microexam": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80",
   "concept-builder": "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&q=80",
-  "learning-map": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200&q=80",
+  "fle-compass": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80",
+  "stem-compass": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1200&q=80",
+  "classmap-fle": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80",
 };
 
 // CSS-only fallback visuals per tool
@@ -90,7 +91,7 @@ function AppCard({ app, idx, inView, onOpen }) {
       transition={{ duration: 1.8, delay: idx * 0.4, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -3, boxShadow: "0 8px 32px rgba(26,26,24,0.08)" }}
       onClick={() => onOpen(app)}
-      className={`${GRID_STYLES[idx]} text-left bg-quartz p-5 cursor-pointer transition-all duration-300 border border-sand/60`}
+      className={`${GRID_STYLES[idx % GRID_STYLES.length]} text-left bg-quartz p-5 cursor-pointer transition-all duration-300 border border-sand/60`}
       style={{ transformOrigin: "bottom center" }}
     >
       {imgSrc ? (
@@ -197,7 +198,18 @@ function DetailPanel({ app, t, onClose }) {
         )}
 
         <div className="border-t border-sand pt-4">
-          <p className="font-sans text-xs text-ink/28 italic">{t.githubLabel}</p>
+          {app.githubUrl ? (
+            <a
+              href={app.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans text-xs text-olive hover:text-olive/70 underline underline-offset-2"
+            >
+              {app.githubUrl}
+            </a>
+          ) : (
+            <p className="font-sans text-xs text-ink/28 italic">{t.githubLabel}</p>
+          )}
         </div>
       </motion.div>
     </motion.div>
