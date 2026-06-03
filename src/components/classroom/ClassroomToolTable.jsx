@@ -12,7 +12,7 @@ const GRID_STYLES = [
 ];
 
 const TOOL_IMAGES = {
-  "formula-builder": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&q=80",
+  "formula-builder": "/projects/formula-builder-cover.svg",
   "error-diary": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80",
   "oralsafe": "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&q=80",
   "concept-builder": "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&q=80",
@@ -197,7 +197,17 @@ function DetailPanel({ app, t, onClose }) {
           </div>
         )}
 
-        <div className="border-t border-sand pt-4">
+        <div className="border-t border-sand pt-4 flex flex-col gap-2">
+          {app.appUrl ? (
+            <a
+              href={app.appUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans text-xs text-deep-green hover:text-deep-green/70 underline underline-offset-2"
+            >
+              {app.appUrl}
+            </a>
+          ) : null}
           {app.githubUrl ? (
             <a
               href={app.githubUrl}

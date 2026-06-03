@@ -8,6 +8,12 @@
  */
 export const PROJECTS = [
   {
+    title: 'Formula Builder',
+    stack: ['React', 'Vite', 'Tailwind', 'Base44'], categories: ['Professional', 'Web', 'Education'],
+    image: '/projects/formula-builder-cover.svg', year: '2026',
+    proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/FormulaBuilder_PedagogicalApp',
+  },
+  {
     title: 'ClassmapFLE',
     stack: ['React', 'Vite', 'Tailwind', 'Supabase'], categories: ['Professional', 'Web', 'Education'],
     image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80', year: '2026',
