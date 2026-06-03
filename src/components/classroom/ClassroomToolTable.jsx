@@ -1,5 +1,6 @@
 ﻿import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { FORMULA_BUILDER_ASSETS } from "@/lib/projectAssets";
 
 // Asymmetric grid layout ÔÇö Formula Builder featured
 const GRID_STYLES = [
@@ -12,7 +13,7 @@ const GRID_STYLES = [
 ];
 
 const TOOL_IMAGES = {
-  "formula-builder": "/projects/formula-builder-cover.svg",
+  "formula-builder": FORMULA_BUILDER_ASSETS.teaching,
   "error-diary": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80",
   "oralsafe": "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&q=80",
   "concept-builder": "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&q=80",
@@ -82,7 +83,7 @@ function ToolFallback({ id, large }) {
 
 function AppCard({ app, idx, inView, onOpen }) {
   const isFeatured = idx === 0;
-  const imgSrc = TOOL_IMAGES[app.id];
+  const imgSrc = app.coverImage ?? TOOL_IMAGES[app.id];
 
   return (
     <motion.button
@@ -111,7 +112,7 @@ function AppCard({ app, idx, inView, onOpen }) {
 }
 
 function DetailPanel({ app, t, onClose }) {
-  const imgSrc = TOOL_IMAGES[app.id];
+  const imgSrc = app.coverImage ?? TOOL_IMAGES[app.id];
 
   useEffect(() => {
     const handler = (e) => { if (e.key === "Escape") onClose(); };

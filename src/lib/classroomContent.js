@@ -89,6 +89,7 @@
           status: "Live",
           githubUrl: "https://github.com/AzoulayNathan/FormulaBuilder_PedagogicalApp",
           appUrl: "https://na-formula-builder.pages.dev",
+          coverImage: "/projects/formula-builder-teaching.svg",
         },
         {
           id: "error-diary",
@@ -347,6 +348,7 @@
           status: "Live",
           githubUrl: "https://github.com/AzoulayNathan/FormulaBuilder_PedagogicalApp",
           appUrl: "https://na-formula-builder.pages.dev",
+          coverImage: "/projects/formula-builder-teaching.svg",
         },
         {
           id: "error-diary",
@@ -587,6 +589,7 @@
           status: "Live",
           githubUrl: "https://github.com/AzoulayNathan/FormulaBuilder_PedagogicalApp",
           appUrl: "https://na-formula-builder.pages.dev",
+          coverImage: "/projects/formula-builder-teaching.svg",
         },
         {
           id: "error-diary",

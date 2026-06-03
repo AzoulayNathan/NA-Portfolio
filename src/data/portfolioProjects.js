@@ -1,3 +1,5 @@
+import { FORMULA_BUILDER_ASSETS } from '@/lib/projectAssets';
+
 /**
  * Liste unique des projets — archives + carousels home.
  * Les champs textuels traduits (meta, pitch, b1, b2) vivent dans `src/lib/i18n.jsx`
@@ -10,7 +12,7 @@ export const PROJECTS = [
   {
     title: 'Formula Builder',
     stack: ['React', 'Vite', 'Tailwind', 'Base44'], categories: ['Professional', 'Web', 'Education'],
-    image: '/projects/formula-builder-cover.svg', year: '2026',
+    image: FORMULA_BUILDER_ASSETS.cover, year: '2026',
     proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/FormulaBuilder_PedagogicalApp',
   },
   {

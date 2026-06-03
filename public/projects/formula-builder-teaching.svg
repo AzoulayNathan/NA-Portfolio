@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Formula Builder teaching">
+  <defs>
+    <linearGradient id="fbt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F6F3ED"/>
+      <stop offset="50%" stop-color="#E8DFC9"/>
+      <stop offset="100%" stop-color="#c8ddd6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#fbt-bg)"/>
+  <rect x="80" y="80" width="1040" height="640" rx="16" fill="#fff" fill-opacity="0.5" stroke="#3F5A4F" stroke-opacity="0.18"/>
+
+  <text x="120" y="168" font-family="Georgia, serif" font-size="56" fill="#1A1A18">Formula Builder</text>
+  <text x="120" y="218" font-family="Inter, system-ui, sans-serif" font-size="20" fill="#3F5A4F" fill-opacity="0.75">NA Classroom · pedagogical formulas</text>
+
+  <rect x="120" y="260" width="140" height="44" rx="6" fill="#3F5A4F" fill-opacity="0.12"/>
+  <text x="140" y="290" font-family="Inter, sans-serif" font-size="16" fill="#3F5A4F">Understand</text>
+  <rect x="280" y="260" width="110" height="44" rx="6" fill="#3F5A4F" fill-opacity="0.12"/>
+  <text x="300" y="290" font-family="Inter, sans-serif" font-size="16" fill="#3F5A4F">Build</text>
+  <rect x="410" y="260" width="90" height="44" rx="6" fill="#B5523B" fill-opacity="0.2"/>
+  <text x="430" y="290" font-family="Inter, sans-serif" font-size="16" fill="#B5523B">Live</text>
+  <rect x="520" y="260" width="120" height="44" rx="6" fill="#3F5A4F" fill-opacity="0.12"/>
+  <text x="540" y="290" font-family="Inter, sans-serif" font-size="16" fill="#3F5A4F">Practice</text>
+
+  <text x="140" y="400" font-family="ui-monospace, monospace" font-size="42" fill="#3F5A4F">v = d / t</text>
+  <text x="140" y="470" font-family="ui-monospace, monospace" font-size="32" fill="#5a7a6a">P = F / A</text>
+  <text x="140" y="530" font-family="ui-monospace, monospace" font-size="32" fill="#5a7a6a">ROI = (gain - cost) / cost</text>
+
+  <g transform="translate(680, 320)">
+    <rect width="400" height="280" rx="12" fill="#3F5A4F" fill-opacity="0.08"/>
+    <text x="28" y="48" font-family="Inter, sans-serif" font-size="18" fill="#1F3D33" font-weight="600">Live panel</text>
+    <text x="28" y="100" font-family="ui-monospace, monospace" font-size="36" fill="#1A1A18">&#956; = 4.2</text>
+    <text x="28" y="150" font-family="Inter, sans-serif" font-size="14" fill="#3F5A4F" fill-opacity="0.7">26 formulas · 8 themes</text>
+    <g transform="translate(28, 180)">
+      <rect width="16" height="56" rx="3" fill="#3F5A4F" fill-opacity="0.3"/>
+      <rect x="28" y="12" width="16" height="44" rx="3" fill="#3F5A4F" fill-opacity="0.45"/>
+      <rect x="56" y="6" width="16" height="50" rx="3" fill="#3F5A4F" fill-opacity="0.4"/>
+      <rect x="84" y="20" width="16" height="36" rx="3" fill="#B5523B" fill-opacity="0.55"/>
+      <rect x="112" y="2" width="16" height="54" rx="3" fill="#3F5A4F" fill-opacity="0.35"/>
+    </g>
+    <rect x="28" y="260" width="200" height="8" rx="4" fill="#3F5A4F" fill-opacity="0.2"/>
+    <rect x="28" y="260" width="130" height="8" rx="4" fill="#B5523B" fill-opacity="0.45"/>
+  </g>
+
+  <text x="120" y="680" font-family="Inter, sans-serif" font-size="14" fill="#3F5A4F" fill-opacity="0.55">na-formula-builder.pages.dev</text>
+</svg>
