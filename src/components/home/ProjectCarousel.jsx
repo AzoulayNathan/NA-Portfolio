@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projectSlug } from '@/lib/utils';
 import { useI18n } from '@/lib/i18n';
+import { ProjectCarouselImage } from '@/components/ProjectMedia';
 
 function slugKey(title) {
   return projectSlug(title).replaceAll('-', '_');
@@ -230,17 +231,12 @@ export default function ProjectCarousel({ projects, initialDelayMs = 4500, class
                     }}
                   >
                     <div className="relative h-[68%] overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt=""
-                        className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.24]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-tropical/80 via-transparent to-transparent" />
+                      <ProjectCarouselImage src={project.image} alt={project.title} />
                       <div
-                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                         style={{ background: 'linear-gradient(125deg, rgba(246,243,237,0.16) 0%, transparent 58%)' }}
                       />
-                      <span className="absolute bottom-3 left-3 eyebrow-light text-[10px]">{project.year}</span>
+                      <span className="absolute bottom-3 left-3 z-10 eyebrow-light text-[10px]">{project.year}</span>
                     </div>
                     <div className="h-[32%] bg-quartz/95 px-2.5 md:px-3 py-2.5 flex flex-col items-center justify-center text-center">
                       <p className="eyebrow mb-0.5 text-[9px]">{t(`projects_${slugKey(project.title)}_meta`)}</p>

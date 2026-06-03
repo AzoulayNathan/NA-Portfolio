@@ -1,6 +1,7 @@
 ﻿import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { FORMULA_BUILDER_ASSETS } from "@/lib/projectAssets";
+import { TeachingToolImage } from "@/components/ProjectMedia";
 
 // Asymmetric grid layout ÔÇö Formula Builder featured
 const GRID_STYLES = [
@@ -96,12 +97,7 @@ function AppCard({ app, idx, inView, onOpen }) {
       style={{ transformOrigin: "bottom center" }}
     >
       {imgSrc ? (
-        <img
-          src={imgSrc}
-          alt={app.name}
-          className={`w-full object-cover mb-3 ${isFeatured ? "h-36" : "h-20"}`}
-          onError={(e) => { e.target.style.display = "none"; }}
-        />
+        <TeachingToolImage src={imgSrc} alt={app.name} large={isFeatured} />
       ) : (
         <ToolFallback id={app.id} large={isFeatured} />
       )}
@@ -152,7 +148,9 @@ function DetailPanel({ app, t, onClose }) {
         </button>
 
         {imgSrc ? (
-          <img src={imgSrc} alt={app.name} className="w-full h-32 object-cover mb-4" />
+          <div className="mb-4 h-32 overflow-hidden rounded-sm bg-sand">
+            <img src={imgSrc} alt={app.name} className="w-full h-full object-contain p-2" />
+          </div>
         ) : (
           <div className="mb-4"><ToolFallback id={app.id} large /></div>
         )}

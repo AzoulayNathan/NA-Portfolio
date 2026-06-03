@@ -7,6 +7,7 @@ import { useI18n } from '@/lib/i18n';
 import ContactButton from '@/components/ui/ContactButton';
 import { PROJECTS } from '@/data/portfolioProjects';
 import { projectSlug } from '@/lib/utils';
+import { ProjectCoverImage } from '@/components/ProjectMedia';
 
 const ALLOWED_PROOF_TYPES = ['github', 'pdf', 'image'];
 
@@ -57,19 +58,14 @@ function ProjectBlock({ project, index }) {
     >
       {/* Image */}
       <div className="relative min-h-[260px] h-[280px] md:h-full md:min-h-0 w-full overflow-hidden group shrink-0 md:shrink" style={{ direction: 'ltr' }}>
-        <motion.img
-          src={project.image}
-          alt={project.title}
-          className="absolute inset-0 w-full h-full object-cover transition-all duration-500 opacity-85 group-hover:opacity-95 group-hover:scale-[1.04]"
+        <motion.div
+          className="absolute inset-0"
           animate={{ y: float.y }}
           transition={{ duration: float.duration, repeat: Infinity, ease: 'easeInOut', repeatType: 'loop' }}
-        />
-        <div className="absolute inset-0 bg-tropical/20 mix-blend-multiply group-hover:opacity-50 transition-opacity duration-500" />
-        {/* Shine on hover */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{ background: 'linear-gradient(135deg, rgba(246,243,237,0.07) 0%, transparent 60%)' }}
-        />
-        <div className="absolute bottom-5 left-5">
+        >
+          <ProjectCoverImage src={project.image} alt={project.title} className="w-full h-full" />
+        </motion.div>
+        <div className="absolute bottom-5 left-5 z-10">
           <span className="eyebrow-light">{project.year}</span>
         </div>
       </div>
