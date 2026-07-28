@@ -16,13 +16,14 @@ import Contact from './pages/Contact';
 import Classroom from './pages/Classroom';
 import ClassroomContact from './pages/ClassroomContact';
 import Websites from './pages/Websites';
+import Expertise from './pages/Expertise';
 
 const ROOM_ROUTES = ['/classroom', '/classroom/contact', '/websites'];
 
 function SandPileGate() {
   const { enabled } = useSandRain();
   const { pathname } = useLocation();
-  if (!enabled || ROOM_ROUTES.includes(pathname)) return null;
+  if (!enabled || ROOM_ROUTES.includes(pathname) || pathname.startsWith('/expertise')) return null;
   return <SandPileBottom />;
 }
 
@@ -39,6 +40,8 @@ function App() {
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/experience" element={<Experience />} />
                   <Route path="/tools" element={<Tools />} />
+                  <Route path="/expertise" element={<Expertise />} />
+                  <Route path="/expertise/:fieldId" element={<Expertise />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/classroom" element={<Classroom />} />
                   <Route path="/classroom/contact" element={<ClassroomContact />} />

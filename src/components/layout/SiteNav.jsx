@@ -5,7 +5,7 @@ import { useI18n, LANGUAGES } from '@/lib/i18n';
 import { useSandRain } from '@/lib/SandRainContext';
 import { Globe, CloudRain, Volume2, ChevronDown } from 'lucide-react';
 import NaRoomsMenu from './NaRoomsMenu';
-import { NA_WEBSITES_URL } from '@/lib/externalLinks';
+import { NA_WEBSITES_URL, NA_BUSINESS_SYSTEMS_URL } from '@/lib/externalLinks';
 
 const DEFAULT_AMBIENCE_VOLUME = 12;
 const AMBIENCE_MAX_SCALE = 0.01;
@@ -42,19 +42,40 @@ export default function SiteNav() {
   const navItems = [
     { label: t('nav_home'), path: '/' },
     { label: t('nav_projects'), path: '/projects' },
+    { label: t('nav_expertise'), path: '/expertise' },
     { label: t('nav_path'), path: '/experience' },
     { label: t('nav_tools'), path: '/tools' },
     { label: t('nav_contact'), path: '/contact' },
   ];
   const isRoomsActive = ['/classroom', '/websites'].includes(location.pathname);
+  const isNavItemActive = (path) =>
+    path === '/expertise'
+      ? location.pathname === '/expertise' || location.pathname.startsWith('/expertise/')
+      : location.pathname === path;
   const isContactTop = location.pathname === '/contact' && !scrolled;
   const isHomeTop = location.pathname === '/' && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
+    const onMessage = (event) => {
+      if (event.data?.type === 'na-expertise-scroll') {
+        setScrolled(Number(event.data.y) > 40);
+      }
+    };
     window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('message', onMessage);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('message', onMessage);
+    };
   }, []);
+
+  // Reset scrolled styling when leaving expertise routes via parent scroll
+  useEffect(() => {
+    if (!location.pathname.startsWith('/expertise')) {
+      setScrolled(window.scrollY > 40);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -157,7 +178,7 @@ export default function SiteNav() {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
-              const isActive = location.pathname === item.path;
+              const isActive = isNavItemActive(item.path);
               const linkClass = `font-sans text-xs font-medium tracking-widest uppercase transition-colors duration-200 relative ${
                 isActive ? 'text-tropical' : 'text-ink/60 hover:text-ink'
               }`;
@@ -402,7 +423,7 @@ export default function SiteNav() {
             <div className="relative z-10 flex flex-col flex-1 justify-center px-10 pb-12">
               <nav className="flex flex-col gap-7">
                 {navItems.map((item, i) => {
-                  const isActive = location.pathname === item.path;
+                  const isActive = isNavItemActive(item.path);
                   const mobileClass = `font-serif text-4xl sm:text-5xl font-light tracking-tight transition-colors text-left w-full ${
                     isActive ? 'text-tropical' : 'text-ink/85'
                   }`;
@@ -457,6 +478,19 @@ export default function SiteNav() {
                         >
                           <span className="font-serif text-2xl text-ink/90 block">{t('rooms_websites_title')}</span>
                           <span className="font-sans text-xs text-ink/45 block mt-0.5">{t('rooms_websites_desc')}</span>
+                          <span className="font-sans text-[10px] tracking-widest uppercase text-olive mt-1 block">{t('rooms_status_active')}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            window.open(NA_BUSINESS_SYSTEMS_URL, '_blank', 'noopener,noreferrer');
+                            setMobileRoomsOpen(false);
+                            setMenuOpen(false);
+                          }}
+                          className="text-left"
+                        >
+                          <span className="font-serif text-2xl text-ink/90 block">{t('rooms_business_systems_title')}</span>
+                          <span className="font-sans text-xs text-ink/45 block mt-0.5">{t('rooms_business_systems_desc')}</span>
                           <span className="font-sans text-[10px] tracking-widest uppercase text-olive mt-1 block">{t('rooms_status_active')}</span>
                         </button>
                         <button

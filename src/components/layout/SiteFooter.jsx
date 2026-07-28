@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useI18n } from '@/lib/i18n';
-import { NA_WEBSITES_URL } from '@/lib/externalLinks';
+import { NA_WEBSITES_URL, NA_BUSINESS_SYSTEMS_URL } from '@/lib/externalLinks';
 
 export default function SiteFooter() {
   const { t } = useI18n();
@@ -19,9 +19,11 @@ export default function SiteFooter() {
           {[
             { label: t('nav_home'), path: '/' },
             { label: t('nav_projects'), path: '/projects' },
+            { label: t('nav_expertise'), path: '/expertise' },
             { label: t('nav_path'), path: '/experience' },
             { label: t('nav_tools'), path: '/tools' },
             { label: t('rooms_websites_title'), href: NA_WEBSITES_URL, external: true },
+            { label: t('rooms_business_systems_title'), href: NA_BUSINESS_SYSTEMS_URL, external: true },
             { label: t('rooms_classroom_title'), path: '/classroom' },
             { label: t('nav_contact'), path: '/contact' },
           ].map((item) =>
