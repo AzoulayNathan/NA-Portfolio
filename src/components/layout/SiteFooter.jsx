@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
+import { Lock } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
-import { NA_WEBSITES_URL, NA_BUSINESS_SYSTEMS_URL } from '@/lib/externalLinks';
 
 export default function SiteFooter() {
   const { t } = useI18n();
@@ -22,21 +22,20 @@ export default function SiteFooter() {
             { label: t('nav_expertise'), path: '/expertise' },
             { label: t('nav_path'), path: '/experience' },
             { label: t('nav_tools'), path: '/tools' },
-            { label: t('rooms_websites_title'), href: NA_WEBSITES_URL, external: true },
-            { label: t('rooms_business_systems_title'), href: NA_BUSINESS_SYSTEMS_URL, external: true },
+            { label: t('rooms_websites_title'), disabled: true },
+            { label: t('rooms_business_systems_title'), disabled: true },
             { label: t('rooms_classroom_title'), path: '/classroom' },
             { label: t('nav_contact'), path: '/contact' },
           ].map((item) =>
-            item.external ? (
-              <a
-                key={item.href}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-xs tracking-widest uppercase text-quartz/40 hover:text-quartz/80 transition-colors"
+            item.disabled ? (
+              <span
+                key={item.label}
+                title={t('rooms_status_unavailable')}
+                className="font-sans text-xs tracking-widest uppercase text-quartz/25 inline-flex items-center gap-1.5 cursor-not-allowed"
               >
+                <Lock size={10} strokeWidth={2} aria-hidden="true" />
                 {item.label}
-              </a>
+              </span>
             ) : (
               <Link
                 key={item.path}

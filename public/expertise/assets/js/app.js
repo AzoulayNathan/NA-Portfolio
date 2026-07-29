@@ -271,31 +271,44 @@
     document.documentElement.style.setProperty('--page-accent',selected.accent);
     document.documentElement.style.setProperty('--page-accent-2',selected.accent2);
     document.documentElement.style.setProperty('--page-rgb',selected.rgb);
+    const email=CONFIG.contactEmail||'nathanazoulay.pro@gmail.com';
+    const linkedIn=CONFIG.linkedIn||'https://linkedin.com/in/nathanazoulay';
+    const github=CONFIG.github||'https://github.com/nathanazoulay';
+    const booking=CONFIG.bookingUrl||'https://calendar.app.google/FwvLrs17YcM1Ksmy9';
     return `<div class="page-shell page-shell--contact" style="--accent:${selected.accent};--accent2:${selected.accent2};--rgb:${selected.rgb}">
       ${topNav({dark:true,field:selected})}
       <main class="contact-main">
         <a class="contact-back" href="#/${selected.id}" data-route="${selected.id}">${icon('back')}Back to ${esc(selected.short)}</a>
-        <section class="contact-heading"><span class="section-kicker">CONTACT · CONTEXT FIRST</span><h1>Tell me what you need.<br><em>The form adapts.</em></h1><p>Choose a recruitment conversation, a freelance project or a general enquiry. The request is structured before it reaches your email client.</p></section>
+        <section class="contact-heading">
+          <span class="section-kicker">CONTACT</span>
+          <h1>Let’s talk.</h1>
+          <p>Pick a path, choose a field, and send a short message.</p>
+        </section>
+        <section class="contact-channels" aria-label="Contact links">
+          <a href="mailto:${esc(email)}"><span>Email</span><b>${esc(email)}</b></a>
+          <a href="${esc(linkedIn)}" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><b>linkedin.com/in/nathanazoulay</b></a>
+          <a href="${esc(github)}" target="_blank" rel="noopener noreferrer"><span>GitHub</span><b>github.com/nathanazoulay</b></a>
+          <a href="${esc(booking)}" target="_blank" rel="noopener noreferrer"><span>Calendar</span><b>Book a 30 min call</b></a>
+        </section>
         <section class="contact-grid">
           <aside class="contact-planner">
-            <span class="section-kicker">01 · INTENTION</span>
+            <span class="section-kicker">INTENTION</span>
             <div class="contact-intents">
-              <button data-set-contact="hire" class="${contactIntent==='hire'?'active':''}">${icon('user')}<b>I’m hiring</b><small>Role, team or project opportunity</small></button>
-              <button data-set-contact="freelance" class="${contactIntent==='freelance'?'active':''}">${icon('brief')}<b>I need a solution</b><small>Audit, analysis or defined delivery</small></button>
-              <button data-set-contact="general" class="${contactIntent==='general'?'active':''}">${icon('mail')}<b>General enquiry</b><small>Portfolio, collaboration or other context</small></button>
+              <button data-set-contact="hire" class="${contactIntent==='hire'?'active':''}">${icon('user')}<b>I’m hiring</b></button>
+              <button data-set-contact="freelance" class="${contactIntent==='freelance'?'active':''}">${icon('brief')}<b>I need a solution</b></button>
+              <button data-set-contact="general" class="${contactIntent==='general'?'active':''}">${icon('mail')}<b>General enquiry</b></button>
             </div>
-            <label class="field-select">02 · RELEVANT FIELD<select id="contact-field">${fields.map(f=>`<option value="${f.id}" ${f.id===selected.id?'selected':''}>${esc(f.title)}</option>`).join('')}</select></label>
-            <div class="contact-profile-card" id="contact-profile-card"></div>
+            <label class="field-select">Relevant field<select id="contact-field">${fields.map(f=>`<option value="${f.id}" ${f.id===selected.id?'selected':''}>${esc(f.title)}</option>`).join('')}</select></label>
+            <div class="contact-profile-card" id="contact-profile-card" hidden></div>
           </aside>
           <form class="smart-form" id="smart-contact-form">
             <div class="form-row"><label>Your name<input required name="name" autocomplete="name" placeholder="Name"></label><label>Email<input required type="email" name="email" autocomplete="email" placeholder="you@organisation.com"></label></div>
-            <label>Organisation or project<input name="organisation" autocomplete="organization" placeholder="Company, institution or project name"></label>
+            <label>Organisation or project<input name="organisation" autocomplete="organization" placeholder="Company or project"></label>
             <div id="dynamic-contact-fields">${dynamicFields(contactIntent,selected)}</div>
-            <label>Anything else to include?<textarea name="notes" rows="3" placeholder="Links, available documents, constraints or useful context."></textarea></label>
-            <div class="generated-message"><span class="section-kicker">LIVE REQUEST SUMMARY</span><pre id="request-preview"></pre></div>
-            <div class="form-actions"><button class="action-primary" type="submit">${icon('mail')}Prepare email ${icon('arrow')}</button><button type="button" data-copy-request>${icon('copy')}Copy summary</button></div>
+            <label>Anything else?<textarea name="notes" rows="3" placeholder="Useful links or constraints."></textarea></label>
+            <pre id="request-preview" class="sr-only" aria-hidden="true"></pre>
+            <div class="form-actions"><button class="action-primary" type="submit">${icon('mail')}Prepare email</button></div>
             <p class="form-status" id="form-status" role="status"></p>
-            <small class="form-note">Set your professional email in <code>assets/js/config.js</code>. Add a Formspree endpoint there for direct form submission; otherwise the site opens a structured email.</small>
           </form>
         </section>
       </main>
@@ -421,7 +434,9 @@
       const f=selectedField();
       const shell=document.querySelector('.page-shell--contact');
       shell.style.setProperty('--accent',f.accent); shell.style.setProperty('--accent2',f.accent2); shell.style.setProperty('--rgb',f.rgb);
-      card.innerHTML=`<span>${f.index}</span><h2>${esc(f.title)}</h2><p>${esc(f.promise)}</p><div>${f.tags.slice(0,4).map(x=>`<b>${esc(x)}</b>`).join('')}</div>`;
+      if(card && !card.hasAttribute('hidden')){
+        card.innerHTML=`<span>${f.index}</span><h2>${esc(f.title)}</h2><p>${esc(f.promise)}</p><div>${f.tags.slice(0,4).map(x=>`<b>${esc(x)}</b>`).join('')}</div>`;
+      }
     }
     function formDataObject(){return Object.fromEntries(new FormData(form).entries());}
     function buildMessage(){
