@@ -54,3 +54,15 @@
   .field-sidebar.is-collapsed:hover~.profile-stage{margin-left:278px}
 }
 .hub-footer{display:none!important}
+
+.expertise-lang,.cv-lang{display:inline-flex;gap:4px;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:3px;background:rgba(0,0,0,.18)}
+.page-shell--hub .expertise-lang{border-color:rgba(20,30,24,.18);background:rgba(255,255,255,.55)}
+.expertise-lang button,.cv-lang button{border:0;background:transparent;color:inherit;font:600 10px/1 var(--sans);letter-spacing:.12em;padding:7px 10px;border-radius:999px;cursor:pointer;opacity:.55}
+.expertise-lang button.active,.cv-lang button.active{opacity:1;background:rgba(var(--rgb,141,138,84),.22)}
+.hub-toolbar,.profile-toolbar,.contact-toolbar{display:flex;justify-content:flex-end;padding:18px max(3vw,28px) 0;position:relative;z-index:2}
+.cv-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.cv-download{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:0 14px;min-height:45px}
+.hub-extra-cvs{padding:10px max(3vw,28px) 50px;max-width:1180px;margin:0 auto}
+.hub-extra-cvs .section-kicker{display:block;margin-bottom:14px}
+.hub-extra-list{display:flex;flex-wrap:wrap;gap:10px}
+.hub-extra-list a{display:inline-flex;align-items:center;gap:8px;padding:12px 14px;border:1px solid rgba(20,30,24,.12);border-radius:10px;text-decoration:none;color:inherit;background:rgba(255,255,255,.45);font-size:13px}

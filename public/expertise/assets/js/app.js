@@ -1,16 +1,69 @@
 (function(){
   'use strict';
   const DATA=window.NA_DATA;
+  const DATA_FR=window.NA_DATA_FR||{profile:{},fields:{}};
   const CONFIG=window.NA_CONFIG;
   const VIS=window.NA_VISUALS;
+  const I18N=window.NA_I18N;
   const app=document.getElementById('app');
   const transition=document.getElementById('route-transition');
-  const fields=DATA.fields;
-  const byId=Object.fromEntries(fields.map(x=>[x.id,x]));
+  let lang=(localStorage.getItem('na-expertise-lang')||'en').toLowerCase();
+  if(!['en','fr'].includes(lang)) lang='en';
   let lastRoute='expertise';
   let contactIntent='hire';
+  let cvLang=lang;
 
   const esc=(s='')=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  const t=(key)=> (I18N[lang]&&I18N[lang][key]) || (I18N.en&&I18N.en[key]) || key;
+
+  function localizedField(base){
+    if(!base) return base;
+    if(lang!=='fr') return base;
+    const fr=DATA_FR.fields[base.id];
+    if(!fr) return base;
+    return Object.assign({}, base, fr);
+  }
+
+  function localizedProfile(){
+    if(lang!=='fr') return DATA.profile;
+    return Object.assign({}, DATA.profile, DATA_FR.profile||{});
+  }
+
+  function fieldsList(){
+    return DATA.fields.map(localizedField);
+  }
+
+  function fieldById(id){
+    const base=DATA.fields.find(f=>f.id===id);
+    return localizedField(base);
+  }
+
+  function cvPath(fieldId, language){
+    const base=(CONFIG.cvBase||'documents/cv').replace(/\/$/,'');
+    return `${base}/${fieldId}_${language}.pdf`;
+  }
+
+  function setLang(next){
+    if(!['en','fr'].includes(next) || next===lang) return;
+    lang=next;
+    cvLang=next;
+    localStorage.setItem('na-expertise-lang', lang);
+    document.documentElement.lang=lang;
+    try{
+      if(window.parent && window.parent!==window){
+        window.parent.postMessage({ type:'na-expertise-lang', lang }, '*');
+      }
+    }catch(e){}
+    render();
+  }
+
+  function langSwitcher(){
+    return `<div class="expertise-lang" role="group" aria-label="${esc(t('lang_label'))}">
+      <button type="button" data-set-lang="en" class="${lang==='en'?'active':''}">EN</button>
+      <button type="button" data-set-lang="fr" class="${lang==='fr'?'active':''}">FR</button>
+    </div>`;
+  }
+
   const icon=(name='arrow')=>{
     const paths={
       arrow:'M5 12h14m-6-6 6 6-6 6', back:'M19 12H5m6 6-6-6 6-6', menu:'M4 7h16M4 12h16M4 17h16',
@@ -55,7 +108,7 @@
     const currentIsHub=current==='expertise';
     const nextIsHub=next==='expertise';
     const direction=currentIsHub&&!nextIsHub?'forward':(!currentIsHub&&nextIsHub?'reverse':'cross');
-    const field=byId[next]||byId[current];
+    const field=fieldById(next)||fieldById(current);
     transition.style.setProperty('--transition-accent',field?.accent||'#b9aa58');
     transition.className=`route-transition is-active is-${direction}`;
     document.body.dataset.navDirection=direction;
@@ -69,9 +122,11 @@
   function topNav(){ return ''; }
 
   function hub(){
+    const fields=fieldsList();
     document.title='NA Studio — Expertise';
     document.body.dataset.page='hub';
     document.documentElement.style.setProperty('--page-accent','#8d8a54');
+    const extras=CONFIG.extraCvs||[];
     return `<div class="page-shell page-shell--hub">
       ${topNav({dark:false})}
       <main class="expertise-hub">
@@ -79,14 +134,15 @@
           <div class="hub-ribbon hub-ribbon--one"></div><div class="hub-ribbon hub-ribbon--two"></div>
           ${Array.from({length:28},(_,i)=>`<i style="--x:${(i*37)%96}%;--y:${(i*61)%92}%;--d:${2+i%7}s;--s:${2+i%4}px"></i>`).join('')}
         </div>
+        <div class="hub-toolbar">${langSwitcher()}</div>
         <section class="hub-intro">
           <div class="hub-copy">
-            <span class="section-kicker">EXPERTISE</span>
-            <h1>Seven fields.<br><em>One way of thinking.</em></h1>
-            <p>I combine mathematical depth, business understanding and systems thinking to turn complex problems into useful outcomes.</p>
+            <span class="section-kicker">${esc(t('hub_kicker'))}</span>
+            <h1>${esc(t('hub_title_1'))}<br><em>${esc(t('hub_title_2'))}</em></h1>
+            <p>${esc(t('hub_intro'))}</p>
             <div class="hub-intents">
-              <button data-contact-intent="hire">${icon('user')}<span><b>I’m hiring</b><small>Explore professional fit</small></span>${icon('arrow')}</button>
-              <button data-contact-intent="freelance">${icon('brief')}<span><b>I need a solution</b><small>Explore freelance support</small></span>${icon('arrow')}</button>
+              <button data-contact-intent="hire">${icon('user')}<span><b>${esc(t('hub_hire'))}</b><small>${esc(t('hub_hire_sub'))}</small></span>${icon('arrow')}</button>
+              <button data-contact-intent="freelance">${icon('brief')}<span><b>${esc(t('hub_freelance'))}</b><small>${esc(t('hub_freelance_sub'))}</small></span>${icon('arrow')}</button>
             </div>
           </div>
           <div class="hub-sculpture" aria-hidden="true">
@@ -95,29 +151,40 @@
             <div class="hub-light"></div>
           </div>
         </section>
-        <section class="hub-fields" aria-label="Expertise fields">
+        <section class="hub-fields" aria-label="${esc(t('hub_fields_aria'))}">
           <div class="hub-page-stack" aria-hidden="true">${Array.from({length:7},(_,i)=>`<i style="--i:${i}"></i>`).join('')}</div>
           ${fields.map((f,i)=>`<button class="hub-field ${i===3?'is-highlighted':''}" style="--field:${f.accent};--field-rgb:${f.rgb}" data-route="${f.id}" data-hub-field="${f.id}">
             <span class="hub-field-index">${f.index}</span>
             <span class="hub-field-icon">${fieldIcon(f)}</span>
             <span class="hub-field-copy"><b>${esc(f.title)}</b><small>${esc(f.promise)}</small></span>
-            <span class="hub-field-action">Explore this field ${icon('arrow')}</span>
+            <span class="hub-field-action">${esc(t('hub_explore'))} ${icon('arrow')}</span>
             <span class="hub-field-progress"></span>
           </button>`).join('')}
         </section>
+        ${extras.length?`<section class="hub-extra-cvs">
+          <span class="section-kicker">${esc(t('hub_extra_cvs'))}</span>
+          <div class="hub-extra-list">
+            ${extras.map(id=>{
+              const label=t(`hub_extra_${id}`)||id;
+              return `<a href="${esc(cvPath(id,lang))}" download>${icon('download')}<span>${esc(label)}</span></a>`;
+            }).join('')}
+          </div>
+        </section>`:''}
       </main>
     </div>`;
   }
 
   function sidebar(field){
+    const fields=fieldsList();
+    const profile=localizedProfile();
     return `<aside class="field-sidebar is-collapsed" data-sidebar>
       <div class="sidebar-head">
         <a class="sidebar-logo" href="${esc(CONFIG.naStudioHome)}" target="_top"><span>NA</span><small>STUDIO</small></a>
-        <button class="sidebar-toggle" type="button" aria-label="Toggle expertise navigation" data-sidebar-toggle>${icon('arrow')}</button>
+        <button class="sidebar-toggle" type="button" aria-label="${esc(t('toggle_nav'))}" data-sidebar-toggle>${icon('arrow')}</button>
       </div>
-      <a class="overview-link" href="#/expertise" data-route="expertise">${icon('back')}<span>All fields overview</span></a>
-      <p class="sidebar-label">EXPERTISE</p>
-      <nav class="field-nav" aria-label="Expertise fields">
+      <a class="overview-link" href="#/expertise" data-route="expertise">${icon('back')}<span>${esc(t('overview'))}</span></a>
+      <p class="sidebar-label">${esc(t('sidebar_label'))}</p>
+      <nav class="field-nav" aria-label="${esc(t('hub_fields_aria'))}">
         ${fields.map(f=>`<a href="#/${f.id}" data-route="${f.id}" class="${field.id===f.id?'active':''}" style="--item:${f.accent};--item-rgb:${f.rgb}" title="${esc(f.title)}">
           <span class="field-nav-index">${f.index}</span><span class="field-nav-icon">${fieldIcon(f)}</span><span class="field-nav-name">${esc(f.title)}</span><i></i>
         </a>`).join('')}
@@ -127,17 +194,17 @@
         <span class="profile-monogram">NA</span>
         <div><b>Nathan Azoulay</b><small>${esc(field.roles[0])}</small></div>
       </div>
-      <div class="sidebar-meta"><span>${icon('pin')} Europe</span><span class="available"><i></i>${esc(DATA.profile.availability)}</span></div>
+      <div class="sidebar-meta"><span>${icon('pin')} Europe</span><span class="available"><i></i>${esc(profile.availability)}</span></div>
       <div class="sidebar-links"><a href="${esc(CONFIG.linkedIn)}" target="_blank" rel="noopener">in</a><a href="${esc(CONFIG.github)}" target="_blank" rel="noopener">gh</a><a href="#/contact?field=${field.id}" data-route="contact" data-field="${field.id}">${icon('mail')}</a></div>
     </aside>`;
   }
 
   function pageKpis(){
-    return `<section class="credibility-strip" aria-label="Profile foundation">
-      <div><b>3</b><span>analytical internships</span></div>
-      <div><b>3</b><span>specialised postgraduate programmes</span></div>
-      <div><b>Since 2017</b><span>mathematics tutoring</span></div>
-      <div><b>FR · EN · ES</b><span>working languages</span></div>
+    return `<section class="credibility-strip" aria-label="${esc(t('kpi_aria'))}">
+      <div><b>3</b><span>${esc(t('kpi_internships'))}</span></div>
+      <div><b>3</b><span>${esc(t('kpi_programmes'))}</span></div>
+      <div><b>${lang==='fr'?'Depuis 2017':'Since 2017'}</b><span>${esc(t('kpi_tutoring'))}</span></div>
+      <div><b>FR · EN · ES</b><span>${esc(t('kpi_langs'))}</span></div>
     </section>`;
   }
 
@@ -164,7 +231,19 @@
     return `<div class="${cls}">${field.method.map((m,i)=>`<div class="pipeline-step" style="--i:${i}"><span>0${i+1}</span><b>${m}</b></div>`).join('')}</div>`;
   }
 
+  function cvControls(field){
+    const href=cvPath(field.id, cvLang);
+    return `<div class="cv-controls">
+      <div class="cv-lang" role="group" aria-label="${esc(t('cv_lang'))}">
+        <button type="button" data-set-cv-lang="en" class="${cvLang==='en'?'active':''}">EN</button>
+        <button type="button" data-set-cv-lang="fr" class="${cvLang==='fr'?'active':''}">FR</button>
+      </div>
+      <a class="cv-download" href="${esc(href)}" download>${icon('download')}${esc(t('download_cv'))}</a>
+    </div>`;
+  }
+
   function profilePage(field){
+    const profile=localizedProfile();
     document.title=`NA Studio — ${field.title}`;
     document.body.dataset.page='profile';
     document.body.dataset.field=field.id;
@@ -176,96 +255,98 @@
       <div class="profile-stage">
         ${topNav({dark:true,field})}
         <main class="profile-main">
+          <div class="profile-toolbar">${langSwitcher()}</div>
           <section class="profile-hero">
             <div class="profile-hero-copy">
               <span class="section-kicker">${esc(field.eyebrow)} · ${field.index} / 07</span>
               <h1>${field.hero.map((x,i)=>i===1?`<em>${esc(x)}</em>`:esc(x)).join('<br>')}</h1>
               <p>${esc(field.subtitle)}</p>
-              <div class="profile-tags">${field.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>
+              <div class="profile-tags">${field.tags.map(tag=>`<span>${esc(tag)}</span>`).join('')}</div>
               <div class="profile-actions">
-                <button class="action-primary" data-contact-intent="hire" data-field="${field.id}">${icon('user')}Hire Nathan ${icon('arrow')}</button>
-                <button data-contact-intent="freelance" data-field="${field.id}">${icon('brief')}Freelance support ${icon('arrow')}</button>
-                <a href="${esc(CONFIG.cvUrl)}" download>${icon('download')}Download CV</a>
+                <button class="action-primary" data-contact-intent="hire" data-field="${field.id}">${icon('user')}${esc(t('hire_nathan'))} ${icon('arrow')}</button>
+                <button data-contact-intent="freelance" data-field="${field.id}">${icon('brief')}${esc(t('freelance_support'))} ${icon('arrow')}</button>
+                ${cvControls(field)}
               </div>
             </div>
             ${VIS[field.visual]()}
           </section>
 
           <section class="intent-rail">
-            <button data-intent-filter="hire" class="active">${icon('user')}<span><b>I’m hiring</b><small>Profile, experience and potential contribution</small></span>${icon('chevron')}</button>
-            <button data-intent-filter="freelance">${icon('brief')}<span><b>I need a solution</b><small>Problems, deliverables and project support</small></span>${icon('chevron')}</button>
+            <button data-intent-filter="hire" class="active">${icon('user')}<span><b>${esc(t('hub_hire'))}</b><small>${esc(t('intent_hire_sub'))}</small></span>${icon('chevron')}</button>
+            <button data-intent-filter="freelance">${icon('brief')}<span><b>${esc(t('hub_freelance'))}</b><small>${esc(t('intent_freelance_sub'))}</small></span>${icon('chevron')}</button>
           </section>
 
           ${pageKpis()}
 
           <section class="evidence-section">
-            <div class="section-heading"><div><span class="section-kicker">SELECTED EVIDENCE</span><h2>Proof, context and transferable value.</h2></div><a href="#/contact?field=${field.id}&intent=hire" data-route="contact" data-field="${field.id}" data-intent="hire">Request relevant details ${icon('arrow')}</a></div>
+            <div class="section-heading"><div><span class="section-kicker">${esc(t('evidence_kicker'))}</span><h2>${esc(t('evidence_title'))}</h2></div><a href="#/contact?field=${field.id}&intent=hire" data-route="contact" data-field="${field.id}" data-intent="hire">${esc(t('evidence_request'))} ${icon('arrow')}</a></div>
             <div class="case-layout">
               ${field.cases.map((c,i)=>`<article class="evidence-card evidence-card-${i+1}">
                 <span class="case-type">${esc(c.type)}</span><h3>${esc(c.title)}</h3><p>${esc(c.text)}</p>
-                <div class="case-proof"><small>WHAT THIS PROVES</small><b>${esc(c.proof)}</b></div>
+                <div class="case-proof"><small>${esc(t('proves'))}</small><b>${esc(c.proof)}</b></div>
                 <div class="case-art" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
-                <button data-contact-intent="${i===0?'hire':'freelance'}" data-field="${field.id}">Discuss this case ${icon('arrow')}</button>
+                <button data-contact-intent="${i===0?'hire':'freelance'}" data-field="${field.id}">${esc(t('discuss_case'))} ${icon('arrow')}</button>
               </article>`).join('')}
             </div>
           </section>
 
           <section class="capability-layout" data-view="hire">
             <article class="capability-panel problems-panel">
-              <span class="section-kicker">PROBLEMS I ADDRESS</span><h2>Where I create clarity.</h2>
+              <span class="section-kicker">${esc(t('problems_kicker'))}</span><h2>${esc(t('problems_title'))}</h2>
               ${field.problems.map(x=>`<p>${icon('check')}<span>${esc(x)}</span></p>`).join('')}
             </article>
             <article class="capability-panel deliverables-panel">
-              <span class="section-kicker">WHAT I CAN DELIVER</span><h2>Concrete, reviewable outputs.</h2>
+              <span class="section-kicker">${esc(t('deliverables_kicker'))}</span><h2>${esc(t('deliverables_title'))}</h2>
               ${field.deliverables.map(x=>`<p>${icon('spark')}<span>${esc(x)}</span></p>`).join('')}
             </article>
             <article class="capability-panel method-panel">
-              <span class="section-kicker">MY APPROACH</span><h2>${esc(field.promise)}</h2>
+              <span class="section-kicker">${esc(t('approach_kicker'))}</span><h2>${esc(field.promise)}</h2>
               ${methodGraphic(field)}
               <p class="method-note">${esc(field.methodNote)}</p>
             </article>
           </section>
 
           <section class="detail-grid">
-            <article><span class="section-kicker">TOOLS & METHODS</span>${field.tools.map(x=>`<b>${esc(x)}</b>`).join('')}</article>
-            <article><span class="section-kicker">INDUSTRIES & CONTEXTS</span>${field.sectors.map(x=>`<b>${esc(x)}</b>`).join('')}</article>
-            <article class="hire-only"><span class="section-kicker">TARGET ROLES</span>${field.roles.map(x=>`<b>${esc(x)}</b>`).join('')}</article>
-            <article class="freelance-only"><span class="section-kicker">FREELANCE SUPPORT</span>${field.services.map(x=>`<b>${esc(x)}</b>`).join('')}</article>
+            <article><span class="section-kicker">${esc(t('tools_kicker'))}</span>${field.tools.map(x=>`<b>${esc(x)}</b>`).join('')}</article>
+            <article><span class="section-kicker">${esc(t('sectors_kicker'))}</span>${field.sectors.map(x=>`<b>${esc(x)}</b>`).join('')}</article>
+            <article class="hire-only"><span class="section-kicker">${esc(t('roles_kicker'))}</span>${field.roles.map(x=>`<b>${esc(x)}</b>`).join('')}</article>
+            <article class="freelance-only"><span class="section-kicker">${esc(t('services_kicker'))}</span>${field.services.map(x=>`<b>${esc(x)}</b>`).join('')}</article>
           </section>
 
           <section class="foundation-section">
-            <div class="foundation-intro"><span class="section-kicker">PROFESSIONAL FOUNDATION</span><h2>Mathematics, actuarial science and business analytics.</h2><p>Technical depth combined with experience translating analytical work for different audiences.</p></div>
-            <div class="foundation-timeline">${DATA.profile.education.slice(0,3).map(x=>`<article><span>${x[0]}</span><b>${esc(x[1])}</b><small>${esc(x[2])}</small></article>`).join('')}${DATA.profile.experience.slice(0,3).map(x=>`<article><span>${x[0]}</span><b>${esc(x[1])}</b><small>${esc(x[2])}</small></article>`).join('')}</div>
+            <div class="foundation-intro"><span class="section-kicker">${esc(t('foundation_kicker'))}</span><h2>${esc(t('foundation_title'))}</h2><p>${esc(t('foundation_body'))}</p></div>
+            <div class="foundation-timeline">${profile.education.slice(0,3).map(x=>`<article><span>${x[0]}</span><b>${esc(x[1])}</b><small>${esc(x[2])}</small></article>`).join('')}${profile.experience.slice(0,3).map(x=>`<article><span>${x[0]}</span><b>${esc(x[1])}</b><small>${esc(x[2])}</small></article>`).join('')}</div>
           </section>
 
           <section class="closing-cta">
-            <div><span class="section-kicker">NEXT STEP</span><h2>A role to fill? A system to improve? A question hidden in the data?</h2><p>Choose the most relevant path and send the context. The contact page adapts automatically.</p></div>
-            <button class="action-primary" data-contact-intent="hire" data-field="${field.id}">Discuss a role ${icon('arrow')}</button>
-            <button data-contact-intent="freelance" data-field="${field.id}">Start a project ${icon('arrow')}</button>
+            <div><span class="section-kicker">${esc(t('next_kicker'))}</span><h2>${esc(t('next_title'))}</h2><p>${esc(t('next_body'))}</p></div>
+            <button class="action-primary" data-contact-intent="hire" data-field="${field.id}">${esc(t('discuss_role'))} ${icon('arrow')}</button>
+            <button data-contact-intent="freelance" data-field="${field.id}">${esc(t('start_project'))} ${icon('arrow')}</button>
           </section>
         </main>
       </div>
     </div>`;
   }
 
-  function dynamicFields(intent,field){
+  function dynamicFields(intent){
     if(intent==='freelance'){
-      return `<label>Problem to solve<textarea name="problem" rows="4" placeholder="What is happening today, and what is not working?"></textarea></label>
-      <label>Desired outcome<textarea name="outcome" rows="3" placeholder="What should be different after the project?"></textarea></label>
-      <div class="form-row"><label>Preferred timing<select name="timing"><option>Exploratory / not fixed</option><option>Within 2 weeks</option><option>Within 1 month</option><option>Within 3 months</option></select></label><label>Budget range<select name="budget"><option>To define after scoping</option><option>Under €500</option><option>€500–€1,500</option><option>€1,500–€5,000</option><option>Over €5,000</option></select></label></div>`;
+      return `<label>${esc(t('df_problem'))}<textarea name="problem" rows="4" placeholder="${esc(t('df_problem_ph'))}"></textarea></label>
+      <label>${esc(t('df_outcome'))}<textarea name="outcome" rows="3" placeholder="${esc(t('df_outcome_ph'))}"></textarea></label>
+      <div class="form-row"><label>${esc(t('df_timing'))}<select name="timing"><option>${esc(t('df_timing_1'))}</option><option>${esc(t('df_timing_2'))}</option><option>${esc(t('df_timing_3'))}</option><option>${esc(t('df_timing_4'))}</option></select></label><label>${esc(t('df_budget'))}<select name="budget"><option>${esc(t('df_budget_1'))}</option><option>${esc(t('df_budget_2'))}</option><option>${esc(t('df_budget_3'))}</option><option>${esc(t('df_budget_4'))}</option><option>${esc(t('df_budget_5'))}</option></select></label></div>`;
     }
     if(intent==='general'){
-      return `<label>What would you like to discuss?<textarea name="message" rows="6" placeholder="Share the context, question or opportunity."></textarea></label>`;
+      return `<label>${esc(t('df_message'))}<textarea name="message" rows="6" placeholder="${esc(t('df_message_ph'))}"></textarea></label>`;
     }
-    return `<div class="form-row"><label>Role or opportunity<input name="role" placeholder="Example: Data Analyst"></label><label>Employment format<select name="format"><option>Full-time role</option><option>Part-time role</option><option>Fixed-term contract</option><option>Internship / graduate role</option><option>Project-based role</option></select></label></div>
-      <label>What would the person contribute to?<textarea name="teamContext" rows="4" placeholder="Team, responsibilities, main challenges and expected contribution."></textarea></label>
-      <label>Hiring process or next step<textarea name="nextStep" rows="3" placeholder="Interview format, documents needed or useful timing."></textarea></label>`;
+    return `<div class="form-row"><label>${esc(t('df_role'))}<input name="role" placeholder="${esc(t('df_role_ph'))}"></label><label>${esc(t('df_format'))}<select name="format"><option>${esc(t('df_format_1'))}</option><option>${esc(t('df_format_2'))}</option><option>${esc(t('df_format_3'))}</option><option>${esc(t('df_format_4'))}</option><option>${esc(t('df_format_5'))}</option></select></label></div>
+      <label>${esc(t('df_team'))}<textarea name="teamContext" rows="4" placeholder="${esc(t('df_team_ph'))}"></textarea></label>
+      <label>${esc(t('df_next'))}<textarea name="nextStep" rows="3" placeholder="${esc(t('df_next_ph'))}"></textarea></label>`;
   }
 
   function contactPage(params){
+    const fields=fieldsList();
     const requested=params.get('intent');
     contactIntent=['hire','freelance','general'].includes(requested)?requested:(localStorage.getItem('na-contact-intent')||'hire');
-    const selected=byId[params.get('field')]||fields[3];
+    const selected=fieldById(params.get('field'))||fields[3];
     document.title='NA Studio — Contact';
     document.body.dataset.page='contact';
     document.documentElement.style.setProperty('--page-accent',selected.accent);
@@ -278,36 +359,37 @@
     return `<div class="page-shell page-shell--contact" style="--accent:${selected.accent};--accent2:${selected.accent2};--rgb:${selected.rgb}">
       ${topNav({dark:true,field:selected})}
       <main class="contact-main">
-        <a class="contact-back" href="#/${selected.id}" data-route="${selected.id}">${icon('back')}Back to ${esc(selected.short)}</a>
+        <div class="contact-toolbar">${langSwitcher()}</div>
+        <a class="contact-back" href="#/${selected.id}" data-route="${selected.id}">${icon('back')}${esc(t('contact_back'))} ${esc(selected.short)}</a>
         <section class="contact-heading">
-          <span class="section-kicker">CONTACT</span>
-          <h1>Let’s talk.</h1>
-          <p>Pick a path, choose a field, and send a short message.</p>
+          <span class="section-kicker">${esc(t('contact_kicker'))}</span>
+          <h1>${esc(t('contact_title'))}</h1>
+          <p>${esc(t('contact_body'))}</p>
         </section>
-        <section class="contact-channels" aria-label="Contact links">
-          <a href="mailto:${esc(email)}"><span>Email</span><b>${esc(email)}</b></a>
-          <a href="${esc(linkedIn)}" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><b>linkedin.com/in/nathanazoulay</b></a>
-          <a href="${esc(github)}" target="_blank" rel="noopener noreferrer"><span>GitHub</span><b>github.com/nathanazoulay</b></a>
-          <a href="${esc(booking)}" target="_blank" rel="noopener noreferrer"><span>Calendar</span><b>Book a 30 min call</b></a>
+        <section class="contact-channels" aria-label="${esc(t('channels_aria'))}">
+          <a href="mailto:${esc(email)}"><span>${esc(t('channel_email'))}</span><b>${esc(email)}</b></a>
+          <a href="${esc(linkedIn)}" target="_blank" rel="noopener noreferrer"><span>${esc(t('channel_linkedin'))}</span><b>linkedin.com/in/nathanazoulay</b></a>
+          <a href="${esc(github)}" target="_blank" rel="noopener noreferrer"><span>${esc(t('channel_github'))}</span><b>github.com/nathanazoulay</b></a>
+          <a href="${esc(booking)}" target="_blank" rel="noopener noreferrer"><span>${esc(t('channel_calendar'))}</span><b>${esc(t('book_call'))}</b></a>
         </section>
         <section class="contact-grid">
           <aside class="contact-planner">
-            <span class="section-kicker">INTENTION</span>
+            <span class="section-kicker">${esc(t('intention'))}</span>
             <div class="contact-intents">
-              <button data-set-contact="hire" class="${contactIntent==='hire'?'active':''}">${icon('user')}<b>I’m hiring</b></button>
-              <button data-set-contact="freelance" class="${contactIntent==='freelance'?'active':''}">${icon('brief')}<b>I need a solution</b></button>
-              <button data-set-contact="general" class="${contactIntent==='general'?'active':''}">${icon('mail')}<b>General enquiry</b></button>
+              <button data-set-contact="hire" class="${contactIntent==='hire'?'active':''}">${icon('user')}<b>${esc(t('intent_hire'))}</b></button>
+              <button data-set-contact="freelance" class="${contactIntent==='freelance'?'active':''}">${icon('brief')}<b>${esc(t('intent_freelance'))}</b></button>
+              <button data-set-contact="general" class="${contactIntent==='general'?'active':''}">${icon('mail')}<b>${esc(t('intent_general'))}</b></button>
             </div>
-            <label class="field-select">Relevant field<select id="contact-field">${fields.map(f=>`<option value="${f.id}" ${f.id===selected.id?'selected':''}>${esc(f.title)}</option>`).join('')}</select></label>
+            <label class="field-select">${esc(t('relevant_field'))}<select id="contact-field">${fields.map(f=>`<option value="${f.id}" ${f.id===selected.id?'selected':''}>${esc(f.title)}</option>`).join('')}</select></label>
             <div class="contact-profile-card" id="contact-profile-card" hidden></div>
           </aside>
           <form class="smart-form" id="smart-contact-form">
-            <div class="form-row"><label>Your name<input required name="name" autocomplete="name" placeholder="Name"></label><label>Email<input required type="email" name="email" autocomplete="email" placeholder="you@organisation.com"></label></div>
-            <label>Organisation or project<input name="organisation" autocomplete="organization" placeholder="Company or project"></label>
-            <div id="dynamic-contact-fields">${dynamicFields(contactIntent,selected)}</div>
-            <label>Anything else?<textarea name="notes" rows="3" placeholder="Useful links or constraints."></textarea></label>
+            <div class="form-row"><label>${esc(t('your_name'))}<input required name="name" autocomplete="name" placeholder="${esc(t('name_ph'))}"></label><label>${esc(t('email'))}<input required type="email" name="email" autocomplete="email" placeholder="${esc(t('email_ph'))}"></label></div>
+            <label>${esc(t('organisation'))}<input name="organisation" autocomplete="organization" placeholder="${esc(t('org_ph'))}"></label>
+            <div id="dynamic-contact-fields">${dynamicFields(contactIntent)}</div>
+            <label>${esc(t('anything_else'))}<textarea name="notes" rows="3" placeholder="${esc(t('notes_ph'))}"></textarea></label>
             <pre id="request-preview" class="sr-only" aria-hidden="true"></pre>
-            <div class="form-actions"><button class="action-primary" type="submit">${icon('mail')}Prepare email</button></div>
+            <div class="form-actions"><button class="action-primary" type="submit">${icon('mail')}${esc(t('prepare_email'))}</button></div>
             <p class="form-status" id="form-status" role="status"></p>
           </form>
         </section>
@@ -320,9 +402,10 @@
     let html;
     if(path==='expertise') html=hub();
     else if(path==='contact') html=contactPage(params);
-    else html=byId[path]?profilePage(byId[path]):hub();
+    else html=fieldById(path)?profilePage(fieldById(path)):hub();
     app.innerHTML=html;
     app.className='app-rendered';
+    document.documentElement.lang=lang;
     bindAll();
     requestAnimationFrame(()=>{
       document.querySelector('.page-shell')?.classList.add('is-visible');
@@ -334,13 +417,14 @@
     try {
       const qs=Object.fromEntries(params.entries());
       if (window.parent && window.parent !== window) {
-        window.parent.postMessage({ type:'na-expertise-route', path, params: qs }, '*');
+        window.parent.postMessage({ type:'na-expertise-route', path, params: qs, lang }, '*');
       }
     } catch (e) {}
   }
 
-  
   function bindScrollRelay(){
+    if(window.__naExpertiseScrollBound) return;
+    window.__naExpertiseScrollBound=true;
     const relay=()=>{
       try{
         if(window.parent && window.parent !== window){
@@ -355,6 +439,18 @@
 
   function bindAll(){
     bindScrollRelay();
+    document.querySelectorAll('[data-set-lang]').forEach(el=>{
+      el.addEventListener('click',()=>setLang(el.dataset.setLang));
+    });
+    document.querySelectorAll('[data-set-cv-lang]').forEach(el=>{
+      el.addEventListener('click',()=>{
+        cvLang=el.dataset.setCvLang;
+        const fieldId=document.body.dataset.field;
+        const link=document.querySelector('.cv-download');
+        if(link && fieldId) link.href=cvPath(fieldId, cvLang);
+        document.querySelectorAll('[data-set-cv-lang]').forEach(x=>x.classList.toggle('active',x.dataset.setCvLang===cvLang));
+      });
+    });
     document.querySelectorAll('[data-route]').forEach(el=>{
       el.addEventListener('click',e=>{
         const path=el.dataset.route;
@@ -370,41 +466,35 @@
       const intent=el.dataset.contactIntent||'general';
       const field=el.dataset.field||parseHash().path;
       localStorage.setItem('na-contact-intent',intent);
-      navTo('contact',{intent,field:byId[field]?field:''},el);
+      navTo('contact',{intent,field:fieldById(field)?field:''},el);
     }));
-    const sidebar=document.querySelector('[data-sidebar]');
-    if(sidebar){
-      const collapse=()=>sidebar.classList.add('is-collapsed');
-      const expand=()=>sidebar.classList.remove('is-collapsed');
+    const sidebarEl=document.querySelector('[data-sidebar]');
+    if(sidebarEl){
+      const collapse=()=>sidebarEl.classList.add('is-collapsed');
+      const expand=()=>sidebarEl.classList.remove('is-collapsed');
       collapse();
-      sidebar.addEventListener('mouseenter',expand);
-      sidebar.addEventListener('mouseleave',collapse);
-      sidebar.addEventListener('focusin',expand);
-      sidebar.addEventListener('focusout',(e)=>{
-        if(!sidebar.contains(e.relatedTarget)) collapse();
+      sidebarEl.addEventListener('mouseenter',expand);
+      sidebarEl.addEventListener('mouseleave',collapse);
+      sidebarEl.addEventListener('focusin',expand);
+      sidebarEl.addEventListener('focusout',(e)=>{
+        if(!sidebarEl.contains(e.relatedTarget)) collapse();
       });
       const toggle=document.querySelector('[data-sidebar-toggle]');
       if(toggle){
         toggle.addEventListener('click',()=>{
           if(window.matchMedia('(max-width:980px)').matches){
-            sidebar.classList.toggle('mobile-open');
+            sidebarEl.classList.toggle('mobile-open');
           } else {
-            sidebar.classList.toggle('is-collapsed');
+            sidebarEl.classList.toggle('is-collapsed');
           }
         });
       }
     }
-    const mobileNav=document.querySelector('[data-mobile-nav]');
-    if(mobileNav) mobileNav.addEventListener('click',()=>{
-      const fieldMenu=document.querySelector('[data-sidebar]');
-      if(fieldMenu) fieldMenu.classList.toggle('mobile-open');
-      else document.querySelector('.site-nav nav')?.classList.toggle('is-open');
-    });
     document.querySelectorAll('[data-hub-field]').forEach(el=>{
       el.addEventListener('mouseenter',()=>{
         document.querySelectorAll('[data-hub-field]').forEach(x=>x.classList.remove('is-highlighted'));
         el.classList.add('is-highlighted');
-        const f=byId[el.dataset.hubField];
+        const f=fieldById(el.dataset.hubField);
         document.querySelector('.expertise-hub')?.style.setProperty('--hub-accent',f.accent);
         document.querySelector('.hub-sculpture')?.setAttribute('data-field',f.visual);
       });
@@ -429,7 +519,7 @@
     const card=document.getElementById('contact-profile-card');
     const status=document.getElementById('form-status');
 
-    function selectedField(){return byId[fieldSelect.value]||fields[3];}
+    function selectedField(){return fieldById(fieldSelect.value)||fieldsList()[3];}
     function updateTheme(){
       const f=selectedField();
       const shell=document.querySelector('.page-shell--contact');
@@ -441,7 +531,7 @@
     function formDataObject(){return Object.fromEntries(new FormData(form).entries());}
     function buildMessage(){
       const f=selectedField(); const d=formDataObject();
-      const head=contactIntent==='hire'?'RECRUITMENT ENQUIRY':contactIntent==='freelance'?'FREELANCE PROJECT ENQUIRY':'GENERAL ENQUIRY';
+      const head=contactIntent==='hire'?(lang==='fr'?'DEMANDE RECRUTEMENT':'RECRUITMENT ENQUIRY'):contactIntent==='freelance'?(lang==='fr'?'DEMANDE PROJET FREELANCE':'FREELANCE PROJECT ENQUIRY'):(lang==='fr'?'DEMANDE GÉNÉRALE':'GENERAL ENQUIRY');
       const lines=[head,`Expertise: ${f.title}`,`Name: ${d.name||'—'}`,`Email: ${d.email||'—'}`,`Organisation: ${d.organisation||'—'}`];
       Object.entries(d).filter(([k,v])=>!['name','email','organisation'].includes(k)&&String(v).trim()).forEach(([k,v])=>lines.push(`${k.replace(/([A-Z])/g,' $1').replace(/^./,c=>c.toUpperCase())}: ${v}`));
       return lines.join('\n\n');
@@ -453,34 +543,26 @@
     function switchIntent(intent){
       contactIntent=intent; localStorage.setItem('na-contact-intent',intent);
       document.querySelectorAll('[data-set-contact]').forEach(x=>x.classList.toggle('active',x.dataset.setContact===intent));
-      dynamic.innerHTML=dynamicFields(intent,selectedField());
+      dynamic.innerHTML=dynamicFields(intent);
       dynamic.querySelectorAll('input,textarea,select').forEach(x=>x.addEventListener('input',updatePreview));
       updatePreview();
     }
     document.querySelectorAll('[data-set-contact]').forEach(x=>x.addEventListener('click',()=>switchIntent(x.dataset.setContact)));
     fieldSelect.addEventListener('change',()=>{updateTheme();updatePreview();});
     form.querySelectorAll('input,textarea,select').forEach(x=>x.addEventListener('input',updatePreview));
-    document.querySelector('[data-copy-request]')?.addEventListener('click',async()=>{
-      try{await navigator.clipboard.writeText(buildMessage());status.textContent='Request summary copied.';}catch{status.textContent='Copy is unavailable in this browser. Select the preview text manually.';}
-    });
     form.addEventListener('submit',async e=>{
       e.preventDefault();
       if(!form.reportValidity()) return;
       const message=buildMessage();
       const f=selectedField();
-      const subject=`${contactIntent==='hire'?'Role opportunity':contactIntent==='freelance'?'Freelance project':'Enquiry'} — ${f.title}`;
+      const subject=`${contactIntent==='hire'?(lang==='fr'?'Opportunité de rôle':'Role opportunity'):contactIntent==='freelance'?(lang==='fr'?'Projet freelance':'Freelance project'):(lang==='fr'?'Demande':'Enquiry')} — ${f.title}`;
       if(CONFIG.formspreeEndpoint){
         try{
-          status.textContent='Sending…';
+          status.textContent=lang==='fr'?'Envoi…':'Sending…';
           const res=await fetch(CONFIG.formspreeEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({...formDataObject(),intent:contactIntent,expertise:f.title,structuredMessage:message})});
           if(!res.ok) throw new Error('Submission failed');
-          status.textContent='Message sent successfully.'; return;
-        }catch(err){status.textContent='Direct submission failed; opening your email client instead.';}
-      }
-      if(CONFIG.contactEmail==='YOUR_EMAIL@example.com'){
-        status.textContent='Replace YOUR_EMAIL@example.com in assets/js/config.js. The structured message has been copied below.';
-        try{await navigator.clipboard.writeText(message);}catch{}
-        return;
+          status.textContent=lang==='fr'?'Message envoyé.':'Message sent successfully.'; return;
+        }catch(err){status.textContent=lang==='fr'?'Envoi direct échoué ; ouverture du client email.':'Direct submission failed; opening your email client instead.';}
       }
       location.href=`mailto:${encodeURIComponent(CONFIG.contactEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
     });
@@ -494,6 +576,12 @@
     }
     updatePreview();
   }
+
+  window.addEventListener('message',(event)=>{
+    const data=event.data;
+    if(!data || data.type!=='na-studio-lang') return;
+    if(data.lang==='en' || data.lang==='fr') setLang(data.lang);
+  });
 
   window.addEventListener('hashchange',()=>render());
   if(!location.hash) location.hash='#/expertise';

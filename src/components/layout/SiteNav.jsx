@@ -5,6 +5,7 @@ import { useI18n, LANGUAGES } from '@/lib/i18n';
 import { useSandRain } from '@/lib/SandRainContext';
 import { Globe, CloudRain, Volume2, ChevronDown, Lock } from 'lucide-react';
 import NaRoomsMenu from './NaRoomsMenu';
+import { NA_WEBSITES_URL, NA_RESEARCH_URL } from '@/lib/externalLinks';
 
 const DEFAULT_AMBIENCE_VOLUME = 12;
 const AMBIENCE_MAX_SCALE = 0.01;
@@ -466,19 +467,41 @@ export default function SiteNav() {
                         exit={{ opacity: 0, height: 0 }}
                         className="mt-4 pl-2 flex flex-col gap-4 border-l border-olive/20"
                       >
-                        <div
-                          role="presentation"
-                          aria-disabled="true"
-                          title={t('rooms_status_unavailable')}
-                          className="text-left cursor-not-allowed opacity-70"
+                        <button
+                          type="button"
+                          onClick={() => {
+                            window.open(NA_WEBSITES_URL, '_blank', 'noopener,noreferrer');
+                            setMobileRoomsOpen(false);
+                            setMenuOpen(false);
+                          }}
+                          className="text-left"
                         >
-                          <span className="font-serif text-2xl text-ink/40 block">{t('rooms_websites_title')}</span>
-                          <span className="font-sans text-xs text-ink/30 block mt-0.5">{t('rooms_websites_desc')}</span>
-                          <span className="font-sans text-[10px] tracking-widest uppercase text-ink/35 mt-1 inline-flex items-center gap-1">
-                            <Lock size={11} strokeWidth={2} aria-hidden="true" />
-                            {t('rooms_status_unavailable')}
-                          </span>
-                        </div>
+                          <span className="font-serif text-2xl text-ink/90 block">{t('rooms_websites_title')}</span>
+                          <span className="font-sans text-xs text-ink/45 block mt-0.5">{t('rooms_websites_desc')}</span>
+                          <span className="font-sans text-[10px] tracking-widest uppercase text-olive mt-1 block">{t('rooms_status_active')}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            window.open(NA_RESEARCH_URL, '_blank', 'noopener,noreferrer');
+                            setMobileRoomsOpen(false);
+                            setMenuOpen(false);
+                          }}
+                          className="text-left"
+                        >
+                          <span className="font-serif text-2xl text-ink/90 block">{t('rooms_research_title')}</span>
+                          <span className="font-sans text-xs text-ink/45 block mt-0.5">{t('rooms_research_desc')}</span>
+                          <span className="font-sans text-[10px] tracking-widest uppercase text-olive mt-1 block">{t('rooms_status_active')}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => { handleNavClick('/classroom'); setMobileRoomsOpen(false); }}
+                          className="text-left"
+                        >
+                          <span className="font-serif text-2xl text-ink/90 block">{t('rooms_classroom_title')}</span>
+                          <span className="font-sans text-xs text-ink/45 block mt-0.5">{t('rooms_classroom_desc')}</span>
+                          <span className="font-sans text-[10px] tracking-widest uppercase text-olive mt-1 block">{t('rooms_status_active')}</span>
+                        </button>
                         <div
                           role="presentation"
                           aria-disabled="true"
@@ -492,15 +515,6 @@ export default function SiteNav() {
                             {t('rooms_status_unavailable')}
                           </span>
                         </div>
-                        <button
-                          type="button"
-                          onClick={() => { handleNavClick('/classroom'); setMobileRoomsOpen(false); }}
-                          className="text-left"
-                        >
-                          <span className="font-serif text-2xl text-ink/90 block">{t('rooms_classroom_title')}</span>
-                          <span className="font-sans text-xs text-ink/45 block mt-0.5">{t('rooms_classroom_desc')}</span>
-                          <span className="font-sans text-[10px] tracking-widest uppercase text-olive mt-1 block">{t('rooms_status_active')}</span>
-                        </button>
                       </motion.div>
                     )}
                   </AnimatePresence>

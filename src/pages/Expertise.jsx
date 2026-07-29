@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import PageLayout from '../components/layout/PageLayout';
+import { useI18n } from '@/lib/i18n';
 
 function buildHash(fieldId, searchParams) {
   if (!fieldId) return '#/expertise';
@@ -15,6 +16,7 @@ export default function Expertise() {
   const { fieldId } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { lang } = useI18n();
   const iframeRef = useRef(null);
   const ignoreNextMessage = useRef(false);
 
@@ -62,6 +64,17 @@ export default function Expertise() {
     }
   }, [hash]);
 
+  useEffect(() => {
+    const frame = iframeRef.current;
+    if (!frame || frame.dataset.ready !== '1') return;
+    const next = lang === 'fr' ? 'fr' : 'en';
+    try {
+      frame.contentWindow?.postMessage({ type: 'na-studio-lang', lang: next }, '*');
+    } catch {
+      // ignore
+    }
+  }, [lang]);
+
   return (
     <PageLayout showFooter>
       <div className="bg-[#05080d] pt-16">
@@ -72,7 +85,15 @@ export default function Expertise() {
           className="block w-full border-0"
           style={{ height: 'calc(100vh - 4rem)', minHeight: '640px' }}
           onLoad={() => {
-            if (iframeRef.current) iframeRef.current.dataset.ready = '1';
+            if (iframeRef.current) {
+              iframeRef.current.dataset.ready = '1';
+              const next = lang === 'fr' ? 'fr' : 'en';
+              try {
+                iframeRef.current.contentWindow?.postMessage({ type: 'na-studio-lang', lang: next }, '*');
+              } catch {
+                // ignore
+              }
+            }
           }}
         />
       </div>

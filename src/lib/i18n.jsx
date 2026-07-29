@@ -7,6 +7,7 @@ export const translations = {
     // Nav
     nav_home: 'Home', nav_projects: 'Projects', nav_expertise: 'Expertise', nav_path: 'Path', nav_tools: 'Stack', nav_rooms: 'NA Rooms', nav_contact: 'Contact',
     rooms_websites_title: 'NA Websites', rooms_websites_desc: 'Digital showroom — sites and atelier work',
+    rooms_research_title: 'NA Research', rooms_research_desc: 'Applied mathematics · data · decision systems',
     rooms_business_systems_title: 'NA Business Systems', rooms_business_systems_desc: 'Digital systems for local businesses — audit, intake, follow-up',
     rooms_classroom_title: 'NA Classroom', rooms_classroom_desc: 'Teaching portfolio and classroom tools',
     rooms_studio_title: 'NA Studio', rooms_studio_desc: 'Portfolio — maths, data, and well-built digital work',
@@ -261,6 +262,7 @@ export const translations = {
   fr: {
     nav_home: 'Accueil', nav_projects: 'Projets', nav_expertise: 'Expertise', nav_path: 'Parcours', nav_tools: 'Stack', nav_rooms: 'NA Rooms', nav_contact: 'Contact',
     rooms_websites_title: 'NA Websites', rooms_websites_desc: 'Showroom digital — sites et réalisations atelier',
+    rooms_research_title: 'NA Research', rooms_research_desc: 'Mathématiques appliquées · data · systèmes de décision',
     rooms_business_systems_title: 'NA Business Systems', rooms_business_systems_desc: 'Systèmes digitaux pour entreprises locales — audit, demandes, suivi',
     rooms_classroom_title: 'NA Classroom', rooms_classroom_desc: 'Portfolio pédagogique et outils de classe',
     rooms_studio_title: 'NA Studio', rooms_studio_desc: 'Portfolio — maths, data et produits digitaux',
@@ -503,6 +505,7 @@ export const translations = {
   es: {
     nav_home: 'Inicio', nav_projects: 'Proyectos', nav_expertise: 'Expertise', nav_path: 'Trayectoria', nav_tools: 'Stack', nav_rooms: 'NA Rooms', nav_contact: 'Contacto',
     rooms_websites_title: 'NA Websites', rooms_websites_desc: 'Showroom digital — sitios y trabajo de atelier',
+    rooms_research_title: 'NA Research', rooms_research_desc: 'Matemáticas aplicadas · datos · sistemas de decisión',
     rooms_business_systems_title: 'NA Business Systems', rooms_business_systems_desc: 'Sistemas digitales para negocios locales — auditoría, demandas, seguimiento',
     rooms_classroom_title: 'NA Classroom', rooms_classroom_desc: 'Portfolio pedagógico y herramientas de aula',
     rooms_studio_title: 'NA Studio', rooms_studio_desc: 'Portfolio — matemáticas, datos y trabajo digital',

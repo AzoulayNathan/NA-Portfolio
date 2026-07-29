@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Lock } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import { NA_WEBSITES_URL, NA_RESEARCH_URL } from '@/lib/externalLinks';
 
 export default function SiteFooter() {
   const { t } = useI18n();
@@ -22,9 +23,10 @@ export default function SiteFooter() {
             { label: t('nav_expertise'), path: '/expertise' },
             { label: t('nav_path'), path: '/experience' },
             { label: t('nav_tools'), path: '/tools' },
-            { label: t('rooms_websites_title'), disabled: true },
-            { label: t('rooms_business_systems_title'), disabled: true },
+            { label: t('rooms_websites_title'), href: NA_WEBSITES_URL, external: true },
+            { label: t('rooms_research_title'), href: NA_RESEARCH_URL, external: true },
             { label: t('rooms_classroom_title'), path: '/classroom' },
+            { label: t('rooms_business_systems_title'), disabled: true },
             { label: t('nav_contact'), path: '/contact' },
           ].map((item) =>
             item.disabled ? (
@@ -36,6 +38,16 @@ export default function SiteFooter() {
                 <Lock size={10} strokeWidth={2} aria-hidden="true" />
                 {item.label}
               </span>
+            ) : item.external ? (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-xs tracking-widest uppercase text-quartz/40 hover:text-quartz/80 transition-colors"
+              >
+                {item.label}
+              </a>
             ) : (
               <Link
                 key={item.path}

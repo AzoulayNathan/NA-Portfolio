@@ -8,5 +8,7 @@ window.NA_CONFIG = {
   workUrl: "/projects",
   aboutUrl: "/experience",
   cvUrl: "documents/Nathan-Azoulay-CV.pdf",
+  cvBase: "documents/cv",
+  extraCvs: ["hybrid", "product", "teaching"],
   embedInNaStudio: true
 };
