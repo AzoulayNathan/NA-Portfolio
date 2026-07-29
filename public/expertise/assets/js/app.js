@@ -126,7 +126,6 @@
     document.title='NA Studio — Expertise';
     document.body.dataset.page='hub';
     document.documentElement.style.setProperty('--page-accent','#8d8a54');
-    const extras=CONFIG.extraCvs||[];
     return `<div class="page-shell page-shell--hub">
       ${topNav({dark:false})}
       <main class="expertise-hub">
@@ -161,15 +160,6 @@
             <span class="hub-field-progress"></span>
           </button>`).join('')}
         </section>
-        ${extras.length?`<section class="hub-extra-cvs">
-          <span class="section-kicker">${esc(t('hub_extra_cvs'))}</span>
-          <div class="hub-extra-list">
-            ${extras.map(id=>{
-              const label=t(`hub_extra_${id}`)||id;
-              return `<a href="${esc(cvPath(id,lang))}" download>${icon('download')}<span>${esc(label)}</span></a>`;
-            }).join('')}
-          </div>
-        </section>`:''}
       </main>
     </div>`;
   }
@@ -353,8 +343,8 @@
     document.documentElement.style.setProperty('--page-accent-2',selected.accent2);
     document.documentElement.style.setProperty('--page-rgb',selected.rgb);
     const email=CONFIG.contactEmail||'nathanazoulay.pro@gmail.com';
-    const linkedIn=CONFIG.linkedIn||'https://linkedin.com/in/nathanazoulay';
-    const github=CONFIG.github||'https://github.com/nathanazoulay';
+    const linkedIn=CONFIG.linkedIn||'https://www.linkedin.com/in/nathan-azoulay-0719b4207';
+    const github=CONFIG.github||'https://github.com/AzoulayNathan';
     const booking=CONFIG.bookingUrl||'https://calendar.app.google/FwvLrs17YcM1Ksmy9';
     return `<div class="page-shell page-shell--contact" style="--accent:${selected.accent};--accent2:${selected.accent2};--rgb:${selected.rgb}">
       ${topNav({dark:true,field:selected})}
@@ -368,8 +358,8 @@
         </section>
         <section class="contact-channels" aria-label="${esc(t('channels_aria'))}">
           <a href="mailto:${esc(email)}"><span>${esc(t('channel_email'))}</span><b>${esc(email)}</b></a>
-          <a href="${esc(linkedIn)}" target="_blank" rel="noopener noreferrer"><span>${esc(t('channel_linkedin'))}</span><b>linkedin.com/in/nathanazoulay</b></a>
-          <a href="${esc(github)}" target="_blank" rel="noopener noreferrer"><span>${esc(t('channel_github'))}</span><b>github.com/nathanazoulay</b></a>
+          <a href="${esc(linkedIn)}" target="_blank" rel="noopener noreferrer"><span>${esc(t('channel_linkedin'))}</span><b>linkedin.com/in/nathan-azoulay-0719b4207</b></a>
+          <a href="${esc(github)}" target="_blank" rel="noopener noreferrer"><span>${esc(t('channel_github'))}</span><b>github.com/AzoulayNathan</b></a>
           <a href="${esc(booking)}" target="_blank" rel="noopener noreferrer"><span>${esc(t('channel_calendar'))}</span><b>${esc(t('book_call'))}</b></a>
         </section>
         <section class="contact-grid">

@@ -1,10 +1,21 @@
 import { Link } from 'react-router-dom';
-import { Lock } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import { NA_WEBSITES_URL, NA_RESEARCH_URL } from '@/lib/externalLinks';
 
 export default function SiteFooter() {
   const { t } = useI18n();
+
+  const items = [
+    { label: t('nav_home'), path: '/' },
+    { label: t('nav_projects'), path: '/projects' },
+    { label: t('nav_expertise'), path: '/expertise' },
+    { label: t('nav_path'), path: '/experience' },
+    { label: t('nav_tools'), path: '/tools' },
+    { label: t('rooms_websites_title'), href: NA_WEBSITES_URL, external: true },
+    { label: t('rooms_research_title'), href: NA_RESEARCH_URL, external: true },
+    { label: t('rooms_classroom_title'), path: '/classroom' },
+    { label: t('nav_contact'), path: '/contact' },
+  ];
 
   return (
     <footer className="bg-ink text-quartz/60 py-10 px-6 md:px-10">
@@ -17,28 +28,8 @@ export default function SiteFooter() {
         </div>
 
         <nav className="flex flex-wrap gap-6">
-          {[
-            { label: t('nav_home'), path: '/' },
-            { label: t('nav_projects'), path: '/projects' },
-            { label: t('nav_expertise'), path: '/expertise' },
-            { label: t('nav_path'), path: '/experience' },
-            { label: t('nav_tools'), path: '/tools' },
-            { label: t('rooms_websites_title'), href: NA_WEBSITES_URL, external: true },
-            { label: t('rooms_research_title'), href: NA_RESEARCH_URL, external: true },
-            { label: t('rooms_classroom_title'), path: '/classroom' },
-            { label: t('rooms_business_systems_title'), disabled: true },
-            { label: t('nav_contact'), path: '/contact' },
-          ].map((item) =>
-            item.disabled ? (
-              <span
-                key={item.label}
-                title={t('rooms_status_unavailable')}
-                className="font-sans text-xs tracking-widest uppercase text-quartz/25 inline-flex items-center gap-1.5 cursor-not-allowed"
-              >
-                <Lock size={10} strokeWidth={2} aria-hidden="true" />
-                {item.label}
-              </span>
-            ) : item.external ? (
+          {items.map((item) =>
+            item.external ? (
               <a
                 key={item.href}
                 href={item.href}

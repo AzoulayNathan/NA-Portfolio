@@ -74,8 +74,9 @@ export default function NaRoomsMenu({ open, onClose }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -4 }}
           transition={{ duration: 0.2 }}
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[min(100vw-2rem,300px)] bg-quartz border border-olive/15 shadow-sm py-2 z-[100]"
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[min(100vw-2rem,320px)] bg-quartz border border-olive/15 shadow-sm py-2 z-[100]"
           role="menu"
+          aria-label={t('nav_rooms')}
         >
           {entries.map((item) => {
             const inner = (

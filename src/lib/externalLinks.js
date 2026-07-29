@@ -1,20 +1,18 @@
-const isLocal =
-  typeof window !== 'undefined' &&
-  (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')
-
 /** Live NA Websites digital showroom (Cloudflare Pages). */
 export const NA_WEBSITES_URL =
-  import.meta.env.VITE_NA_WEBSITES_URL ??
-  (isLocal ? 'http://127.0.0.1:5174/' : 'https://na-websites.pages.dev/')
+  import.meta.env.VITE_NA_WEBSITES_URL || 'https://na-websites.pages.dev/'
 
 /** NA Research Studio — applied mathematics / decision systems profile. */
 export const NA_RESEARCH_URL =
-  import.meta.env.VITE_NA_RESEARCH_URL ?? 'https://researchstudio-nathan.pages.dev'
+  import.meta.env.VITE_NA_RESEARCH_URL || 'https://researchstudio-nathan.pages.dev'
 
 /** NA Business Systems — site produit dédié (local business digital systems). */
 export const NA_BUSINESS_SYSTEMS_URL =
-  import.meta.env.VITE_NA_BUSINESS_SYSTEMS_URL ??
-  (isLocal ? 'http://127.0.0.1:5184/' : 'https://na-business-systems.pages.dev/')
+  import.meta.env.VITE_NA_BUSINESS_SYSTEMS_URL || 'https://na-business-systems.pages.dev/'
+
+/** Official profiles */
+export const GITHUB_PROFILE_URL = 'https://github.com/AzoulayNathan'
+export const LINKEDIN_PROFILE_URL = 'https://www.linkedin.com/in/nathan-azoulay-0719b4207'
 
 /** Formula Builder — pedagogical formula app (TeachingApp). */
 export const FORMULA_BUILDER_GITHUB_URL =

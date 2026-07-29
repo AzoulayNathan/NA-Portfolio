@@ -2,10 +2,11 @@ import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { Mail, Linkedin, Github, ArrowRight, Calendar, ArrowLeft } from 'lucide-react';
-import PageLayout from '../components/layout/PageLayout';
 import { useI18n } from '@/lib/i18n';
 import content from '@/lib/classroomContent';
 import ContactButton from '@/components/ui/ContactButton';
+import ClassroomHeader from '@/components/classroom/ClassroomHeader';
+import { BOOKING_CALENDAR_URL } from '@/lib/externalLinks';
 
 export default function ClassroomContact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -14,8 +15,9 @@ export default function ClassroomContact() {
   const rightRef = useRef(null);
   const leftInView = useInView(leftRef, { once: true, margin: '-40px' });
   const rightInView = useInView(rightRef, { once: true, margin: '-40px' });
-  const { lang } = useI18n();
-  const t = content[lang]?.contactPage ?? content.en.contactPage;
+  const { lang, setLang } = useI18n();
+  const page = content[lang] ?? content.en;
+  const t = page.contactPage;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,13 +31,14 @@ export default function ClassroomContact() {
 
   const links = [
     { icon: Mail, label: 'Email', value: 'nathanazoulay.pro@gmail.com', href: 'mailto:nathanazoulay.pro@gmail.com' },
-    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/nathanazoulay', href: 'https://linkedin.com/in/nathanazoulay' },
-    { icon: Github, label: 'GitHub', value: 'github.com/nathanazoulay', href: 'https://github.com/nathanazoulay' },
-    { icon: Calendar, label: 'Calendly', value: '—', href: null },
+    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/nathan-azoulay-0719b4207', href: 'https://www.linkedin.com/in/nathan-azoulay-0719b4207' },
+    { icon: Github, label: 'GitHub', value: 'github.com/AzoulayNathan', href: 'https://github.com/AzoulayNathan' },
+    { icon: Calendar, label: t.calendarLabel, value: t.calendarValue, href: BOOKING_CALENDAR_URL },
   ];
 
   return (
-    <PageLayout>
+    <div className="min-h-screen bg-quartz">
+      <ClassroomHeader t={page} lang={lang} setLang={setLang} />
       <section className="bg-tropical pt-32 pb-20 px-6 md:px-10">
         <div className="max-w-7xl mx-auto relative overflow-hidden min-h-[280px]">
           <motion.div
@@ -80,7 +83,7 @@ export default function ClassroomContact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.08 }}
-            className="font-serif text-[52px] md:text-[76px] font-light text-sand leading-tight max-w-2xl mb-5 relative z-10"
+            className="font-serif text-[56px] md:text-[80px] font-light text-sand leading-tight max-w-2xl mb-6 relative z-10"
           >
             {t.heading}
           </motion.h1>
@@ -95,8 +98,8 @@ export default function ClassroomContact() {
         </div>
       </section>
 
-      <section className="bg-sand py-20 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-[45fr_55fr] gap-12 md:gap-20">
+      <section className="bg-sand py-16 md:py-24 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
           <motion.div
             ref={leftRef}
             initial={{ opacity: 0, x: -24 }}
@@ -162,31 +165,40 @@ export default function ClassroomContact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <p className="eyebrow mb-6">{t.write}</p>
-                {[
-                  { id: 'name', label: t.name, type: 'text', placeholder: t.namePh },
-                  { id: 'email', label: t.email, type: 'email', placeholder: t.emailPh },
-                ].map((field) => (
-                  <div key={field.id}>
-                    <label htmlFor={field.id} className="font-sans text-[11px] tracking-widest uppercase text-ink/45 block mb-2">
-                      {field.label}
-                    </label>
-                    <input
-                      id={field.id}
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      value={form[field.id]}
-                      onChange={(e) => setForm({ ...form, [field.id]: e.target.value })}
-                      required
-                      className="w-full bg-transparent border-b border-ink/20 focus:border-olive outline-none py-2.5 font-sans text-sm text-ink placeholder-ink/30 transition-colors"
-                    />
-                  </div>
-                ))}
                 <div>
-                  <label htmlFor="message" className="font-sans text-[11px] tracking-widest uppercase text-ink/45 block mb-2">
+                  <label htmlFor="classroom-name" className="font-sans text-[11px] tracking-widest uppercase text-ink/45 block mb-2">
+                    {t.name}
+                  </label>
+                  <input
+                    id="classroom-name"
+                    type="text"
+                    placeholder={t.namePh}
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    required
+                    className="w-full bg-transparent border-b border-ink/20 focus:border-olive outline-none py-2.5 font-sans text-sm text-ink placeholder-ink/30 transition-colors"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="classroom-email" className="font-sans text-[11px] tracking-widest uppercase text-ink/45 block mb-2">
+                    {t.email}
+                  </label>
+                  <input
+                    id="classroom-email"
+                    type="email"
+                    placeholder={t.emailPh}
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    required
+                    className="w-full bg-transparent border-b border-ink/20 focus:border-olive outline-none py-2.5 font-sans text-sm text-ink placeholder-ink/30 transition-colors"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="classroom-message" className="font-sans text-[11px] tracking-widest uppercase text-ink/45 block mb-2">
                     {t.message}
                   </label>
                   <textarea
-                    id="message"
+                    id="classroom-message"
                     placeholder={t.messagePh}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -195,14 +207,24 @@ export default function ClassroomContact() {
                     className="w-full bg-transparent border-b border-ink/20 focus:border-olive outline-none py-2.5 font-sans text-sm text-ink placeholder-ink/30 transition-colors resize-none"
                   />
                 </div>
-                <div className="pt-4 flex justify-center">
+                <div className="pt-4 flex flex-col items-center gap-4">
                   <ContactButton label={t.submit} isSubmit />
+                  <a
+                    href={BOOKING_CALENDAR_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 font-sans text-xs tracking-widest uppercase text-olive hover:text-tropical transition-colors"
+                  >
+                    <Calendar size={14} />
+                    {t.calendarLabel}
+                    <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </div>
               </form>
             )}
           </motion.div>
         </div>
       </section>
-    </PageLayout>
+    </div>
   );
 }

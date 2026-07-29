@@ -4,6 +4,7 @@ import { Mail, Linkedin, Github, ArrowRight, Calendar } from 'lucide-react';
 import PageLayout from '../components/layout/PageLayout';
 import { useI18n } from '@/lib/i18n';
 import ContactButton from '@/components/ui/ContactButton';
+import { BOOKING_CALENDAR_URL, GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from '@/lib/externalLinks';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -26,9 +27,9 @@ export default function Contact() {
 
   const links = [
     { icon: Mail, label: 'Email', value: 'nathanazoulay.pro@gmail.com', href: 'mailto:nathanazoulay.pro@gmail.com' },
-    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/nathanazoulay', href: 'https://linkedin.com/in/nathanazoulay' },
-    { icon: Github, label: 'GitHub', value: 'github.com/nathanazoulay', href: 'https://github.com/nathanazoulay' },
-    { icon: Calendar, label: 'Calendly', value: t('coming_soon'), href: null },
+    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/nathan-azoulay-0719b4207', href: LINKEDIN_PROFILE_URL },
+    { icon: Github, label: 'GitHub', value: 'github.com/AzoulayNathan', href: GITHUB_PROFILE_URL },
+    { icon: Calendar, label: t('contact_calendar_label'), value: t('contact_calendar_value'), href: BOOKING_CALENDAR_URL },
   ];
 
   return (
@@ -208,8 +209,18 @@ export default function Contact() {
                     className="w-full bg-transparent border-b border-ink/20 focus:border-olive outline-none py-2.5 font-sans text-sm text-ink placeholder-ink/30 transition-colors resize-none"
                   />
                 </div>
-                <div className="pt-4 flex justify-center">
+                <div className="pt-4 flex flex-col items-center gap-4">
                   <ContactButton label={t('contact_submit')} isSubmit />
+                  <a
+                    href={BOOKING_CALENDAR_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 font-sans text-xs tracking-widest uppercase text-olive hover:text-tropical transition-colors"
+                  >
+                    <Calendar size={14} />
+                    {t('contact_calendar_label')}
+                    <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </div>
               </form>
             )}

@@ -9,7 +9,7 @@ export default function ClassroomFooter({ t }) {
     { label: tGlobal('rooms_websites_title'), href: NA_WEBSITES_URL, external: true },
     { label: tGlobal('rooms_research_title'), href: NA_RESEARCH_URL, external: true },
     { label: tGlobal('contact_calendar_label'), href: BOOKING_CALENDAR_URL, external: true },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/nathanazoulay', external: true },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/nathan-azoulay-0719b4207', external: true },
   ];
 
   return (
