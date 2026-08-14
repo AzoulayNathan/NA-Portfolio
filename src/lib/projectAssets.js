@@ -4,3 +4,5 @@ export const FORMULA_BUILDER_ASSETS = {
   teaching: '/projects/formula-builder-teaching.svg',
   thumb: '/projects/formula-builder-thumb.svg',
 };
+
+export const FORMULA_BUILDER_SLUG = 'formula-builder';

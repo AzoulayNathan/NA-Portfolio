@@ -13,11 +13,13 @@ export const NA_BUSINESS_SYSTEMS_URL =
 /** Official profiles */
 export const GITHUB_PROFILE_URL = 'https://github.com/AzoulayNathan'
 export const LINKEDIN_PROFILE_URL = 'https://www.linkedin.com/in/nathan-azoulay-0719b4207'
+export const CONTACT_EMAIL = 'nathanazoulay.pro@gmail.com'
 
 /** Formula Builder — pedagogical formula app (TeachingApp). */
 export const FORMULA_BUILDER_GITHUB_URL =
   'https://github.com/AzoulayNathan/FormulaBuilder_PedagogicalApp'
 export const FORMULA_BUILDER_APP_URL = 'https://na-formula-builder.pages.dev'
 
-/** Google Calendar booking — 30 min avec Nathan */
-export const BOOKING_CALENDAR_URL = 'https://calendar.app.google/FwvLrs17YcM1Ksmy9'
+/** Calendly — 30 min avec Nathan */
+export const BOOKING_CALENDAR_URL = 'https://calendly.com/nathan-azoulay-na-studio1/30min'
+export const BOOKING_CALENDAR_DISPLAY = 'calendly.com/nathan-azoulay-na-studio1/30min'

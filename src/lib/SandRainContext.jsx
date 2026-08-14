@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo, useState, useEffect } from 'react';
 
-const STORAGE_KEY = 'porto-sand-rain';
+const STORAGE_KEY = 'porto-sand-rain-v2';
 
 const SandRainContext = createContext({
   enabled: false,

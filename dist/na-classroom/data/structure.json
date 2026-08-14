@@ -1,0 +1,655 @@
+{
+  "pillars": [
+    {
+      "id": "data-analysis",
+      "number": "01",
+      "name": "Data Analysis",
+      "accent": "#1f5b3d",
+      "accentSoft": "#7f9a72",
+      "ink": "#153b29",
+      "surface": "#f4f2ea",
+      "motif": "leaf",
+      "intro": "Learn how to turn raw data into clear insights, useful questions, and better decisions.",
+      "stages": [
+        "Foundations",
+        "Data handling",
+        "Analysis",
+        "Visualisation",
+        "Decision-making",
+        "Reporting",
+        "Practice"
+      ],
+      "lessons": [
+        {
+          "id": "W01-DA",
+          "week": 1,
+          "title": "Rôle du Data Analyst et cycle d’analyse",
+          "short": "What a Data Analyst actually does",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "Microsoft Learn — Data Analytics",
+          "practice": "Map a business question to the data, analysis, and decision it would require."
+        },
+        {
+          "id": "W02-DA",
+          "week": 2,
+          "title": "Excel : tableaux, références et formules utiles",
+          "short": "Working with structured tables",
+          "duration": "30 min",
+          "level": "Beginner",
+          "source": "Microsoft Learn",
+          "practice": "Build a clean analysis table and use formulas to answer a simple question."
+        },
+        {
+          "id": "W03-DA",
+          "week": 3,
+          "title": "Python : variables, types, conditions et boucles",
+          "short": "Python for basic analysis",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "Python documentation",
+          "practice": "Write a short script that transforms and checks a small dataset."
+        },
+        {
+          "id": "W04-DA",
+          "week": 4,
+          "title": "pandas : DataFrame, Series et index",
+          "short": "Understanding DataFrames",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "pandas documentation",
+          "practice": "Load a dataset and inspect its columns, types, index, and basic statistics."
+        },
+        {
+          "id": "W05-DA",
+          "week": 5,
+          "title": "Importer CSV/Excel et profiler un jeu de données",
+          "short": "First look at a dataset",
+          "duration": "30 min",
+          "level": "Beginner",
+          "source": "pandas documentation",
+          "practice": "Import a file and create a short data-quality profile."
+        },
+        {
+          "id": "W06-DA",
+          "week": 6,
+          "title": "Nettoyer les valeurs manquantes",
+          "short": "Cleaning missing values",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "pandas documentation",
+          "practice": "Compare several ways to treat missing values and justify one choice."
+        },
+        {
+          "id": "W07-DA",
+          "week": 7,
+          "title": "Détecter doublons, incohérences et outliers",
+          "short": "Finding data-quality problems",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "pandas documentation",
+          "practice": "Identify duplicates, inconsistent values, and potential outliers."
+        }
+      ],
+      "firstLessonId": "W01-DA"
+    },
+    {
+      "id": "data-science",
+      "number": "02",
+      "name": "Data Science",
+      "accent": "#315f78",
+      "accentSoft": "#7d9aa8",
+      "ink": "#173d52",
+      "surface": "#f3f2ee",
+      "motif": "crystal",
+      "intro": "Learn how data, probability, models, and evaluation work together to solve predictive problems.",
+      "stages": [
+        "Foundations",
+        "Probability",
+        "Machine learning",
+        "Evaluation",
+        "Features",
+        "Advanced models",
+        "Production"
+      ],
+      "lessons": [
+        {
+          "id": "W01-DS",
+          "week": 1,
+          "title": "Workflow Data Science : problème, données, modèle, décision",
+          "short": "The Data Science workflow",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "Google Machine Learning Crash Course",
+          "practice": "Take one prediction problem and define its data, target, evaluation, and decision."
+        },
+        {
+          "id": "W02-DS",
+          "week": 2,
+          "title": "Features, target et types de variables",
+          "short": "Features and target",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "Google ML Crash Course",
+          "practice": "Separate features and target on a small supervised-learning example."
+        },
+        {
+          "id": "W03-DS",
+          "week": 3,
+          "title": "Probabilités : événements et règles de base",
+          "short": "Probability fundamentals",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "OpenStax Statistics",
+          "practice": "Solve simple event and conditional-probability exercises."
+        },
+        {
+          "id": "W04-DS",
+          "week": 4,
+          "title": "Variables aléatoires et distributions",
+          "short": "Random variables and distributions",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "OpenStax Statistics",
+          "practice": "Match real situations to common distributions."
+        },
+        {
+          "id": "W05-DS",
+          "week": 5,
+          "title": "Espérance, variance et écart-type",
+          "short": "Mean, variance and spread",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "OpenStax Statistics",
+          "practice": "Compute and interpret expectation and variance on a small example."
+        },
+        {
+          "id": "W06-DS",
+          "week": 6,
+          "title": "Probabilité conditionnelle et Bayes",
+          "short": "Conditional probability and Bayes",
+          "duration": "45 min",
+          "level": "Beginner",
+          "source": "OpenStax Statistics",
+          "practice": "Update a probability after receiving new evidence."
+        },
+        {
+          "id": "W07-DS",
+          "week": 7,
+          "title": "Échantillonnage et théorème central limite",
+          "short": "Sampling and the CLT",
+          "duration": "45 min",
+          "level": "Beginner",
+          "source": "OpenStax Statistics",
+          "practice": "Simulate sample means and observe convergence."
+        }
+      ],
+      "firstLessonId": "W01-DS"
+    },
+    {
+      "id": "business-analysis",
+      "number": "03",
+      "name": "Business Analysis",
+      "accent": "#9c3f31",
+      "accentSoft": "#bd7668",
+      "ink": "#762e26",
+      "surface": "#f5f0ea",
+      "motif": "vase",
+      "intro": "Learn how to clarify business problems, understand stakeholders, define needs, and evaluate solutions.",
+      "stages": [
+        "Foundations",
+        "Stakeholders",
+        "Requirements",
+        "Processes",
+        "Solutions",
+        "Value",
+        "Practice"
+      ],
+      "lessons": [
+        {
+          "id": "W01-BA",
+          "week": 1,
+          "title": "Rôle du Business Analyst et création de valeur",
+          "short": "What a Business Analyst actually does",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "IIBA Business Analysis Standard",
+          "practice": "Turn a vague business request into a problem, need, and desired outcome."
+        },
+        {
+          "id": "W02-BA",
+          "week": 2,
+          "title": "BACCM : Change, Need, Solution, Stakeholder, Value, Context",
+          "short": "The BACCM model",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "IIBA",
+          "practice": "Map a simple business case with the six BACCM concepts."
+        },
+        {
+          "id": "W03-BA",
+          "week": 3,
+          "title": "Cartographie des stakeholders",
+          "short": "Stakeholder mapping",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "IIBA",
+          "practice": "Map influence, needs, and risks for a small project."
+        },
+        {
+          "id": "W04-BA",
+          "week": 4,
+          "title": "Distinguer problème, besoin et solution",
+          "short": "Problem, need, solution",
+          "duration": "30 min",
+          "level": "Beginner",
+          "source": "IIBA",
+          "practice": "Rewrite solution-first requests as explicit business needs."
+        },
+        {
+          "id": "W05-BA",
+          "week": 5,
+          "title": "Objectifs, résultats et KPI",
+          "short": "Goals, outcomes and KPIs",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "IIBA",
+          "practice": "Define one outcome and the KPI that would measure it."
+        },
+        {
+          "id": "W06-BA",
+          "week": 6,
+          "title": "Scope, contexte et contraintes",
+          "short": "Scope and constraints",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "IIBA",
+          "practice": "Define what is in scope, out of scope, and constrained."
+        },
+        {
+          "id": "W07-BA",
+          "week": 7,
+          "title": "Elicitation : conduire un entretien",
+          "short": "Running an elicitation interview",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "IIBA",
+          "practice": "Prepare and run a short stakeholder interview."
+        }
+      ],
+      "firstLessonId": "W01-BA"
+    },
+    {
+      "id": "ai-automation",
+      "number": "04",
+      "name": "AI & Automation",
+      "accent": "#9a7134",
+      "accentSoft": "#c1a16e",
+      "ink": "#6f4f24",
+      "surface": "#f4f0e7",
+      "motif": "brass",
+      "intro": "Learn how modern AI systems work, where automation helps, and how to build reliable workflows.",
+      "stages": [
+        "Foundations",
+        "LLMs",
+        "Embeddings",
+        "RAG",
+        "Automation",
+        "Agents",
+        "Production"
+      ],
+      "lessons": [
+        {
+          "id": "W01-AI",
+          "week": 1,
+          "title": "AI vs ML vs Deep Learning vs Generative AI",
+          "short": "AI, ML, deep learning and GenAI",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "Hugging Face LLM Course",
+          "practice": "Classify concrete examples into AI, ML, deep learning, or generative AI."
+        },
+        {
+          "id": "W02-AI",
+          "week": 2,
+          "title": "LLM : tokens, contexte et génération",
+          "short": "How an LLM generates text",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "Hugging Face LLM Course",
+          "practice": "Inspect how tokenisation and context change a model response."
+        },
+        {
+          "id": "W03-AI",
+          "week": 3,
+          "title": "Transformers et mécanisme d’attention",
+          "short": "Transformers and attention",
+          "duration": "45 min",
+          "level": "Beginner",
+          "source": "Hugging Face LLM Course",
+          "practice": "Trace attention through a small conceptual example."
+        },
+        {
+          "id": "W04-AI",
+          "week": 4,
+          "title": "Embeddings et similarité",
+          "short": "Embeddings and similarity",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "OpenAI / Hugging Face docs",
+          "practice": "Compare text embeddings and interpret similarity scores."
+        },
+        {
+          "id": "W05-AI",
+          "week": 5,
+          "title": "Prompting : instructions, contexte, exemples",
+          "short": "Writing useful prompts",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "OpenAI documentation",
+          "practice": "Improve one prompt by adding task, context, constraints, and examples."
+        },
+        {
+          "id": "W06-AI",
+          "week": 6,
+          "title": "Structured outputs",
+          "short": "Reliable structured outputs",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "OpenAI documentation",
+          "practice": "Define a simple schema and validate model output against it."
+        },
+        {
+          "id": "W07-AI",
+          "week": 7,
+          "title": "Context window et gestion du contexte",
+          "short": "Managing model context",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "OpenAI documentation",
+          "practice": "Decide what context to include, compress, or retrieve."
+        }
+      ],
+      "firstLessonId": "W01-AI"
+    },
+    {
+      "id": "finance-risk",
+      "number": "05",
+      "name": "Finance & Risk",
+      "accent": "#68733c",
+      "accentSoft": "#9aa277",
+      "ink": "#4f572e",
+      "surface": "#f3f1e7",
+      "motif": "olive",
+      "intro": "Learn how financial statements, valuation, time, uncertainty, and risk shape financial decisions.",
+      "stages": [
+        "Foundations",
+        "Accounting",
+        "Valuation",
+        "Risk",
+        "Actuarial",
+        "Markets",
+        "Practice"
+      ],
+      "lessons": [
+        {
+          "id": "W01-FR",
+          "week": 1,
+          "title": "Structure du système financier",
+          "short": "How the financial system works",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "CFA Investment Foundations",
+          "practice": "Map the main actors, markets, instruments, and flows in a simple financial system."
+        },
+        {
+          "id": "W02-FR",
+          "week": 2,
+          "title": "Équation comptable et logique débit/crédit",
+          "short": "The accounting equation",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "CFA Investment Foundations",
+          "practice": "Record simple transactions and explain their balance-sheet effect."
+        },
+        {
+          "id": "W03-FR",
+          "week": 3,
+          "title": "Income Statement",
+          "short": "Reading an income statement",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "CFA Investment Foundations",
+          "practice": "Read a simplified P&L and explain revenue, cost, and profit."
+        },
+        {
+          "id": "W04-FR",
+          "week": 4,
+          "title": "Balance Sheet",
+          "short": "Reading a balance sheet",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "CFA Investment Foundations",
+          "practice": "Classify assets, liabilities, and equity."
+        },
+        {
+          "id": "W05-FR",
+          "week": 5,
+          "title": "Cash Flow Statement",
+          "short": "Understanding cash flow",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "CFA Investment Foundations",
+          "practice": "Explain the difference between profit and cash generation."
+        },
+        {
+          "id": "W06-FR",
+          "week": 6,
+          "title": "Ratios financiers essentiels",
+          "short": "Core financial ratios",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "CFA Investment Foundations",
+          "practice": "Calculate and interpret profitability, liquidity, and leverage ratios."
+        },
+        {
+          "id": "W07-FR",
+          "week": 7,
+          "title": "Time Value of Money",
+          "short": "The time value of money",
+          "duration": "45 min",
+          "level": "Beginner",
+          "source": "CFA Investment Foundations",
+          "practice": "Compare cash flows occurring at different dates."
+        }
+      ],
+      "firstLessonId": "W01-FR"
+    },
+    {
+      "id": "marketing-growth",
+      "number": "06",
+      "name": "Marketing & Growth",
+      "accent": "#c6543e",
+      "accentSoft": "#d78973",
+      "ink": "#973f31",
+      "surface": "#f6eee9",
+      "motif": "coral",
+      "intro": "Learn how positioning, acquisition, conversion, experimentation, and customer economics drive growth.",
+      "stages": [
+        "Foundations",
+        "Positioning",
+        "Acquisition",
+        "Conversion",
+        "Experiments",
+        "Analytics",
+        "Strategy"
+      ],
+      "lessons": [
+        {
+          "id": "W01-MG",
+          "week": 1,
+          "title": "Funnel marketing et customer journey",
+          "short": "Funnel and customer journey",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "HubSpot Academy",
+          "practice": "Map the stages a customer goes through from awareness to conversion."
+        },
+        {
+          "id": "W02-MG",
+          "week": 2,
+          "title": "ICP, persona et segmentation",
+          "short": "ICP, personas and segments",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "HubSpot Academy",
+          "practice": "Define one ideal customer profile and explain the segment logic."
+        },
+        {
+          "id": "W03-MG",
+          "week": 3,
+          "title": "Positionnement et proposition de valeur",
+          "short": "Positioning and value proposition",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "HubSpot Academy",
+          "practice": "Write a clear positioning statement for one product."
+        },
+        {
+          "id": "W04-MG",
+          "week": 4,
+          "title": "Canaux d’acquisition",
+          "short": "Acquisition channels",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "HubSpot Academy",
+          "practice": "Compare three channels by fit, cost, speed, and control."
+        },
+        {
+          "id": "W05-MG",
+          "week": 5,
+          "title": "Impressions, reach, clicks, conversions",
+          "short": "Core marketing metrics",
+          "duration": "30 min",
+          "level": "Beginner",
+          "source": "Google Skillshop",
+          "practice": "Trace impressions to conversions in a simple campaign funnel."
+        },
+        {
+          "id": "W06-MG",
+          "week": 6,
+          "title": "CTR, CVR, CPC et CPA",
+          "short": "CTR, CVR, CPC and CPA",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "Google Skillshop",
+          "practice": "Calculate and interpret four acquisition metrics."
+        },
+        {
+          "id": "W07-MG",
+          "week": 7,
+          "title": "Customer Acquisition Cost",
+          "short": "Customer acquisition cost",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "HubSpot Academy",
+          "practice": "Calculate CAC and discuss what would make it sustainable."
+        }
+      ],
+      "firstLessonId": "W01-MG"
+    },
+    {
+      "id": "operations-strategy",
+      "number": "07",
+      "name": "Operations & Strategy",
+      "accent": "#8f8068",
+      "accentSoft": "#b3a68e",
+      "ink": "#6f6251",
+      "surface": "#f2eee6",
+      "motif": "quartz",
+      "intro": "Learn how processes, capacity, flow, constraints, and strategic choices shape operational performance.",
+      "stages": [
+        "Foundations",
+        "Processes",
+        "Capacity",
+        "Flow",
+        "Optimisation",
+        "Planning",
+        "Strategy"
+      ],
+      "lessons": [
+        {
+          "id": "W01-OS",
+          "week": 1,
+          "title": "Comprendre un système d’opérations",
+          "short": "How an operating system works",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "MIT OpenCourseWare",
+          "practice": "Map inputs, process, capacity, output, and constraints for a simple operation."
+        },
+        {
+          "id": "W02-OS",
+          "week": 2,
+          "title": "Process mapping opérationnel",
+          "short": "Mapping a process",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "MIT OpenCourseWare",
+          "practice": "Draw an end-to-end process and identify handoffs."
+        },
+        {
+          "id": "W03-OS",
+          "week": 3,
+          "title": "Demand vs capacity",
+          "short": "Demand and capacity",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "MIT OpenCourseWare",
+          "practice": "Compare demand with available capacity and identify shortfalls."
+        },
+        {
+          "id": "W04-OS",
+          "week": 4,
+          "title": "Identifier un bottleneck",
+          "short": "Finding the bottleneck",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "MIT OpenCourseWare",
+          "practice": "Calculate process capacity and identify the limiting step."
+        },
+        {
+          "id": "W05-OS",
+          "week": 5,
+          "title": "Throughput, cycle time et lead time",
+          "short": "Flow metrics",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "MIT OpenCourseWare",
+          "practice": "Distinguish throughput, cycle time, and lead time in a real process."
+        },
+        {
+          "id": "W06-OS",
+          "week": 6,
+          "title": "Little’s Law",
+          "short": "Little’s Law",
+          "duration": "40 min",
+          "level": "Beginner",
+          "source": "MIT OpenCourseWare",
+          "practice": "Use WIP = throughput × flow time on a simple operation."
+        },
+        {
+          "id": "W07-OS",
+          "week": 7,
+          "title": "Utilisation, capacité et productivité",
+          "short": "Utilisation and productivity",
+          "duration": "35 min",
+          "level": "Beginner",
+          "source": "MIT OpenCourseWare",
+          "practice": "Compare utilisation, capacity, and productivity for one team."
+        }
+      ],
+      "firstLessonId": "W01-OS"
+    }
+  ]
+}

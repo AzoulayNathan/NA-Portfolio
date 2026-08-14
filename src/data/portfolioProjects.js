@@ -1,4 +1,4 @@
-import { FORMULA_BUILDER_ASSETS } from '@/lib/projectAssets';
+import { FORMULA_BUILDER_SLUG } from '@/lib/projectAssets';
 
 /**
  * Liste unique des projets — archives + carousels home.
@@ -11,9 +11,12 @@ import { FORMULA_BUILDER_ASSETS } from '@/lib/projectAssets';
 export const PROJECTS = [
   {
     title: 'Formula Builder',
+    slug: FORMULA_BUILDER_SLUG,
+    showInCarousel: false,
     stack: ['React', 'Vite', 'Tailwind', 'Base44'], categories: ['Professional', 'Web', 'Education'],
-    image: FORMULA_BUILDER_ASSETS.cover, year: '2026',
+    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=900&q=80', year: '2026',
     proof_type: 'github', proof_url: 'https://github.com/AzoulayNathan/FormulaBuilder_PedagogicalApp',
+    app_url: 'https://na-formula-builder.pages.dev',
   },
   {
     title: 'ClassmapFLE',

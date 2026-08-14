@@ -47,7 +47,7 @@ export default function SiteNav() {
     { label: t('nav_tools'), path: '/tools' },
     { label: t('nav_contact'), path: '/contact' },
   ];
-  const isRoomsActive = ['/classroom', '/websites'].includes(location.pathname);
+  const isRoomsActive = location.pathname.startsWith('/classroom') || location.pathname === '/websites';
   const isNavItemActive = (path) =>
     path === '/expertise'
       ? location.pathname === '/expertise' || location.pathname.startsWith('/expertise/')
@@ -58,7 +58,7 @@ export default function SiteNav() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     const onMessage = (event) => {
-      if (event.data?.type === 'na-expertise-scroll') {
+      if (event.data?.type === 'na-expertise-scroll' || event.data?.type === 'na-classroom-scroll') {
         setScrolled(Number(event.data.y) > 40);
       }
     };
@@ -72,7 +72,7 @@ export default function SiteNav() {
 
   // Reset scrolled styling when leaving expertise routes via parent scroll
   useEffect(() => {
-    if (!location.pathname.startsWith('/expertise')) {
+    if (!location.pathname.startsWith('/expertise') && !location.pathname.startsWith('/classroom')) {
       setScrolled(window.scrollY > 40);
     }
   }, [location.pathname]);

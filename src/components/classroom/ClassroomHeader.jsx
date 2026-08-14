@@ -1,8 +1,10 @@
 ﻿import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe } from "lucide-react";
+import { ChevronDown, Globe } from "lucide-react";
 import { LANGUAGES } from "@/lib/i18n";
+import { useI18n } from "@/lib/i18n";
+import ClassroomEcosystemMenu from "./ClassroomEcosystemMenu";
 
 const NAV_ITEMS = [
   { key: "profile", id: "profile" },
@@ -15,9 +17,11 @@ const NAV_ITEMS = [
 
 export default function ClassroomHeader({ t, lang, setLang }) {
   const navigate = useNavigate();
+  const { t: tGlobal } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
   const [langOpen, setLangOpen] = useState(false);
+  const [roomsOpen, setRoomsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -97,11 +101,32 @@ export default function ClassroomHeader({ t, lang, setLang }) {
           })}
         </nav>
 
-        <div className="flex items-center gap-4 shrink-0">
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           <div className="relative">
             <button
               type="button"
-              onClick={() => setLangOpen((v) => !v)}
+              onClick={() => {
+                setRoomsOpen((v) => !v);
+                setLangOpen(false);
+              }}
+              className={`flex items-center gap-1 font-sans text-xs font-medium tracking-widest uppercase transition-colors ${
+                scrolled ? "text-ink/60 hover:text-ink" : "text-sand/75 hover:text-sand"
+              }`}
+              aria-expanded={roomsOpen}
+            >
+              {tGlobal("nav_rooms")}
+              <ChevronDown size={12} className={`transition-transform ${roomsOpen ? "rotate-180" : ""}`} />
+            </button>
+            <ClassroomEcosystemMenu open={roomsOpen} onClose={() => setRoomsOpen(false)} scrolled={scrolled} />
+          </div>
+
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => {
+                setLangOpen((v) => !v);
+                setRoomsOpen(false);
+              }}
               className={`flex items-center gap-1.5 font-sans text-xs font-medium transition-colors ${
                 scrolled ? "text-olive/70 hover:text-olive" : "text-sand/80 hover:text-sand"
               }`}
@@ -126,6 +151,7 @@ export default function ClassroomHeader({ t, lang, setLang }) {
                       onClick={() => {
                         setLang(l);
                         setLangOpen(false);
+                        setRoomsOpen(false);
                       }}
                       className={`w-full text-left px-4 py-2 font-sans text-xs tracking-widest uppercase transition-colors ${
                         lang === l ? "text-tropical font-medium" : "text-ink/50 hover:text-ink"
@@ -138,15 +164,6 @@ export default function ClassroomHeader({ t, lang, setLang }) {
               )}
             </AnimatePresence>
           </div>
-
-          <a
-            href="/"
-            className={`font-sans text-xs font-medium tracking-widest uppercase transition-colors hidden sm:block ${
-              scrolled ? "text-ink/50 hover:text-ink/80" : "text-sand/55 hover:text-sand/90"
-            }`}
-          >
-            {t.nav.studio} →
-          </a>
         </div>
       </div>
     </motion.header>

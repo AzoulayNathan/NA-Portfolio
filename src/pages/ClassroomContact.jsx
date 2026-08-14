@@ -6,7 +6,7 @@ import { useI18n } from '@/lib/i18n';
 import content from '@/lib/classroomContent';
 import ContactButton from '@/components/ui/ContactButton';
 import ClassroomHeader from '@/components/classroom/ClassroomHeader';
-import { BOOKING_CALENDAR_URL } from '@/lib/externalLinks';
+import { BOOKING_CALENDAR_URL, BOOKING_CALENDAR_DISPLAY, CONTACT_EMAIL, GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from '@/lib/externalLinks';
 
 export default function ClassroomContact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -25,15 +25,15 @@ export default function ClassroomContact() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`,
     );
-    window.location.href = `mailto:nathanazoulay.pro@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
     setSent(true);
   };
 
   const links = [
-    { icon: Mail, label: 'Email', value: 'nathanazoulay.pro@gmail.com', href: 'mailto:nathanazoulay.pro@gmail.com' },
-    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/nathan-azoulay-0719b4207', href: 'https://www.linkedin.com/in/nathan-azoulay-0719b4207' },
-    { icon: Github, label: 'GitHub', value: 'github.com/AzoulayNathan', href: 'https://github.com/AzoulayNathan' },
-    { icon: Calendar, label: t.calendarLabel, value: t.calendarValue, href: BOOKING_CALENDAR_URL },
+    { icon: Mail, label: 'Email', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
+    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/nathan-azoulay-0719b4207', href: LINKEDIN_PROFILE_URL },
+    { icon: Github, label: 'GitHub', value: 'github.com/AzoulayNathan', href: GITHUB_PROFILE_URL },
+    { icon: Calendar, label: t.calendarLabel, value: BOOKING_CALENDAR_DISPLAY, href: BOOKING_CALENDAR_URL },
   ];
 
   return (

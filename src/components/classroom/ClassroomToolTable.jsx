@@ -1,6 +1,7 @@
 ﻿import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { FORMULA_BUILDER_ASSETS } from "@/lib/projectAssets";
+import FormulaBuilderCoverArt from "@/components/projects/FormulaBuilderCoverArt";
 import { TeachingToolImage } from "@/components/ProjectMedia";
 
 // Asymmetric grid layout ÔÇö Formula Builder featured
@@ -14,7 +15,7 @@ const GRID_STYLES = [
 ];
 
 const TOOL_IMAGES = {
-  "formula-builder": FORMULA_BUILDER_ASSETS.teaching,
+  "formula-builder": FORMULA_BUILDER_ASSETS.cover,
   "error-diary": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=80",
   "oralsafe": "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&q=80",
   "concept-builder": "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&q=80",
@@ -28,10 +29,8 @@ function ToolFallback({ id, large }) {
   const h = large ? "h-36" : "h-20";
 
   if (id === "formula-builder") return (
-    <div className={`${h} bg-olive/8 flex flex-col items-center justify-center gap-1 mb-3`}>
-      <span className="font-mono text-[11px] text-olive/50">x╠ä = ╬úxßÁó / n</span>
-      <span className="font-mono text-[10px] text-olive/30">v = d / t</span>
-      <div className="flex gap-1 mt-1">{[3, 5, 4, 6, 3].map((h, i) => <div key={i} style={{ height: h * 3 }} className="w-2 bg-olive/20 rounded-sm" />)}</div>
+    <div className={`${h} mb-3 overflow-hidden rounded-sm border border-olive/12 bg-sand`}>
+      <FormulaBuilderCoverArt className="w-full h-full" compact={!large} />
     </div>
   );
 
@@ -96,8 +95,10 @@ function AppCard({ app, idx, inView, onOpen }) {
       className={`${GRID_STYLES[idx % GRID_STYLES.length]} text-left bg-quartz p-5 cursor-pointer transition-all duration-300 border border-sand/60`}
       style={{ transformOrigin: "bottom center" }}
     >
-      {imgSrc ? (
-        <TeachingToolImage src={imgSrc} alt={app.name} large={isFeatured} />
+      {app.id === 'formula-builder' ? (
+        <TeachingToolImage src={imgSrc} alt={app.name} featured={isFeatured} toolId="formula-builder" />
+      ) : imgSrc ? (
+        <TeachingToolImage src={imgSrc} alt={app.name} featured={isFeatured} toolId={app.id} />
       ) : (
         <ToolFallback id={app.id} large={isFeatured} />
       )}
@@ -147,8 +148,12 @@ function DetailPanel({ app, t, onClose }) {
           {t.closeLabel}
         </button>
 
-        {imgSrc ? (
-          <div className="mb-4 h-32 overflow-hidden rounded-sm bg-sand">
+        {app.id === 'formula-builder' ? (
+          <div className="mb-4 h-44 overflow-hidden rounded-sm border border-olive/12 bg-sand">
+            <FormulaBuilderCoverArt className="w-full h-full" />
+          </div>
+        ) : imgSrc ? (
+          <div className="mb-4 h-40 overflow-hidden rounded-sm border border-olive/12 bg-sand">
             <img src={imgSrc} alt={app.name} className="w-full h-full object-contain p-2" />
           </div>
         ) : (

@@ -6,6 +6,8 @@ import { useI18n } from '@/lib/i18n';
 import ProjectCarousel from '@/components/home/ProjectCarousel';
 import { PROJECTS } from '@/data/portfolioProjects';
 
+const CAROUSEL_PROJECTS = PROJECTS.filter((p) => p.showInCarousel !== false);
+
 export default function SelectedWork() {
   const introRef = useRef(null);
   const archiveRef = useRef(null);
@@ -29,7 +31,7 @@ export default function SelectedWork() {
       </motion.div>
 
       <div className="w-screen max-w-[100vw] relative left-1/2 -translate-x-1/2 flex flex-col gap-0 pb-16">
-        <ProjectCarousel projects={PROJECTS} initialDelayMs={5200} className="border-b border-ink/10" />
+        <ProjectCarousel projects={CAROUSEL_PROJECTS} initialDelayMs={5200} className="border-b border-ink/10" />
       </div>
 
       <motion.div

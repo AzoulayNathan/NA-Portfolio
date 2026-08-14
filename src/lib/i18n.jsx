@@ -749,9 +749,24 @@ export const translations = {
 
 const I18nContext = createContext(null);
 
+const LANG_STORAGE = 'na-studio-lang';
+
+function readStoredLang() {
+  try {
+    const stored = (localStorage.getItem(LANG_STORAGE) || '').toLowerCase();
+    if (stored === 'fr' || stored === 'en' || stored === 'es') return stored;
+  } catch {}
+  return 'en';
+}
+
 export function I18nProvider({ children }) {
-  const [lang, setLang] = useState('en');
-  const t = (key) => translations[lang][key] ?? translations['en'][key] ?? key;
+  const [lang, setLangState] = useState(readStoredLang);
+  const setLang = (next) => {
+    const l = next === 'fr' || next === 'es' ? next : 'en';
+    setLangState(l);
+    try { localStorage.setItem(LANG_STORAGE, l); } catch {}
+  };
+  const t = (key) => translations[lang]?.[key] ?? translations.en[key] ?? key;
   return (
     <I18nContext.Provider value={{ lang, setLang, t }}>
       {children}

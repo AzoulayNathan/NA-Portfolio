@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projectSlug } from '@/lib/utils';
 import { useI18n } from '@/lib/i18n';
-import { ProjectCarouselImage } from '@/components/ProjectMedia';
+import { ProjectCarouselImage, ProjectFocusImage } from '@/components/ProjectMedia';
 
 function slugKey(title) {
   return projectSlug(title).replaceAll('-', '_');
@@ -271,13 +271,8 @@ export default function ProjectCarousel({ projects, initialDelayMs = 4500, class
               >
                 <div className="h-full overflow-y-auto overscroll-contain [scrollbar-width:thin] touch-pan-y">
                   <div className="relative h-[62%] min-h-[330px] overflow-hidden">
-                    <img
-                      src={focusedProject.image}
-                      alt=""
-                      className="absolute inset-0 w-full h-full object-cover scale-[1.26]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-tropical/78 via-transparent to-transparent" />
-                    <span className="absolute bottom-4 left-4 eyebrow-light">{focusedProject.year}</span>
+                    <ProjectFocusImage src={focusedProject.image} alt={focusedProject.title} className="h-full min-h-[330px]" />
+                    <span className="absolute bottom-4 left-4 eyebrow-light z-10">{focusedProject.year}</span>
                   </div>
                   <div className="min-h-[46%] bg-quartz px-6 md:px-8 py-4 md:py-5 flex flex-col justify-start">
                     <p className="eyebrow mb-1">{t(`projects_${slugKey(focusedProject.title)}_meta`)}</p>
