@@ -1,7 +1,7 @@
 window.NA_I18N = {
   en: {
     hub_kicker: "EXPERTISE",
-    hub_title_1: "Seven fields.",
+    hub_title_1: "Four fields.",
     hub_title_2: "One way of thinking.",
     hub_intro: "I combine mathematical depth, business understanding and systems thinking to turn complex problems into useful outcomes.",
     hub_hire: "I’m hiring",
@@ -108,7 +108,7 @@ window.NA_I18N = {
   },
   fr: {
     hub_kicker: "EXPERTISE",
-    hub_title_1: "Sept domaines.",
+    hub_title_1: "Quatre domaines.",
     hub_title_2: "Une même façon de penser.",
     hub_intro: "Je combine profondeur mathématique, compréhension business et pensée systémique pour transformer des problèmes complexes en résultats utiles.",
     hub_hire: "Je recrute",

@@ -82,10 +82,7 @@
       'ai-automation':'M4 8h16v10H4zM8 4v4m8-4v4M8 13h.01M12 13h.01M16 13h.01',
       'business-strategy':'M5 19V9m7 10V5m7 14v-7M3 19h18M6 7l5-4 5 3 5-4',
       'data-analytics':'M4 19V9m5 10V5m5 14v-7m5 7V3M3 19h18',
-      'data-science':'M7 4h10M9 4v5l-5 8a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-8V4M8 14h8',
-      'finance-risk':'M4 20h16M6 17V8l6-4 6 4v9M9 10h6m-6 3h6',
-      'marketing-growth':'M4 18V6m0 12h16M7 15l4-4 3 2 5-7M16 6h3v3',
-      'operations-pmo':'M5 6h4v4H5zM15 6h4v4h-4zM10 16h4v4h-4zM9 8h6M7 10v4h5m5-4v4h-5'
+      'data-science':'M7 4h10M9 4v5l-5 8a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-8V4M8 14h8'
     };
     return `<svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${map[field.id]}"/></svg>`;
   };
@@ -94,10 +91,7 @@
     'ai-automation':'/classroom/learn/ai-automation',
     'business-strategy':'/classroom/learn/business-analysis',
     'data-analytics':'/classroom/learn/data-analysis',
-    'data-science':'/classroom/learn/data-science',
-    'finance-risk':'/classroom/learn/finance-risk',
-    'marketing-growth':'/classroom/learn/marketing-growth',
-    'operations-pmo':'/classroom/learn/operations-strategy'
+    'data-science':'/classroom/learn/data-science'
   };
   function courseHref(fieldId){ return COURSE_MAP[fieldId] || '/classroom/learn'; }
 

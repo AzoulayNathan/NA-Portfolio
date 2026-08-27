@@ -118,10 +118,7 @@ function lessonFlow(p){
     'data-analysis':['question','database','chart','bulb','check'],
     'data-science':['question','database','chart','target','check'],
     'business-analysis':['question','people','file','chart','check'],
-    'ai-automation':['question','file','brass','target','check'],
-    'finance-risk':['file','chart','target','chart','check'],
-    'marketing-growth':['people','message','chart','target','check'],
-    'operations-strategy':['file','clock','target','chart','check']
+    'ai-automation':['question','file','brass','target','check']
   };
   const copy=t(`flow.${p.id}`);
   const fallback=t('flow.data-analysis');

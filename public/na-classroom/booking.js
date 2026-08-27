@@ -8,8 +8,8 @@ const STEP_LABELS = ['Goal', 'Level', 'Preferences', 'Availability', 'Contact'];
 const CATEGORIES = [
   {
     id: 'learning-path',
-    title: 'One of the 7 learning paths',
-    text: 'Data Analysis, Data Science, Business Analysis, AI & Automation, Finance / Risk, Marketing / Growth, Operations / Strategy.'
+    title: 'One of the 4 learning paths',
+    text: 'Data Analysis, Data Science, Business Analysis, AI & Automation.'
   },
   {
     id: 'school-university',

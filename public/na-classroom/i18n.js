@@ -8,7 +8,7 @@ const COPY = {
       sub: 'Choose the path that fits your goal.',
       learnEyebrow: 'LEARN',
       learnTitle: 'Build your path',
-      learnBody: 'Seven pillars. Seven roadmaps.\nOne structured way to learn.',
+      learnBody: 'Four pillars. Four roadmaps.\nOne structured way to learn.',
       learnCta: 'Enter the learning space',
       teachEyebrow: 'TEACHING',
       teachTitle: 'Learn with me',
@@ -26,7 +26,7 @@ const COPY = {
       next: 'NEXT',
       started: 'Getting started',
       end: 'End of preview',
-      mini: 'Seven starter lessons are shown here as structure. Full course content can be connected later.',
+      mini: 'Starter lessons are shown here as structure. Full course content can be connected later.',
       partOf: 'Part of the',
       idea: '1. The idea',
       ideaDa: 'A data analyst turns questions into answers that help people make better decisions. The work is a simple loop: ask, collect, explore, analyse, communicate.',
@@ -69,19 +69,13 @@ const COPY = {
       'data-analysis': { name: 'Data Analysis', intro: 'Learn how to turn raw data into clear insights, useful questions, and better decisions.', stages: ['Foundations', 'Data handling', 'Analysis', 'Visualisation', 'Decision-making', 'Reporting', 'Practice'] },
       'data-science': { name: 'Data Science', intro: 'Learn how data, probability, models, and evaluation work together to solve predictive problems.', stages: ['Foundations', 'Probability', 'Machine learning', 'Evaluation', 'Features', 'Advanced models', 'Production'] },
       'business-analysis': { name: 'Business Analysis', intro: 'Learn how to clarify business problems, understand stakeholders, define needs, and evaluate solutions.', stages: ['Foundations', 'Stakeholders', 'Requirements', 'Processes', 'Solutions', 'Value', 'Practice'] },
-      'ai-automation': { name: 'AI & Automation', intro: 'Learn how modern AI systems work, where automation helps, and how to build reliable workflows.', stages: ['Foundations', 'LLMs', 'Embeddings', 'RAG', 'Automation', 'Agents', 'Production'] },
-      'finance-risk': { name: 'Finance & Risk', intro: 'Learn how financial statements, valuation, time, uncertainty, and risk shape financial decisions.', stages: ['Foundations', 'Accounting', 'Valuation', 'Risk', 'Actuarial', 'Markets', 'Practice'] },
-      'marketing-growth': { name: 'Marketing & Growth', intro: 'Learn how positioning, acquisition, conversion, experimentation, and customer economics drive growth.', stages: ['Foundations', 'Positioning', 'Acquisition', 'Conversion', 'Experiments', 'Analytics', 'Strategy'] },
-      'operations-strategy': { name: 'Operations & Strategy', intro: 'Learn how processes, capacity, flow, constraints, and strategic choices shape operational performance.', stages: ['Foundations', 'Processes', 'Capacity', 'Flow', 'Optimisation', 'Planning', 'Strategy'] }
+      'ai-automation': { name: 'AI & Automation', intro: 'Learn how modern AI systems work, where automation helps, and how to build reliable workflows.', stages: ['Foundations', 'LLMs', 'Embeddings', 'RAG', 'Automation', 'Agents', 'Production'] }
     },
     flow: {
       'data-analysis': [['Question', 'Start with a clear business question.'], ['Data', 'Gather the right data to answer it.'], ['Analysis', 'Explore and analyse the data.'], ['Insight', 'Turn findings into meaningful insights.'], ['Decision', 'Use insights to make better decisions.']],
       'data-science': [['Problem', 'Define what you want to predict.'], ['Data', 'Prepare features and target.'], ['Model', 'Train a model that fits the problem.'], ['Evaluate', 'Measure performance with the right metric.'], ['Decision', 'Use the prediction in a real decision.']],
       'business-analysis': [['Need', 'Clarify the business need.'], ['Stakeholders', 'Understand who is affected.'], ['Requirements', 'Define what must be true.'], ['Options', 'Compare possible solutions.'], ['Value', 'Check whether the change creates value.']],
-      'ai-automation': [['Task', 'Define what the system should do.'], ['Context', 'Give the model the right information.'], ['Model', 'Choose the model and workflow.'], ['Evaluate', 'Check quality and failure modes.'], ['Automate', 'Integrate the reliable steps.']],
-      'finance-risk': [['Information', 'Read the financial information.'], ['Measure', 'Calculate value, return, or exposure.'], ['Risk', 'Identify uncertainty and downside.'], ['Compare', 'Compare scenarios and alternatives.'], ['Decision', 'Choose with risk and value in mind.']],
-      'marketing-growth': [['Customer', 'Define the audience and need.'], ['Message', 'Clarify the proposition.'], ['Channel', 'Choose how to reach people.'], ['Measure', 'Track conversion and cost.'], ['Learn', 'Use experiments to improve.']],
-      'operations-strategy': [['Process', 'Map how work flows.'], ['Capacity', 'Measure time and available capacity.'], ['Constraint', 'Find the bottleneck.'], ['Improve', 'Test a better operating choice.'], ['Strategy', 'Connect operations to the goal.']]
+      'ai-automation': [['Task', 'Define what the system should do.'], ['Context', 'Give the model the right information.'], ['Model', 'Choose the model and workflow.'], ['Evaluate', 'Check quality and failure modes.'], ['Automate', 'Integrate the reliable steps.']]
     },
     bk: {
       steps: ['Goal', 'Level', 'Preferences', 'Availability', 'Contact'],
@@ -181,7 +175,7 @@ const COPY = {
       duration: 'Duration',
       availability: 'Availability',
       cats: {
-        'learning-path': ['One of the 7 learning paths', 'Data Analysis, Data Science, Business Analysis, AI & Automation, Finance / Risk, Marketing / Growth, Operations / Strategy.'],
+        'learning-path': ['One of the 4 learning paths', 'Data Analysis, Data Science, Business Analysis, AI & Automation.'],
         'school-university': ['School & university', 'From school fundamentals to university-level support.'],
         fle: ['French / FLE', 'Conversation, grammar, exams or professional French.'],
         'exam-project': ['Exam, assignment or project', 'Prepare for an exam or get help with a specific piece of work.'],
@@ -271,7 +265,7 @@ const COPY = {
       sub: 'Choisissez le chemin qui correspond à votre objectif.',
       learnEyebrow: 'APPRENDRE',
       learnTitle: 'Construire votre parcours',
-      learnBody: 'Sept piliers. Sept feuilles de route.\nUne façon structurée d’apprendre.',
+      learnBody: 'Quatre piliers. Quatre feuilles de route.\nUne façon structurée d’apprendre.',
       learnCta: 'Entrer dans l’espace d’apprentissage',
       teachEyebrow: 'ENSEIGNEMENT',
       teachTitle: 'Apprendre avec moi',
@@ -289,7 +283,7 @@ const COPY = {
       next: 'SUIVANT',
       started: 'Pour commencer',
       end: 'Fin de l’aperçu',
-      mini: 'Sept leçons de démarrage sont montrées ici comme structure. Le contenu complet pourra être branché plus tard.',
+      mini: 'Des leçons de démarrage sont montrées ici comme structure. Le contenu complet pourra être branché plus tard.',
       partOf: 'Fait partie du parcours',
       idea: '1. L’idée',
       ideaDa: 'Un data analyst transforme des questions en réponses utiles pour décider. Le travail est une boucle simple : demander, collecter, explorer, analyser, communiquer.',
@@ -332,19 +326,13 @@ const COPY = {
       'data-analysis': { name: 'Analyse de données', intro: 'Apprendre à transformer des données brutes en insights clairs, en questions utiles et en meilleures décisions.', stages: ['Fondations', 'Manipulation des données', 'Analyse', 'Visualisation', 'Décision', 'Reporting', 'Pratique'] },
       'data-science': { name: 'Data Science', intro: 'Comprendre comment données, probabilités, modèles et évaluation travaillent ensemble pour prédire.', stages: ['Fondations', 'Probabilités', 'Machine learning', 'Évaluation', 'Features', 'Modèles avancés', 'Production'] },
       'business-analysis': { name: 'Business Analysis', intro: 'Clarifier les problèmes métier, comprendre les parties prenantes, définir les besoins et évaluer les solutions.', stages: ['Fondations', 'Parties prenantes', 'Exigences', 'Processus', 'Solutions', 'Valeur', 'Pratique'] },
-      'ai-automation': { name: 'IA & Automation', intro: 'Comprendre les systèmes d’IA modernes, là où l’automatisation aide, et comment construire des workflows fiables.', stages: ['Fondations', 'LLMs', 'Embeddings', 'RAG', 'Automatisation', 'Agents', 'Production'] },
-      'finance-risk': { name: 'Finance & Risque', intro: 'Comprendre comment états financiers, valorisation, temps, incertitude et risque façonnent les décisions.', stages: ['Fondations', 'Comptabilité', 'Valorisation', 'Risque', 'Actuariat', 'Marchés', 'Pratique'] },
-      'marketing-growth': { name: 'Marketing & Growth', intro: 'Comprendre comment positionnement, acquisition, conversion, expérimentation et économie client font croître.', stages: ['Fondations', 'Positionnement', 'Acquisition', 'Conversion', 'Expériences', 'Analytics', 'Stratégie'] },
-      'operations-strategy': { name: 'Opérations & Stratégie', intro: 'Comprendre comment processus, capacité, flux, contraintes et choix stratégiques façonnent la performance.', stages: ['Fondations', 'Processus', 'Capacité', 'Flux', 'Optimisation', 'Planification', 'Stratégie'] }
+      'ai-automation': { name: 'IA & Automation', intro: 'Comprendre les systèmes d’IA modernes, là où l’automatisation aide, et comment construire des workflows fiables.', stages: ['Fondations', 'LLMs', 'Embeddings', 'RAG', 'Automatisation', 'Agents', 'Production'] }
     },
     flow: {
       'data-analysis': [['Question', 'Partir d’une question métier claire.'], ['Données', 'Rassembler les bonnes données pour y répondre.'], ['Analyse', 'Explorer et analyser les données.'], ['Insight', 'Transformer les findings en insights utiles.'], ['Décision', 'S’en servir pour mieux décider.']],
       'data-science': [['Problème', 'Définir ce que l’on veut prédire.'], ['Données', 'Préparer les features et la cible.'], ['Modèle', 'Entraîner un modèle adapté au problème.'], ['Évaluer', 'Mesurer la performance avec la bonne métrique.'], ['Décision', 'Utiliser la prédiction dans une vraie décision.']],
       'business-analysis': [['Besoin', 'Clarifier le besoin métier.'], ['Parties prenantes', 'Comprendre qui est concerné.'], ['Exigences', 'Définir ce qui doit être vrai.'], ['Options', 'Comparer les solutions possibles.'], ['Valeur', 'Vérifier si le changement crée de la valeur.']],
-      'ai-automation': [['Tâche', 'Définir ce que le système doit faire.'], ['Contexte', 'Donner au modèle la bonne information.'], ['Modèle', 'Choisir le modèle et le workflow.'], ['Évaluer', 'Vérifier la qualité et les modes de défaillance.'], ['Automatiser', 'Intégrer les étapes fiables.']],
-      'finance-risk': [['Information', 'Lire l’information financière.'], ['Mesurer', 'Calculer la valeur, le rendement ou l’exposition.'], ['Risque', 'Identifier l’incertitude et le downside.'], ['Comparer', 'Comparer scénarios et alternatives.'], ['Décision', 'Choisir avec le risque et la valeur en tête.']],
-      'marketing-growth': [['Client', 'Définir l’audience et le besoin.'], ['Message', 'Clarifier la proposition.'], ['Canal', 'Choisir comment atteindre les gens.'], ['Mesurer', 'Suivre conversion et coût.'], ['Apprendre', 'Utiliser les expériences pour s’améliorer.']],
-      'operations-strategy': [['Processus', 'Cartographier le flux de travail.'], ['Capacité', 'Mesurer le temps et la capacité disponible.'], ['Contrainte', 'Trouver le goulot.'], ['Améliorer', 'Tester un meilleur choix opérationnel.'], ['Stratégie', 'Relier les opérations à l’objectif.']]
+      'ai-automation': [['Tâche', 'Définir ce que le système doit faire.'], ['Contexte', 'Donner au modèle la bonne information.'], ['Modèle', 'Choisir le modèle et le workflow.'], ['Évaluer', 'Vérifier la qualité et les modes de défaillance.'], ['Automatiser', 'Intégrer les étapes fiables.']]
     },
     bk: {
       steps: ['Objectif', 'Niveau', 'Préférences', 'Disponibilité', 'Contact'],
@@ -444,7 +432,7 @@ const COPY = {
       duration: 'Durée',
       availability: 'Disponibilité',
       cats: {
-        'learning-path': ['Un des 7 parcours', 'Analyse de données, Data Science, Business Analysis, IA & Automation, Finance / Risque, Marketing / Growth, Opérations / Stratégie.'],
+        'learning-path': ['Un des 4 parcours', 'Analyse de données, Data Science, Business Analysis, IA & Automation.'],
         'school-university': ['École & université', 'Des fondamentaux scolaires au niveau universitaire.'],
         fle: ['Français / FLE', 'Conversation, grammaire, examens ou français professionnel.'],
         'exam-project': ['Examen, devoir ou projet', 'Préparer un examen ou avancer sur un travail précis.'],
